@@ -60,7 +60,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-patchamama-pp5drfapithe-gozrvwzdzbf.ws-eu102.gitpod.io']
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,6 +70,15 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
+    'rest_framework',
+    'django_filters',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
     'profiles',
 ]

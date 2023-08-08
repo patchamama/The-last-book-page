@@ -71,7 +71,7 @@ pip install django-cloudinary-storage==0.3.0
 pip install Pillow==8.2.0
 ```
 
-### Install apps of the project 
+### Install apps of the project 
 
 ```
 python3 manage.py startapp profiles
