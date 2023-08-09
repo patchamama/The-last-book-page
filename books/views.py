@@ -25,7 +25,8 @@ class BookList(generics.ListCreateAPIView):
     ]
     search_fields = [
         'title',
-        'auth'
+        'auth',
+        'genre'
     ]
     ordering_fields = [
         'comments_count'
