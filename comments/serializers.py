@@ -15,6 +15,7 @@ class CommentSerializer(serializers.ModelSerializer):
     book_title = serializers.ReadOnlyField(source='book.title')
     book_auth = serializers.ReadOnlyField(source='book.auth')
     like_id = serializers.SerializerMethodField()
+    likes_count = serializers.ReadOnlyField()    
 
     def get_like_id(self, obj):
         user = self.context['request'].user
@@ -34,7 +35,8 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'comment', 'profile_id', 'profile_image',      
             'book', 'book_cover', 'book_title', 'book_auth', 
-            'created_on', 'updated_on', 'is_owner', 'like_id',
+            'created_on', 'updated_on', 'is_owner', 'like_id', 
+            'likes_count',
         ]
 
 class CommentDetailSerializer(CommentSerializer):
