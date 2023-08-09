@@ -3,14 +3,17 @@ from .models import Comment
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Comment model
+    Adds three extra fields when returning a list of Comment instances
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
-    book_id = serializers.ReadOnlyField(source='comment_book.id')
-    book_cover = serializers.ReadOnlyField(source='comment_book.cover.image.url')
-    book_title = serializers.ReadOnlyField(source='comment_book.title')
-    book_auth = serializers.ReadOnlyField(source='comment_book.auth')
+    book_cover = serializers.ReadOnlyField(source='book.cover.image.url')
+    book_title = serializers.ReadOnlyField(source='book.title')
+    book_auth = serializers.ReadOnlyField(source='book.auth')
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -20,7 +23,14 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = [
-            'id', 'owner', 'comment', 'profile_id', 'profile_image', 
-            'book_id', 'book_cover', 'book_title', 'book_auth', 
+            'id', 'owner', 'comment', 'profile_id', 'profile_image',      
+            'book', 'book_cover', 'book_title', 'book_auth', 
             'created_on', 'updated_on', 'is_owner', 
         ]
+
+class CommentDetailSerializer(CommentSerializer):
+    """
+    Serializer for the Comment model used in Detail view
+    Book is a read only field so that we dont have to set it on each update
+    """
+    book = serializers.ReadOnlyField(source='book.id')
