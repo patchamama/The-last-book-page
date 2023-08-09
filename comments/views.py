@@ -4,7 +4,7 @@ from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerializer
 
 
-class CommentList(generics.ListAPIView):
+class CommentList(generics.ListCreateAPIView):
     """
     List all comments.
     No create view as comment creation is handled by django signals.
