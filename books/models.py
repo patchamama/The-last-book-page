@@ -207,32 +207,32 @@ LANGUAGES = [
         ('Zulu', 'Zulu')
     ]
 
-
-class Profile(models.Model):
+class Book(models.Model):
     """
-    User Profile Model 
+    Book model with content of books to comment, related to 'owner', i.e. a User instance.
     """
 
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, blank=True)
-    date_of_birth = models.DateField(blank=True, null=True)
-    language = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
-    image = models.ImageField(
-        upload_to='images/', default='../default_profile_pi4td5.jpg') 
+    title = models.CharField(max_length=150, unique=False)
+    auth = models.CharField(max_length=150, unique=False)
+    pub_date = models.DateTimeField(blank=True, null=True)
+    publisher = models.CharField(max_length=100, unique=False, blank=True)
+    pages_no = models.IntegerField(default=0)
+    isbn = models.CharField(max_length=13, unique=True, blank=True)
+    lang_orig = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
+    lang = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
+    translators = models.CharField(max_length=200, unique=False, blank=True)
+    genre = models.TextField(blank=True)
+    synopsis = models.TextField(blank=True)
+    cover = models.ImageField(
+        upload_to='images/', default='../No_image_available.svg_fqlc88.png', blank=True
+    )
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True)
+    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        """
-        Return profile where the newest are the first
-        """
         ordering = ['-created_on']
 
     def __str__(self):
-        return f"{self.owner}'s profile"
-
-    def create_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(owner=instance)
-
-    post_save.connect(create_profile, sender=User)
+        return f'{self.id} {self.title} - {self.auth}'
