@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from drf_api_lastpage.permissions import IsOwnerOrReadOnly
 from .models import Bookmark
 from .serializers import BookmarkSerializer
 
@@ -14,4 +15,11 @@ class BookmarkList(generics.ListCreateAPIView):
     serializer_class = BookmarkSerializer
 
 
+class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Bookmarks can be retrieved, update and deleted
+    """
+    serializer_class = BookmarkSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = Bookmark.objects.all()
 
