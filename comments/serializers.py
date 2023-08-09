@@ -11,14 +11,13 @@ class CommentSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
-    book_cover = serializers.ReadOnlyField(source='book.cover.image.url')
+    book_cover = serializers.ImageField(source='book.cover', read_only=True)
     book_title = serializers.ReadOnlyField(source='book.title')
     book_auth = serializers.ReadOnlyField(source='book.auth')
 
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-
 
     class Meta:
         model = Comment

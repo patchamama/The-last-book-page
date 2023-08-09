@@ -29,6 +29,18 @@ The reason for this API is to provide all the information required for querying 
 
 ## Bugs Fixed
 
+- In the app comments/serializers.py don't render the image cover of the book with the line:
+
+```
+book_cover = serializers.ReadOnlyField(source='book.cover.image.url')
+```
+
+after a lot of tests/debugs and the checking of the documentation was resolve with the line:
+
+```
+book_cover = serializers.ImageField(source='book.cover', read_only=True)
+```
+
 ## Bugs Unresolved
 
 # Technologies Used
@@ -154,5 +166,6 @@ _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudi
 # Deployment
 
 # Credits
+- Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 
 # Acknowledgments
