@@ -15,7 +15,8 @@ class BookList(generics.ListCreateAPIView):
     serializer_class = BookSerializer
     # queryset = Book.objects.all().order_by('auth', 'title')
     queryset = Book.objects.annotate(
-        comments_count=Count('comment', distinct=True)
+        comments_count=Count('comment', distinct=True),
+        bookmarks_count=Count('bookmark', distinct=True)
     ).order_by('auth', 'title')
     filter_backends = [
         filters.OrderingFilter,
@@ -29,7 +30,8 @@ class BookList(generics.ListCreateAPIView):
         'genre'
     ]
     ordering_fields = [
-        'comments_count'
+        'comments_count',
+        'bookmarks_count'
     ]
     
 
@@ -41,8 +43,12 @@ class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve (any) or update a books if you're authenticate.
     """
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Book.objects.all().order_by('auth', 'title')
+    # queryset = Book.objects.all().order_by('auth', 'title')
     serializer_class = BookSerializer
+    queryset = Book.objects.annotate(
+        comments_count=Count('comment', distinct=True),
+        bookmarks_count=Count('bookmark', distinct=True)
+    ).order_by('auth', 'title')
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

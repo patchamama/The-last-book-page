@@ -4,6 +4,7 @@ from .models import Book
 
 class BookSerializer(serializers.ModelSerializer):
     comments_count = serializers.ReadOnlyField()
+    bookmarks_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
@@ -24,7 +25,7 @@ class BookSerializer(serializers.ModelSerializer):
             'id', 'title', 'auth', 'pub_date', 'publisher', 'pages_no', 
             'isbn', 'lang_orig', 'lang', 'translators', 'genre', 
             'synopsis', 'cover', 'created_by', 'updated_by', 'created_on', 
-            'updated_on', 'comments_count',
+            'updated_on', 'comments_count', 'bookmarks_count',
         ]
 
     
