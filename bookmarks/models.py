@@ -14,9 +14,7 @@ class Bookmark(models.Model):
     Bookmark model which is related to 'owner' and 'books' model.
     """
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, related_name='bookmark',
-                             on_delete=models.CASCADE
-                             )
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     status = models.CharField(max_length=25, choices=STATUS_TYPE, default='Want to read')
     created_on = models.DateTimeField(auto_now_add=True)
 

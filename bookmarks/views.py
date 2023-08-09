@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .models import Bookmark
+from .serializers import BookmarkSerializer
 
-# Create your views here.
+
+class BookmarkList(generics.ListCreateAPIView):
+    """
+    List all books.
+    No create view as book creation is handled by django signals.
+    """
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Bookmark.objects.all().order_by('owner', 'book')
+    serializer_class = BookmarkSerializer
+
+
+
