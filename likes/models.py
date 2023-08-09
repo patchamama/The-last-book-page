@@ -20,4 +20,4 @@ class Like(models.Model):
         unique_together = ['owner', 'comment']
 
     def __str__(self):
-        return f'{self.owner} {self.comment.comment}'
+        return f'{self.owner} {self.comment}'
