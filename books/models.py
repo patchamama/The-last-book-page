@@ -1,7 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from django.dispatch import receiver
 
 LANGUAGES = [
         ('Afar', 'Afar'),
@@ -209,7 +207,7 @@ LANGUAGES = [
 
 class Book(models.Model):
     """
-    Book model with content of books to comment, related to 'owner', i.e. a User instance.
+    Book model with content of books
     """
 
     title = models.CharField(max_length=150, unique=False)
