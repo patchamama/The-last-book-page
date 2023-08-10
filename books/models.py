@@ -215,7 +215,7 @@ class Book(models.Model):
     pub_date = models.DateTimeField(blank=True, null=True)
     publisher = models.CharField(max_length=100, unique=False, blank=True)
     pages_no = models.IntegerField(default=0)
-    isbn = models.CharField(max_length=13, unique=True, blank=True)
+    isbn = models.CharField(max_length=13, unique=False, blank=True)
     lang_orig = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
     lang = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
     translators = models.CharField(max_length=200, unique=False, blank=True)
@@ -235,3 +235,5 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{self.id} {self.title} - {self.auth}'
+
+    

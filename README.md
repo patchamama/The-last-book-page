@@ -167,5 +167,6 @@ _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudi
 
 # Credits
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
+- Images of profiles: https://www.pexels.com/
 
 # Acknowledgments

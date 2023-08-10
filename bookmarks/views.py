@@ -14,6 +14,8 @@ class BookmarkList(generics.ListCreateAPIView):
     queryset = Bookmark.objects.all().order_by('owner', 'book')
     serializer_class = BookmarkSerializer
 
+    def perform_create(self, serializer):
+            serializer.save(owner=self.request.user)
 
 class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -23,3 +25,5 @@ class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Bookmark.objects.all()
 
+    def perform_update(self, serializer):
+        serializer.save(owner=self.request.user)

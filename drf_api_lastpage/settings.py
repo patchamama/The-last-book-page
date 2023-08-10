@@ -157,7 +157,7 @@ WSGI_APPLICATION = 'drf_api_lastpage.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if 'DEV' in os.environ:
+if 'DEV1' in os.environ:
      DATABASES = {
          'default': {
              'ENGINE': 'django.db.backends.sqlite3',

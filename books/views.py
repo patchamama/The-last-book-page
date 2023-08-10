@@ -34,8 +34,8 @@ class BookList(generics.ListCreateAPIView):
         'bookmarks_count'
     ]
     
-
-
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
 
 
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -49,9 +49,6 @@ class BookDetail(generics.RetrieveUpdateDestroyAPIView):
         comments_count=Count('comment', distinct=True),
         bookmarks_count=Count('bookmark', distinct=True)
     ).order_by('auth', 'title')
-
-    def perform_create(self, serializer):
-        serializer.save(created_by=self.request.user)
 
     def perform_update(self, serializer):
         serializer.save(updated_by=self.request.user)
