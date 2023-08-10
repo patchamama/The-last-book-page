@@ -21,6 +21,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         return None
 
     def validate_image(self, value):
+        """
+        Image validation function
+        """
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError('Image size larger than 2MB!')
         if value.image.height > 4096:

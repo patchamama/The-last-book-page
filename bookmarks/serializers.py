@@ -9,8 +9,6 @@ class BookmarkSerializer(serializers.ModelSerializer):
     Adds extra fields when returning a list of Bookmark instances
     """
 
-    # owner = serializers.ReadOnlyField(source='owner.id')
-    # owner = serializers.PrimaryKeyRelatedField(read_only=True)
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     book_cover = serializers.ImageField(source='book.cover', read_only=True)
@@ -31,7 +29,7 @@ class BookmarkSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """
-        If a user tries to bookmark the same post multiple times,
+        If a user tries to bookmark the same multiple times,
         it will throw a duplicate error
         """
         try:

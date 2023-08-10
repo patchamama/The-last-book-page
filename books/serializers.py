@@ -3,10 +3,16 @@ from .models import Book
 
 
 class BookSerializer(serializers.ModelSerializer):
+    """
+    Book serializer class inheriting from ModelSerializer
+    """
     comments_count = serializers.ReadOnlyField()
     bookmarks_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
+        """
+        Image validation function
+        """
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError('Image size larger than 2MB!')
         if value.image.height > 4096:

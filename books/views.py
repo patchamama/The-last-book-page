@@ -8,8 +8,9 @@ from .serializers import BookSerializer
 
 class BookList(generics.ListCreateAPIView):
     """
-    List all books.
-    No create view as book creation is handled by django signals.
+    List all books or if the user is logged-in they have the ability to
+    create new books. perform_create method associates the book.created_by
+    with the logged-in user
     """
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = BookSerializer
@@ -40,7 +41,9 @@ class BookList(generics.ListCreateAPIView):
 
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve (any) or update a books if you're authenticate.
+    Retrieve or update books if you're authenticate.
+    perform_update method associates the book.updated_by
+    with the logged-in user
     """
     permission_classes = [IsAuthenticatedOrReadOnly]
     # queryset = Book.objects.all().order_by('auth', 'title')

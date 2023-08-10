@@ -7,8 +7,9 @@ from .serializers import BookmarkSerializer
 
 class BookmarkList(generics.ListCreateAPIView):
     """
-    List all books.
-    No create view as book creation is handled by django signals.
+    List all bookmarks or if the user is logged-in they have the ability to
+    create new boorkmarks. perform_create method associates the bookmark.owner
+    with the logged-in user
     """
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Bookmark.objects.all().order_by('owner', 'book')
@@ -19,11 +20,11 @@ class BookmarkList(generics.ListCreateAPIView):
 
 class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Bookmarks can be retrieved, update and deleted
+    Bookmarks can be retrieved, update and deleted if is the owner
     """
     serializer_class = BookmarkSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Bookmark.objects.all()
 
-    def perform_update(self, serializer):
-        serializer.save(owner=self.request.user)
+    # def perform_update(self, serializer):
+    #     serializer.save(owner=self.request.user)
