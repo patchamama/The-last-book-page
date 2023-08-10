@@ -68,7 +68,6 @@ DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
-    '8000-patchamama-pp5drfapithe-gozrvwzdzbf.ws-eu102.gitpod.io', 
     'localhost', 
     'drp-api-the-last-book-page.herokuapp.com', 
     'drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com'
@@ -163,7 +162,7 @@ WSGI_APPLICATION = 'drf_api_lastpage.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 MODUS_DB_OPERATION = ['PSQL', 'DEV']
-MODUS = MODUS_DB_OPERATION[1]
+MODUS = MODUS_DB_OPERATION[0]
 
 if MODUS in os.environ:
      DATABASES = {
