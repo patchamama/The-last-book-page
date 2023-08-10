@@ -3,13 +3,15 @@
 
 # Objective
 
-The purpose of this API is to provide data in an efficient and secure way to support the front-end project "The last book page". My goal is to create clear and concise data models that meet the needs of the project. Each API endpoint has been carefully designed to fulfil a specific function and has been thoroughly tested to ensure that manipulation of the data is limited to authorised users only.
-
 The reason for this API is to provide all the information required for querying and updating data from the front-end "The last book page". To do this using the (MVC) pattern, this application manages the model and controller that serve the data required by the front-end (the View managed with React). To meet its objectives, exhaustive tests are carried out to validate the correct manipulation of data and limited and secure access to the data, depending on the pre-established permissions in the application, taking care of security.
 
 # User Experience (UX)
 
 ### User Stories
+
+In total 19 User Stories have been created and executed in 7 Epics (Milestones). In the commit history you can see how the tasks were executed as the development of the application progressed.
+
+
 
 # Agile Methodology
 
