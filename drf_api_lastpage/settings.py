@@ -65,7 +65,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # DEBUG = True
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['8000-patchamama-pp5drfapithe-gozrvwzdzbf.ws-eu102.gitpod.io', 'localhost', 'drp-api-the-last-book-page.herokuapp.com']
+ALLOWED_HOSTS = ['8000-patchamama-pp5drfapithe-gozrvwzdzbf.ws-eu102.gitpod.io', 'localhost', 'drp-api-the-last-book-page.herokuapp.com', 'drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com']
 
 
 # Application definition
