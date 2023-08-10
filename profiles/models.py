@@ -218,7 +218,7 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     language = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_pi4td5.jpg') 
+        upload_to='images/', default='../default_profile_hk81a7.jpg') 
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 

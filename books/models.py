@@ -222,9 +222,7 @@ class Book(models.Model):
     genre = models.TextField(blank=True)
     synopsis = models.TextField(blank=True)
     cover = models.ImageField(
-        upload_to='images/', default='../No_image_available.svg_fqlc88.png')
-    image = models.ImageField(
-        upload_to='images/', default='../default_profile_pi4td5.jpg') 
+        upload_to='images/', default='../No_image_available.svg_t2xrtz.png')
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True)
     updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)

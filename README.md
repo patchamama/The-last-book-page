@@ -27,6 +27,10 @@ The reason for this API is to provide all the information required for querying 
 
 ## Manual Testing
 
+## Security Fixed
+
+During the updates in git I did not check the updates to be discarded in the .gitignore file, which resulted in the env.py file being published with the cloudinary, postgres (ElephantSQL) and secret-key keys. This determined to regenerate the keys again and update them in env.py and the configuration variables in heroku.
+
 ## Bugs Fixed
 
 - In the app comments/serializers.py don't render the image cover of the book with the line:
@@ -168,5 +172,6 @@ _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudi
 # Credits
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 - Images of profiles: https://www.pexels.com/
+- To generate secret-keys: https://djecrety.ir/
 
 # Acknowledgments
