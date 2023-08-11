@@ -1,6 +1,5 @@
 # **_The last book page - Django REST Framework API_**
 
-
 # Objective
 
 The reason for this API is to provide all the information required for querying and updating data from the front-end "The last book page". To do this using the (MVC) pattern, this application manages the model and controller that serve the data required by the front-end (the View managed with React). To meet its objectives, exhaustive tests are carried out to validate the correct manipulation of data and limited and secure access to the data, depending on the pre-established permissions in the application, taking care of security.
@@ -11,8 +10,6 @@ The reason for this API is to provide all the information required for querying 
 
 In total 19 User Stories have been created and executed in 7 Epics (Milestones). In the commit history you can see how the tasks were executed as the development of the application progressed.
 
-
-
 # Agile Methodology
 
 # Entity Relationship Diagram
@@ -20,6 +17,140 @@ In total 19 User Stories have been created and executed in 7 Epics (Milestones).
 # Database
 
 # Models
+
+### Comment
+
+| **Database Value** | **Field Type** | **Field Argument**               |
+| ------------------ | -------------- | -------------------------------- |
+| owner              | ForeignKey     | `User, on_delete=models.CASCADE` |
+| book               | ForeignKey     | `Book, on_delete=models.CASCADE` |
+| comment            | TextField      |                                  |
+| created_on         | DateTimeField  | `auto_now_add=True`              |
+| updated_on         | DateTimeField  | `auto_now=True`                  |
+
+### Book
+
+| **Database Value** | **Field Type** | **Field Argument**                                                                      |
+| ------------------ | -------------- | --------------------------------------------------------------------------------------- |
+| title              | Char           | `max_length=150, unique=False`                                                          |
+| auth               | Char           | `max_length=150, unique=False`                                                          |
+| pub_date           | DateTime       | `blank=True, null=True`                                                                 |
+| publisher          | Char           | `max_length=100, unique=False, blank=True`                                              |
+| pages_no           | Integer        | `default=0`                                                                             |
+| isbn               | Char           | `max_length=13, unique=False, blank=True`                                               |
+| lang_orig          | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
+| lang               | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
+| translators        | Char           | `max_length=200, unique=False, blank=True`                                              |
+| genre              | Text           | `blank=True`                                                                            |
+| synopsis           | Text           | `blank=True`                                                                            |
+| cover              | Image          | `upload_to='images/', default='../No_image_available.svg_t2xrtz.png'`                   |
+| created_by         | ForeignKey     | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
+| updated_by         | ForeignKey     | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
+| created_on         | DateTime       | `auto_now_add=True`                                                                     |
+| updated_on         | DateTime       | `auto_now=True`                                                                         |
+
+### Bookmark
+
+| **Database Value** | ** Type**  | ** Argument**                                                |
+| ------------------ | ---------- | ------------------------------------------------------------ |
+| owner              | ForeignKey | `User, on_delete=models.CASCADE`                             |
+| book               | ForeignKey | `Book, on_delete=models.CASCADE`                             |
+| status             | Char       | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
+| created_on         | DateTime   | `auto_now_add=True`                                          |
+
+### Follower
+
+| **Database Value** | ** Type**  | ** Argument**                                              |
+| ------------------ | ---------- | ---------------------------------------------------------- |
+| owner              | ForeignKey | `User, related_name='following', on_delete=models.CASCADE` |
+| followed           | ForeignKey | `User, related_name='followed', on_delete=models.CASCADE`  |
+| created_on         | DateTime   | `auto_now_add=True`                                        |
+
+### Like
+
+| **Database Value** | ** Type**  | ** Argument**                                             |
+| ------------------ | ---------- | --------------------------------------------------------- |
+| owner              | ForeignKey | `User, on_delete=models.CASCADE`                          |
+| comment            | ForeignKey | `Comment, related_name='likes', on_delete=models.CASCADE` |
+| created_on         | DateTime   | `auto_now_add=True`                                       |
+
+### Profile
+
+| **Database Value** | ** Type** | ** Argument**                                                  |
+| ------------------ | --------- | -------------------------------------------------------------- | ----------- |
+| owner              | OneToOne  | `User, on_delete=models.CASCADE`                               |
+| name               | Char      | `max_length=200, blank=True`                                   |
+| date_of_birth      | Date      | `blank=True, null=True`                                        |
+| language           | Char      | `max_length=50, choices=LANGUAGES, blank=True`                 |
+| image              | Image     | `upload_to='images/', default='../default_profile_hk81a7.jpg'` |
+| created_on         | DateTime  | `auto_now_add=True`                                            |
+| updated_on         | DateTime  | `auto_now=True`                                                | ### Comment |
+
+| **Database Value** | ** Type** | ** Argument**                    |
+| ------------------ | --------- | -------------------------------- |
+| owner              | FK        | `User, on_delete=models.CASCADE` |
+| book               | FK        | `Book, on_delete=models.CASCADE` |
+| comment            | Text      |                                  |
+| created_on         | DateTime  | `auto_now_add=True`              |
+| updated_on         | DateTime  | `auto_now=True`                  |
+
+### Book
+
+| **Database Value** | ** Type** | ** Argument**                                                                           |
+| ------------------ | --------- | --------------------------------------------------------------------------------------- |
+| title              | Char      | `max_length=150, unique=False`                                                          |
+| auth               | Char      | `max_length=150, unique=False`                                                          |
+| pub_date           | DateTime  | `blank=True, null=True`                                                                 |
+| publisher          | Char      | `max_length=100, unique=False, blank=True`                                              |
+| pages_no           | Integer   | `default=0`                                                                             |
+| isbn               | Char      | `max_length=13, unique=False, blank=True`                                               |
+| lang_orig          | Char      | `max_length=50, choices=LANGUAGES, blank=True`                                          |
+| lang               | Char      | `max_length=50, choices=LANGUAGES, blank=True`                                          |
+| translators        | Char      | `max_length=200, unique=False, blank=True`                                              |
+| genre              | Text      | `blank=True`                                                                            |
+| synopsis           | Text      | `blank=True`                                                                            |
+| cover              | Image     | `upload_to='images/', default='../No_image_available.svg_t2xrtz.png'`                   |
+| created_by         | FK        | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
+| updated_by         | FK        | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
+| created_on         | DateTime  | `auto_now_add=True`                                                                     |
+| updated_on         | DateTime  | `auto_now=True`                                                                         |
+
+### Bookmark
+
+| **Database Value** | ** Type** | ** Argument**                                                |
+| ------------------ | --------- | ------------------------------------------------------------ |
+| owner              | FK        | `User, on_delete=models.CASCADE`                             |
+| book               | FK        | `Book, on_delete=models.CASCADE`                             |
+| status             | Char      | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
+| created_on         | DateTime  | `auto_now_add=True`                                          |
+
+### Follower
+
+| **Database Value** | ** Type** | ** Argument**                                              |
+| ------------------ | --------- | ---------------------------------------------------------- |
+| owner              | FK        | `User, related_name='following', on_delete=models.CASCADE` |
+| followed           | FK        | `User, related_name='followed', on_delete=models.CASCADE`  |
+| created_on         | DateTime  | `auto_now_add=True`                                        |
+
+### Like
+
+| **Database Value** | ** Type** | ** Argument**                                             |
+| ------------------ | --------- | --------------------------------------------------------- |
+| owner              | FK        | `User, on_delete=models.CASCADE`                          |
+| comment            | FK        | `Comment, related_name='likes', on_delete=models.CASCADE` |
+| created_on         | DateTime  | `auto_now_add=True`                                       |
+
+### Profile
+
+| **Database Value** | ** Type** | ** Argument**                                                  |
+| ------------------ | --------- | -------------------------------------------------------------- |
+| owner              | OneToOne  | `User, on_delete=models.CASCADE`                               |
+| name               | Char      | `max_length=200, blank=True`                                   |
+| date_of_birth      | Date      | `blank=True, null=True`                                        |
+| language           | Char      | `max_length=50, choices=LANGUAGES, blank=True`                 |
+| image              | Image     | `upload_to='images/', default='../default_profile_hk81a7.jpg'` |
+| created_on         | DateTime  | `auto_now_add=True`                                            |
+| updated_on         | DateTime  | `auto_now=True`                                                |
 
 # Testing
 
@@ -61,7 +192,7 @@ book_cover = serializers.ImageField(source='book.cover', read_only=True)
 
 ## Installing Django and libraries
 
-### Install Django 
+### Install Django
 
 ```
 pip3 install 'django<4'
@@ -69,7 +200,7 @@ pip3 install 'django<4'
 
 _The Long Term Support (LTS 3.2.x) version (in my case 3.2.20) will installed and is the most advisable for production as it is kept up to date with security patches._
 
-### Create Project 
+### Create Project
 
 ```
 django-admin startproject drf_api_lastpage .
@@ -89,7 +220,7 @@ pip install django-cloudinary-storage==0.3.0
 pip install Pillow==8.2.0
 ```
 
-### Install apps of the project 
+### Install apps of the project
 
 ```
 python3 manage.py startapp profiles
@@ -151,7 +282,7 @@ CLOUDINARY_STORAGE = {
 MEDIA_URL = '/media/'
 ```
 
-- Define Default File Storage to Cloudinary and place directly below 
+- Define Default File Storage to Cloudinary and place directly below
 
 ```
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -167,11 +298,12 @@ os.environ['CLOUDINARY_URL'] = 'cloudinary://**<cloudinary_key>**'
 _Note: Ensure `env.py` is listed in the .gitignore file so it does not get pushed to GitHub._
 _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudinary.com/console/). Make sure to only paste the correct part of the URL_
 
-### 
+###
 
 # Deployment
 
 # Credits
+
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 - Images of profiles: https://www.pexels.com/
 - To generate secret-keys: https://djecrety.ir/
