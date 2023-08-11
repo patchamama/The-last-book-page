@@ -11,3 +11,8 @@
 //   "https://drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com/";
 // axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 // axios.defaults.withCredentials = true;
+
+import axios from "axios";
+
+export const axiosReq = axios.create();
+export const axiosRes = axios.create();
