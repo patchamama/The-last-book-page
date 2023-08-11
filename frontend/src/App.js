@@ -6,6 +6,7 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import CommentCreateForm from "./pages/comments/CommentCreateForm";
+import CommentPage from "./pages/comments/CommentPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             path="/comments/create"
             render={() => <CommentCreateForm />}
           />
+          <Route exact path="/comments/:id" render={() => <CommentPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
