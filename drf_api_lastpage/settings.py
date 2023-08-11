@@ -69,6 +69,7 @@ DEBUG = 'DEBUG' in os.environ
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
     'localhost', 
+    '127.0.0.1',
     'drp-api-the-last-book-page.herokuapp.com', 
     'drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com'
     ]
