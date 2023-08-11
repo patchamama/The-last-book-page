@@ -28,6 +28,8 @@ class CommentList(generics.ListCreateAPIView):
         'owner__profile',                   # user comments
     ]
     search_fields = [
+        'book__title',
+        'book__auth',
         'owner__username',
     ]
     ordering_fields = [
