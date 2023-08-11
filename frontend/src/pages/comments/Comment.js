@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../../styles/Comment.module.css";
-
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Comment = (props) => {
   const {
@@ -13,7 +13,6 @@ const Comment = (props) => {
     comment,
     profile_id,
     profile_image,
-    book,
     book_cover,
     book_title,
     book_auth,
@@ -21,10 +20,51 @@ const Comment = (props) => {
     like_id,
     likes_count,
     commentPage,
+    setComments,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { comment: id });
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? {
+                ...comment,
+                likes_count: comment.likes_count + 1,
+                like_id: data.id,
+              }
+            : comment;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}`);
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? {
+                ...comment,
+                likes_count: comment.likes_count - 1,
+                like_id: null,
+              }
+            : comment;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card className={styles.Comment}>
@@ -59,11 +99,11 @@ const Comment = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLike}>
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
