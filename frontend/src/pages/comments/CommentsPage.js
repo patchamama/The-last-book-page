@@ -11,9 +11,10 @@ import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/CommentsPage.module.css";
 import { useLocation } from "react-router";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { axiosReq } from "../../api/axiosDefaults";
-
 import NoResults from "../../assets/no-results.png";
+import { fetchMoreData } from "../../utils/utils";
 
 function CommentsPage({ message, filter = "" }) {
   const [comments, setComments] = useState({ results: [] });
@@ -65,13 +66,19 @@ function CommentsPage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {comments.results.length ? (
-              comments.results.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  {...comment}
-                  setComments={setComments}
-                />
-              ))
+              <InfiniteScroll
+                children={comments.results.map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    {...comment}
+                    setComments={setComments}
+                  />
+                ))}
+                dataLength={comments.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!comments.next}
+                next={() => fetchMoreData(comments, setComments)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
