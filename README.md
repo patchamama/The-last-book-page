@@ -22,8 +22,8 @@ In total 19 User Stories have been created and executed in 7 Epics (Milestones).
 
 | **Database Value** | **Field Type** | **Field Argument**               |
 | ------------------ | -------------- | -------------------------------- |
-| owner              | ForeignKey     | `User, on_delete=models.CASCADE` |
-| book               | ForeignKey     | `Book, on_delete=models.CASCADE` |
+| owner              | FK             | `User, on_delete=models.CASCADE` |
+| book               | FK             | `Book, on_delete=models.CASCADE` |
 | comment            | TextField      |                                  |
 | created_on         | DateTimeField  | `auto_now_add=True`              |
 | updated_on         | DateTimeField  | `auto_now=True`                  |
@@ -44,19 +44,19 @@ In total 19 User Stories have been created and executed in 7 Epics (Milestones).
 | genre              | Text           | `blank=True`                                                                            |
 | synopsis           | Text           | `blank=True`                                                                            |
 | cover              | Image          | `upload_to='images/', default='../No_image_available.svg_t2xrtz.png'`                   |
-| created_by         | ForeignKey     | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
-| updated_by         | ForeignKey     | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
+| created_by         | FK             | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
+| updated_by         | FK             | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
 | created_on         | DateTime       | `auto_now_add=True`                                                                     |
 | updated_on         | DateTime       | `auto_now=True`                                                                         |
 
 ### Bookmark
 
-| **Database Value** | ** Type**  | ** Argument**                                                |
-| ------------------ | ---------- | ------------------------------------------------------------ |
-| owner              | ForeignKey | `User, on_delete=models.CASCADE`                             |
-| book               | ForeignKey | `Book, on_delete=models.CASCADE`                             |
-| status             | Char       | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
-| created_on         | DateTime   | `auto_now_add=True`                                          |
+| **Database Value** | ** Type** | ** Argument**                                                |
+| ------------------ | --------- | ------------------------------------------------------------ |
+| owner              | FK        | `User, on_delete=models.CASCADE`                             |
+| book               | FK        | `Book, on_delete=models.CASCADE`                             |
+| status             | Char      | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
+| created_on         | DateTime  | `auto_now_add=True`                                          |
 
 ### User (predefined for the system admin)
 
@@ -81,11 +81,11 @@ In total 19 User Stories have been created and executed in 7 Epics (Milestones).
 
 ### Follower
 
-| **Database Value** | ** Type**  | ** Argument**                                              |
-| ------------------ | ---------- | ---------------------------------------------------------- |
-| owner              | ForeignKey | `User, related_name='following', on_delete=models.CASCADE` |
-| followed           | ForeignKey | `User, related_name='followed', on_delete=models.CASCADE`  |
-| created_on         | DateTime   | `auto_now_add=True`                                        |
+| **Database Value** | ** Type** | ** Argument**                                              |
+| ------------------ | --------- | ---------------------------------------------------------- |
+| owner              | FK        | `User, related_name='following', on_delete=models.CASCADE` |
+| followed           | FK        | `User, related_name='followed', on_delete=models.CASCADE`  |
+| created_on         | DateTime  | `auto_now_add=True`                                        |
 
 ### Like
 
