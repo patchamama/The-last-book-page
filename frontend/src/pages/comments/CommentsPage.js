@@ -35,8 +35,14 @@ function CommentsPage({ message, filter = "" }) {
     };
 
     setHasLoaded(false);
-    fetchComments();
-  }, [filter, pathname, query]);
+    const timer = setTimeout(() => {
+      fetchComments();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
