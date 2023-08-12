@@ -25,7 +25,7 @@ class StickerSerializer(serializers.ModelSerializer):
         model = Sticker
         fields = [
             'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
-            'comment', 'created_on', 'updated_on', 'sticker']
+            'comment', 'created_on', 'updated_on', 'content']
 
 class StickerDetailSerializer(StickerSerializer):
     """

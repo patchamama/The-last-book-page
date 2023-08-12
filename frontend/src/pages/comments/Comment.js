@@ -21,6 +21,7 @@ const Comment = (props) => {
     updated_on,
     like_id,
     likes_count,
+    stickers_count,
     commentPage,
     setComments,
   } = props;
@@ -150,6 +151,10 @@ const Comment = (props) => {
               </OverlayTrigger>
             )}
             {likes_count}
+            <Link to={`/comments/${id}`}>
+              <i className="far fa-comments" />
+            </Link>
+            {stickers_count}
           </div>
         </Card.Text>
       </Card.Body>

@@ -11,7 +11,7 @@ class Sticker(models.Model):
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    sticker = models.TextField()
+    content = models.TextField()
 
     class Meta:
         ordering = ['-created_on']
