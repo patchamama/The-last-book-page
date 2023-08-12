@@ -32,6 +32,16 @@ To create the entity relationship diagram, I used a graph modelling tool [Miro](
 | created_on     | DateTimeField  | `auto_now_add=True`              |
 | updated_on     | DateTimeField  | `auto_now=True`                  |
 
+### Sticker
+
+| **Field name** | **Field Type** | **Field Argument**                  |
+| -------------- | -------------- | ----------------------------------- |
+| owner          | FK             | `User, on_delete=models.CASCADE`    |
+| comment        | FK             | `Comment, on_delete=models.CASCADE` |
+| sticker        | TextField      |                                     |
+| created_on     | DateTime       | `auto_now_add=True`                 |
+| updated_on     | DateTime       | `auto_now=True`                     |
+
 ### Book
 
 | **Field name** | **Field Type** | **Field Argument**                                                                      |
