@@ -12,6 +12,8 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
+import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png";
 
 function CommentCreateForm() {
   const [errors, setErrors] = useState({});
@@ -149,19 +151,25 @@ function CommentCreateForm() {
             className="mr-sm-2"
             placeholder="Select the book to comment"
           />
-          <ListGroup variant="flush">
-            {books.results.map((book) => (
-              <ListGroup.Item
-                key={book.id}
-                option={book.id}
-                value={book.id}
-                action
-                onClick={handleButton}
-              >
-                {`${book.auth} - ${book.title}`}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
+          {books.results.length ? (
+            <ListGroup variant="flush">
+              {books.results.map((book) => (
+                <ListGroup.Item
+                  key={book.id}
+                  option={book.id}
+                  value={book.id}
+                  action
+                  onClick={handleButton}
+                >
+                  {`${book.auth} - ${book.title}`}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset src={NoResults} message="No results found!" />
+            </Container>
+          )}
         </Form>
       ) : (
         <Form onSubmit={handleSubmit}>
