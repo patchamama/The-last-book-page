@@ -15,6 +15,7 @@ class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all().order_by('-created_on')
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.annotate(
+        stickers_count=Count('sticker', distinct=True),
         likes_count=Count('likes', distinct=True)
     ).order_by('-created_on')
     filter_backends = [
@@ -33,6 +34,7 @@ class CommentList(generics.ListCreateAPIView):
         'owner__username',
     ]
     ordering_fields = [
+        'stickers_count',
         'likes_count',
         'likes__created_on',
     ]
@@ -49,5 +51,6 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.annotate(
+        stickers_count=Count('sticker', distinct=True),
         likes_count=Count('likes', distinct=True)
     ).order_by('-created_on')

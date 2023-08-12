@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Comment
 from likes.models import Like
+from stickers.models import Sticker
 
 class CommentSerializer(serializers.ModelSerializer):
     """
@@ -15,7 +16,23 @@ class CommentSerializer(serializers.ModelSerializer):
     book_title = serializers.ReadOnlyField(source='book.title')
     book_auth = serializers.ReadOnlyField(source='book.auth')
     like_id = serializers.SerializerMethodField()
-    likes_count = serializers.ReadOnlyField()    
+    likes_count = serializers.ReadOnlyField()   
+    stickers_count = serializers.ReadOnlyField()
+    sticker_id = serializers.SerializerMethodField()
+
+    def get_sticker_id(self, obj):
+        """
+        Display a users current sticker count and sticker id
+        if the user is logged-in, else the field will display null
+        """
+        user = self.context['request'].user
+        if user.is_authenticated:
+            sticker = sticker.objects.filter(
+                owner=user,
+                comment=obj
+            ).first()
+            return sticker.id if sticker else None
+        return None
 
     def get_like_id(self, obj):
         user = self.context['request'].user
@@ -36,7 +53,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'id', 'owner', 'comment', 'profile_id', 'profile_image',      
             'book', 'book_cover', 'book_title', 'book_auth', 
             'created_on', 'updated_on', 'is_owner', 'like_id', 
-            'likes_count',
+            'likes_count', 'stickers_count', 'sticker_id',
         ]
 
 class CommentDetailSerializer(CommentSerializer):
