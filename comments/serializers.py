@@ -27,7 +27,7 @@ class CommentSerializer(serializers.ModelSerializer):
         """
         user = self.context['request'].user
         if user.is_authenticated:
-            sticker = sticker.objects.filter(
+            sticker = Sticker.objects.filter(
                 owner=user,
                 comment=obj
             ).first()
