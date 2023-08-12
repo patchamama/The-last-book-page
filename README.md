@@ -14,86 +14,90 @@ In total 19 User Stories have been created and executed in 7 Epics (Milestones).
 
 # Entity Relationship Diagram
 
+To create the entity relationship diagram, I used a graph modelling tool [Miro](https://miro.com/). It shows the relationship between all models in the database.
+
+![Entity Relationship Diagram](docs/model_database.jpeg)
+
 # Database
 
 # Models
 
 ### Comment
 
-| **Database Value** | **Field Type** | **Field Argument**               |
-| ------------------ | -------------- | -------------------------------- |
-| owner              | FK             | `User, on_delete=models.CASCADE` |
-| book               | FK             | `Book, on_delete=models.CASCADE` |
-| comment            | TextField      |                                  |
-| created_on         | DateTimeField  | `auto_now_add=True`              |
-| updated_on         | DateTimeField  | `auto_now=True`                  |
+| **Field name** | **Field Type** | **Field Argument**               |
+| -------------- | -------------- | -------------------------------- |
+| owner          | FK             | `User, on_delete=models.CASCADE` |
+| book           | FK             | `Book, on_delete=models.CASCADE` |
+| comment        | TextField      |                                  |
+| created_on     | DateTimeField  | `auto_now_add=True`              |
+| updated_on     | DateTimeField  | `auto_now=True`                  |
 
 ### Book
 
-| **Database Value** | **Field Type** | **Field Argument**                                                                      |
-| ------------------ | -------------- | --------------------------------------------------------------------------------------- |
-| title              | Char           | `max_length=150, unique=False`                                                          |
-| auth               | Char           | `max_length=150, unique=False`                                                          |
-| pub_date           | DateTime       | `blank=True, null=True`                                                                 |
-| publisher          | Char           | `max_length=100, unique=False, blank=True`                                              |
-| pages_no           | Integer        | `default=0`                                                                             |
-| isbn               | Char           | `max_length=13, unique=False, blank=True`                                               |
-| lang_orig          | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
-| lang               | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
-| translators        | Char           | `max_length=200, unique=False, blank=True`                                              |
-| genre              | Text           | `blank=True`                                                                            |
-| synopsis           | Text           | `blank=True`                                                                            |
-| cover              | Image          | `upload_to='images/', default='../No_image_available.svg_t2xrtz.png'`                   |
-| created_by         | FK             | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
-| updated_by         | FK             | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
-| created_on         | DateTime       | `auto_now_add=True`                                                                     |
-| updated_on         | DateTime       | `auto_now=True`                                                                         |
+| **Field name** | **Field Type** | **Field Argument**                                                                      |
+| -------------- | -------------- | --------------------------------------------------------------------------------------- |
+| title          | Char           | `max_length=150, unique=False`                                                          |
+| auth           | Char           | `max_length=150, unique=False`                                                          |
+| pub_date       | DateTime       | `blank=True, null=True`                                                                 |
+| publisher      | Char           | `max_length=100, unique=False, blank=True`                                              |
+| pages_no       | Integer        | `default=0`                                                                             |
+| isbn           | Char           | `max_length=13, unique=False, blank=True`                                               |
+| lang_orig      | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
+| lang           | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
+| translators    | Char           | `max_length=200, unique=False, blank=True`                                              |
+| genre          | Text           | `blank=True`                                                                            |
+| synopsis       | Text           | `blank=True`                                                                            |
+| cover          | Image          | `upload_to='images/', default='../No_image_available.svg_t2xrtz.png'`                   |
+| created_by     | FK             | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
+| updated_by     | FK             | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
+| created_on     | DateTime       | `auto_now_add=True`                                                                     |
+| updated_on     | DateTime       | `auto_now=True`                                                                         |
 
 ### Bookmark
 
-| **Database Value** | ** Type** | ** Argument**                                                |
-| ------------------ | --------- | ------------------------------------------------------------ |
-| owner              | FK        | `User, on_delete=models.CASCADE`                             |
-| book               | FK        | `Book, on_delete=models.CASCADE`                             |
-| status             | Char      | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
-| created_on         | DateTime  | `auto_now_add=True`                                          |
+| **Field name** | **Field Type** | **Field Argument**                                           |
+| -------------- | -------------- | ------------------------------------------------------------ |
+| owner          | FK             | `User, on_delete=models.CASCADE`                             |
+| book           | FK             | `Book, on_delete=models.CASCADE`                             |
+| status         | Char           | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
+| created_on     | DateTime       | `auto_now_add=True`                                          |
 
 ### User (predefined for the system admin)
 
-| **Database Value** | ** Type** | ** Argument** |
-| ------------------ | --------- | ------------- |
-| first_name         | Char      |               |
-| last_name          | Char      |               |
-| email              | Char      |               |
-| is_active          | Boolean   |               |
+| **Field name** | **Field Type** | **Field Argument** |
+| -------------- | -------------- | ------------------ |
+| first_name     | Char           |                    |
+| last_name      | Char           |                    |
+| email          | Char           |                    |
+| is_active      | Boolean        |                    |
 
 ### Profile
 
-| **Database Value** | ** Type** | ** Argument**                                                  |
-| ------------------ | --------- | -------------------------------------------------------------- |
-| owner              | OneToOne  | `User, on_delete=models.CASCADE`                               |
-| name               | Char      | `max_length=200, blank=True`                                   |
-| date_of_birth      | Date      | `blank=True, null=True`                                        |
-| language           | Char      | `max_length=50, choices=LANGUAGES, blank=True`                 |
-| image              | Image     | `upload_to='images/', default='../default_profile_hk81a7.jpg'` |
-| created_on         | DateTime  | `auto_now_add=True`                                            |
-| updated_on         | DateTime  | `auto_now=True`                                                |
+| **Field name** | **Field Type** | **Field Argument**                                             |
+| -------------- | -------------- | -------------------------------------------------------------- |
+| owner          | OneToOne       | `User, on_delete=models.CASCADE`                               |
+| name           | Char           | `max_length=200, blank=True`                                   |
+| date_of_birth  | Date           | `blank=True, null=True`                                        |
+| language       | Char           | `max_length=50, choices=LANGUAGES, blank=True`                 |
+| image          | Image          | `upload_to='images/', default='../default_profile_hk81a7.jpg'` |
+| created_on     | DateTime       | `auto_now_add=True`                                            |
+| updated_on     | DateTime       | `auto_now=True`                                                |
 
 ### Follower
 
-| **Database Value** | ** Type** | ** Argument**                                              |
-| ------------------ | --------- | ---------------------------------------------------------- |
-| owner              | FK        | `User, related_name='following', on_delete=models.CASCADE` |
-| followed           | FK        | `User, related_name='followed', on_delete=models.CASCADE`  |
-| created_on         | DateTime  | `auto_now_add=True`                                        |
+| **Field name** | **Field Type** | **Field Argument**                                         |
+| -------------- | -------------- | ---------------------------------------------------------- |
+| owner          | FK             | `User, related_name='following', on_delete=models.CASCADE` |
+| followed       | FK             | `User, related_name='followed', on_delete=models.CASCADE`  |
+| created_on     | DateTime       | `auto_now_add=True`                                        |
 
 ### Like
 
-| **Database Value** | ** Type** | ** Argument**                                             |
-| ------------------ | --------- | --------------------------------------------------------- |
-| owner              | FK        | `User, on_delete=models.CASCADE`                          |
-| comment            | FK        | `Comment, related_name='likes', on_delete=models.CASCADE` |
-| created_on         | DateTime  | `auto_now_add=True`                                       |
+| **Field name** | **Field Type** | **Field Argument**                                        |
+| -------------- | -------------- | --------------------------------------------------------- |
+| owner          | FK             | `User, on_delete=models.CASCADE`                          |
+| comment        | FK             | `Comment, related_name='likes', on_delete=models.CASCADE` |
+| created_on     | DateTime       | `auto_now_add=True`                                       |
 
 # Testing
 

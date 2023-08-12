@@ -9,6 +9,7 @@ import CommentCreateForm from "./pages/comments/CommentCreateForm";
 import CommentPage from "./pages/comments/CommentPage";
 import CommentsPage from "./pages/comments/CommentsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import CommentEditForm from "./pages/comments/CommentEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -52,6 +53,11 @@ function App() {
             render={() => <CommentCreateForm />}
           />
           <Route exact path="/comments/:id" render={() => <CommentPage />} />
+          <Route
+            exact
+            path="/comments/:id/edit"
+            render={() => <CommentEditForm />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

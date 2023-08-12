@@ -31,6 +31,8 @@ class BookList(generics.ListCreateAPIView):
         'genre'
     ]
     ordering_fields = [
+        'auth',
+        'title',
         'comments_count',
         'bookmarks_count'
     ]

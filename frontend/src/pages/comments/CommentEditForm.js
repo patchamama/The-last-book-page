@@ -4,62 +4,47 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import styles from "../../styles/CommentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function CommentCreateForm() {
+function CommentEditForm() {
   const [errors, setErrors] = useState({});
-  const [query, setQuery] = useState("");
-  const [books, setBooks] = useState({ results: [] });
   const [selectedBook, setSelectedBook] = useState("");
   const [commentData, setCommentData] = useState({
     book: "",
     comment: "",
   });
   const { book, comment } = commentData;
-
   const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(
-          `/books/?search=${query}&ordering=auth`
-        );
-        setBooks(data);
+        const { data } = await axiosReq.get(`/comments/${id}/`);
+        const { book, comment, book_title, is_owner } = data;
+        setSelectedBook(book_title);
+        is_owner ? setCommentData({ book, comment }) : history.push("/");
       } catch (err) {
         console.log(err);
       }
     };
 
-    const timer = setTimeout(() => {
-      fetchBooks();
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [query]);
+    handleMount();
+  }, [history, id]);
 
   const handleChange = (event) => {
     setCommentData({
       ...commentData,
       [event.target.name]: event.target.value,
     });
-  };
-
-  const handleButton = (event) => {
-    setCommentData({
-      ...commentData,
-      ["book"]: event.target.value,
-    });
-    setSelectedBook(event.target.textContent);
   };
 
   const handleSubmit = async (event) => {
@@ -70,7 +55,7 @@ function CommentCreateForm() {
     formData.append("comment", comment);
 
     try {
-      const { data } = await axiosReq.post("/comments/", formData);
+      const { data } = await axiosReq.put("/comments/", formData);
       history.push(`/comments/${data.id}`);
     } catch (err) {
       console.log(err);
@@ -137,33 +122,7 @@ function CommentCreateForm() {
 
   return (
     <>
-      {!commentData.book ? (
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Select the book to comment"
-          />
-          <ListGroup variant="flush">
-            {books.results.map((book) => (
-              <ListGroup.Item
-                key={book.id}
-                option={book.id}
-                value={book.id}
-                action
-                onClick={handleButton}
-              >
-                {`${book.auth} - ${book.title}`}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </Form>
-      ) : (
+      {commentData.book ? (
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
@@ -171,9 +130,11 @@ function CommentCreateForm() {
             </Col>
           </Row>
         </Form>
+      ) : (
+        () => history.goBack()
       )}
     </>
   );
 }
 
-export default CommentCreateForm;
+export default CommentEditForm;
