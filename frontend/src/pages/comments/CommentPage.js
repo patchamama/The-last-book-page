@@ -11,6 +11,9 @@ import Comment from "./Comment";
 import Sticker from "../stickers/Sticker";
 import StickerCreateForm from "../stickers/StickerCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function CommentPage() {
   const { id } = useParams();
@@ -55,9 +58,20 @@ function CommentPage() {
           ) : null}
 
           {stickers.results.length ? (
-            stickers.results.map((sticker) => (
-              <Sticker key={sticker.id} {...sticker} />
-            ))
+            <InfiniteScroll
+              children={stickers.results.map((sticker) => (
+                <Sticker
+                  key={sticker.id}
+                  {...sticker}
+                  setComment={setComment}
+                  setStickers={setStickers}
+                />
+              ))}
+              dataLength={stickers.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!stickers.next}
+              next={() => fetchMoreData(stickers, setStickers)}
+            />
           ) : currentUser ? (
             <span>No stickers yet, be the first to create a sticker!</span>
           ) : (

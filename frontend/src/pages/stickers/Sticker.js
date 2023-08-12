@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -6,6 +6,7 @@ import styles from "../../styles/Sticker.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
+import StickerEditForm from "./StickerEditForm";
 
 const Sticker = (props) => {
   const {
@@ -16,8 +17,10 @@ const Sticker = (props) => {
     content,
     id,
     setComment,
-    setStrickers,
+    setStickers,
   } = props;
+
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -34,7 +37,7 @@ const Sticker = (props) => {
         ],
       }));
 
-      setStrickers((prevStrickers) => ({
+      setStickers((prevStrickers) => ({
         ...prevStrickers,
         results: prevStrickers.results.filter((stricker) => stricker.id !== id),
       }));
@@ -42,7 +45,7 @@ const Sticker = (props) => {
   };
 
   return (
-    <div>
+    <>
       <hr />
       <Media>
         <Link to={`/profiles/${profile_id}`}>
@@ -51,13 +54,27 @@ const Sticker = (props) => {
         <Media.Body className="align-self-center ml-2">
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_on}</span>
-          <p>Content {content}</p>
+          {showEditForm ? (
+            <StickerEditForm
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              profileImage={profile_image}
+              setStickers={setStickers}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <p>{content}</p>
+          )}
         </Media.Body>
-        {is_owner && (
-          <MoreDropdown handleEdit={() => {}} handleDelete={handleDelete} />
+        {is_owner && !showEditForm && (
+          <MoreDropdown
+            handleEdit={() => setShowEditForm(true)}
+            handleDelete={handleDelete}
+          />
         )}
       </Media>
-    </div>
+    </>
   );
 };
 
