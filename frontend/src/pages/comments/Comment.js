@@ -87,7 +87,7 @@ const Comment = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
+            <Avatar src={profile_image} height={40} />
             {owner}
           </Link>
           <div className="d-flex align-items-center">
@@ -102,42 +102,56 @@ const Comment = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/books/${id}`}>
-        <Card.Img src={book_cover} alt={book_title} />
-      </Link>
       <Card.Body>
-        {book_title && (
-          <Card.Title className="text-center">
-            {book_title} ({book_auth})
-          </Card.Title>
-        )}
-        {comment && <Card.Text>{comment}</Card.Text>}
-        <div className={styles.CommentBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own comments!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like comments!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          )}
-          {likes_count}
-        </div>
+        <Media>
+          <Link to={`/books/${id}`}>
+            <Card.Img
+              src={book_cover}
+              alt={`Bookcover of ${book_title}`}
+              className={`mr-3 ${styles.Image}`}
+            />
+          </Link>
+
+          <Media.Body className="text-left">
+            {book_title && (
+              <>
+                <Card.Title className="text-left">{book_title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  by {book_auth}
+                </Card.Subtitle>
+              </>
+            )}
+            {comment && <Card.Text>{comment}</Card.Text>}
+          </Media.Body>
+        </Media>
+        <Card.Text className="text-center">
+          <div className={styles.CommentBar}>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't like your own comments!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            ) : like_id ? (
+              <span onClick={handleUnlike}>
+                <i className={`fas fa-heart ${styles.Heart}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleLike}>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like comments!</Tooltip>}
+              >
+                <i className="far fa-heart" />
+              </OverlayTrigger>
+            )}
+            {likes_count}
+          </div>
+        </Card.Text>
       </Card.Body>
     </Card>
   );
