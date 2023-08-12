@@ -14,8 +14,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function CommentCreateForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState({ results: [] });
