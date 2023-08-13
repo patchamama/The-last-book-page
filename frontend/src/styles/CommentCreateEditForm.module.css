@@ -1,3 +1,8 @@
 .Container {
   min-height: 343px;
 }
+
+.Image {
+  max-width: 185px;
+  text-align: left;
+}

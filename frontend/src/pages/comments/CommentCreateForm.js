@@ -10,17 +10,22 @@ import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import { useRedirect } from "../../hooks/useRedirect";
+import { Card, Media } from "react-bootstrap";
 
 function CommentCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState({ results: [] });
+  const [cover, setCover] = useState("");
   const [selectedBook, setSelectedBook] = useState("");
   const [commentData, setCommentData] = useState({
     book: "",
@@ -29,13 +34,15 @@ function CommentCreateForm() {
   const { book, comment } = commentData;
 
   const history = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const { data } = await axiosReq.get(
-          `/books/?search=${query}&ordering=auth`
+          id ? `/books/${id}` : `/books/?search=${query}&ordering=auth`
         );
+
         setBooks(data);
       } catch (err) {
         console.log(err);
@@ -61,9 +68,14 @@ function CommentCreateForm() {
   const handleButton = (event) => {
     setCommentData({
       ...commentData,
-      ["book"]: event.target.value,
+      book: event.target.value,
     });
     setSelectedBook(event.target.textContent);
+
+    const coverurl = books.results.filter((book) => {
+      return book.id === parseInt(event.target.value);
+    });
+    setCover(coverurl[0].cover);
   };
 
   const handleSubmit = async (event) => {
@@ -86,46 +98,42 @@ function CommentCreateForm() {
 
   const textFields = (
     <div className="text-center">
-      <Form.Group as={Row} controlId="formHorizontalEmail">
-        <Form.Label column sm={2}>
-          Book
-        </Form.Label>
-        <Col sm={10}>
-          <Form.Control
-            type="text"
-            name="book"
-            value={selectedBook}
-            onChange={handleChange}
-            placeholder="Select the book to comment"
-            disabled
-          />
-        </Col>
-      </Form.Group>
-      {errors?.book?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+      <Media>
+        <Card.Img
+          src={cover}
+          alt="book cover"
+          className={`mr-3 ${styles.Image}`}
+        />
+        <Media.Body className="text-left">
+          <Form.Group>
+            <Form.Label>Book</Form.Label>
+            <Form.Control
+              type="text"
+              name="book"
+              value={selectedBook}
+              onChange={handleChange}
+              placeholder="Select the book to comment"
+              disabled
+            />
+          </Form.Group>
 
-      <Form.Group as={Row} controlId="formHorizontalPassword">
-        <Form.Label column sm={2}>
-          Comment
-        </Form.Label>
-        <Col sm={10}>
-          <Form.Control
-            as="textarea"
-            rows={6}
-            name="comment"
-            value={comment}
-            onChange={handleChange}
-          />
-        </Col>
-      </Form.Group>
-      {errors?.comment?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+          <Form.Group>
+            <Form.Label>Comment</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={6}
+              name="comment"
+              value={comment}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          {errors?.comment?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+        </Media.Body>
+      </Media>
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}

@@ -14,6 +14,8 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import BooksPage from "./pages/books/BooksPage";
+import BookPage from "./pages/books/BookPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -56,6 +58,11 @@ function App() {
             path="/comments/create"
             render={() => <CommentCreateForm />}
           />
+          <Route
+            exact
+            path="/comments/:id/create"
+            render={() => <CommentCreateForm />}
+          />
           <Route exact path="/comments/:id" render={() => <CommentPage />} />
           <Route
             exact
@@ -78,6 +85,8 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
+          <Route exact path="/books" render={() => <BooksPage />} />
+          <Route exact path="/books/:id" render={() => <BookPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

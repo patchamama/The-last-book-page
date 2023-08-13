@@ -40,9 +40,23 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
+        to="/books"
+      >
+        <i className="fas fa-book"></i>Books
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/bookmarks"
+      >
+        <i className="fas fa-bookmark"></i>Bookmarks
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
         to="/feed"
       >
-        <i className="fas fa-stream"></i>Feed
+        <i className="fas fa-rss"></i>Feed
       </NavLink>
       <NavLink
         className={styles.NavLink}
