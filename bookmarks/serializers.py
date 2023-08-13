@@ -38,3 +38,10 @@ class BookmarkSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'detail': 'possible duplication'
             })
+
+class BookmarkDetailSerializer(BookmarkSerializer):
+    """
+    Serializer for the Bookmark model used in Detail view
+    Book is a read only field so that we dont have to set it on each update
+    """
+    book = serializers.ReadOnlyField(source='book.id')

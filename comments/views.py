@@ -3,7 +3,7 @@ from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_api_lastpage.permissions import IsOwnerOrReadOnly
 from .models import Comment
-from .serializers import CommentSerializer, CommentDetailSerializer
+from .serializers import CommentSerializer
 
 
 class CommentList(generics.ListCreateAPIView):
@@ -27,6 +27,7 @@ class CommentList(generics.ListCreateAPIView):
         'owner__followed__owner__profile',  # user feed
         'likes__owner__profile',            # user liked comments
         'owner__profile',                   # user comments
+        'book',
     ]
     search_fields = [
         'book__title',
@@ -49,7 +50,7 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve a comment, or update or delete it by id if you own it.
     """
     permission_classes = [IsOwnerOrReadOnly]
-    serializer_class = CommentDetailSerializer
+    serializer_class = CommentSerializer
     queryset = Comment.objects.annotate(
         stickers_count=Count('sticker', distinct=True),
         likes_count=Count('likes', distinct=True)

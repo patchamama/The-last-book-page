@@ -56,9 +56,3 @@ class CommentSerializer(serializers.ModelSerializer):
             'likes_count', 'stickers_count', 'sticker_id',
         ]
 
-class CommentDetailSerializer(CommentSerializer):
-    """
-    Serializer for the Comment model used in Detail view
-    Book is a read only field so that we dont have to set it on each update
-    """
-    book = serializers.ReadOnlyField(source='book.id')

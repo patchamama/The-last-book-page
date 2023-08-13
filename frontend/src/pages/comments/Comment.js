@@ -15,6 +15,7 @@ const Comment = (props) => {
     comment,
     profile_id,
     profile_image,
+    book,
     book_cover,
     book_title,
     book_auth,
@@ -104,7 +105,7 @@ const Comment = (props) => {
       </Card.Body>
       <Card.Body>
         <Media>
-          <Link to={`/books/${id}`}>
+          <Link to={`/books/${book}`}>
             <Card.Img
               src={book_cover}
               alt={`Bookcover of ${book_title}`}
@@ -149,8 +150,9 @@ const Comment = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
+          
           <Link to={`/comments/${id}`}>
-            <i className="far fa-comments" />
+            <i className="far fa-comment-dots" />
           </Link>
           {stickers_count}
         </Card.Text>

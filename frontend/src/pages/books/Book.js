@@ -67,10 +67,32 @@ const Book = (props) => {
               </>
             )}
             {synopsis && <Card.Text>{synopsis}</Card.Text>}
+
+            <Card.Text>
+              <small className="text-muted">
+                Genres: <cite title="Genre">{genre}</cite>
+              </small>
+            </Card.Text>
+            <Card.Text>
+              <small className="text-muted">
+                {pages_no ? `${pages_no} pages` : null}
+                {pub_date ? `, published ${pub_date}` : null}
+              </small>
+            </Card.Text>
           </Media.Body>
         </Media>
+        <Card.Text className="text-center">
+          <Link to={`/comments/${id}`}>
+            <i className="far fa-comments" />
+          </Link>
+          {comments_count}
+          <Link to={`/bookmarks/${id}`}>
+            <i className="far fa-bookmark" />
+          </Link>
+          {bookmarks_count}
+        </Card.Text>
       </Card.Body>
-      {onlyone === "True" ? (
+      {onlyone === "True" && currentUser ? (
         <Link className="align-self-center" to={`/comments/${id}/create`}>
           <i className="far fa-plus-square"></i> comment
         </Link>
