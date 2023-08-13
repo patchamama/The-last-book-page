@@ -22,7 +22,6 @@ const Comment = (props) => {
     like_id,
     likes_count,
     stickers_count,
-    commentPage,
     setComments,
   } = props;
 
@@ -125,37 +124,35 @@ const Comment = (props) => {
             {comment && <Card.Text>{comment}</Card.Text>}
           </Media.Body>
         </Media>
-        <Card.Text className="text-center">
-          <div className={styles.CommentBar}>
-            {is_owner ? (
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip>You can't like your own comments!</Tooltip>}
-              >
-                <i className="far fa-heart" />
-              </OverlayTrigger>
-            ) : like_id ? (
-              <span onClick={handleUnlike}>
-                <i className={`fas fa-heart ${styles.Heart}`} />
-              </span>
-            ) : currentUser ? (
-              <span onClick={handleLike}>
-                <i className={`far fa-heart ${styles.HeartOutline}`} />
-              </span>
-            ) : (
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip>Log in to like comments!</Tooltip>}
-              >
-                <i className="far fa-heart" />
-              </OverlayTrigger>
-            )}
-            {likes_count}
-            <Link to={`/comments/${id}`}>
-              <i className="far fa-comments" />
-            </Link>
-            {stickers_count}
-          </div>
+        <Card.Text className={`text-center ${styles.CommentBar}`}>
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't like your own comments!</Tooltip>}
+            >
+              <i className="far fa-heart" />
+            </OverlayTrigger>
+          ) : like_id ? (
+            <span onClick={handleUnlike}>
+              <i className={`fas fa-heart ${styles.Heart}`} />
+            </span>
+          ) : currentUser ? (
+            <span onClick={handleLike}>
+              <i className={`far fa-heart ${styles.HeartOutline}`} />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to like comments!</Tooltip>}
+            >
+              <i className="far fa-heart" />
+            </OverlayTrigger>
+          )}
+          {likes_count}
+          <Link to={`/comments/${id}`}>
+            <i className="far fa-comments" />
+          </Link>
+          {stickers_count}
         </Card.Text>
       </Card.Body>
     </Card>

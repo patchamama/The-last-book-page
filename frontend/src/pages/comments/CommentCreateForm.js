@@ -42,21 +42,25 @@ function CommentCreateForm() {
         const { data } = await axiosReq.get(
           id ? `/books/${id}` : `/books/?search=${query}&ordering=auth`
         );
-
-        setBooks(data);
+        if (id) {
+          setBooks({ results: [data] });
+          setCommentData({
+            ...commentData,
+            book: data.id,
+          });
+          setSelectedBook(`${data.auth} - ${data.title}`);
+          setCover(data.cover);
+        } else {
+          setBooks(data);
+        }
       } catch (err) {
         console.log(err);
       }
     };
 
-    const timer = setTimeout(() => {
-      fetchBooks();
-    }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [query]);
+    fetchBooks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, id]);
 
   const handleChange = (event) => {
     setCommentData({
@@ -161,7 +165,7 @@ function CommentCreateForm() {
             className="mr-sm-2"
             placeholder="Select the book to comment"
           />
-          {books.results.length ? (
+          {books.results?.length ? (
             <ListGroup variant="flush">
               {books.results.map((book) => (
                 <ListGroup.Item
@@ -175,11 +179,11 @@ function CommentCreateForm() {
                 </ListGroup.Item>
               ))}
             </ListGroup>
-          ) : (
+          ) : !id && !query ? (
             <Container className={appStyles.Content}>
               <Asset src={NoResults} message="No results found!" />
             </Container>
-          )}
+          ) : null}
         </Form>
       ) : (
         <Form onSubmit={handleSubmit}>

@@ -70,14 +70,11 @@ const Book = (props) => {
           </Media.Body>
         </Media>
       </Card.Body>
-
       {onlyone === "True" ? (
-        <NavLink to={`/comments/${id}/create`}>
-          <i className="far fa-plus-square"></i>Add book comment
-        </NavLink>
-      ) : (
-        <></>
-      )}
+        <Link className="align-self-center" to={`/comments/${id}/create`}>
+          <i className="far fa-plus-square"></i> comment
+        </Link>
+      ) : null}
     </Card>
   );
 };

@@ -32,7 +32,7 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/comments/create"
     >
-      <i className="far fa-plus-square"></i>Add book comment
+      <i className="far fa-plus-square"></i> comment
     </NavLink>
   );
   const loggedInIcons = (
