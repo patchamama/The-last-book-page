@@ -16,12 +16,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function CommentsPage({ message, filter = "" }) {
   const [comments, setComments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const { id } = useParams();
+  filter = filter.includes("book=") ? `book=${id}&` : filter;
 
   useEffect(() => {
     const fetchComments = async () => {

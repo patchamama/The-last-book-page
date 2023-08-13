@@ -51,6 +51,16 @@ function App() {
               />
             )}
           />
+          <Route
+            exact
+            path="/comments/book/:id"
+            render={() => (
+              <CommentsPage
+                message="No results found. Adjust the search keyword or like a post."
+                filter={`book=`}
+              />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route

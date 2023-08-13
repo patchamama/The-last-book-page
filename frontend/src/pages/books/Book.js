@@ -82,7 +82,7 @@ const Book = (props) => {
           </Media.Body>
         </Media>
         <Card.Text className="text-center">
-          <Link to={`/comments/${id}`}>
+          <Link to={`/comments/book/${id}`}>
             <i className="far fa-comments" />
           </Link>
           {comments_count}
