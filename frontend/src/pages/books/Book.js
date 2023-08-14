@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const Book = (props) => {
   const {
     id,
+
     title,
     auth,
     pub_date,
@@ -23,6 +24,7 @@ const Book = (props) => {
     genre,
     synopsis,
     cover,
+    
     created_by,
     updated_by,
     created_on,
@@ -37,8 +39,30 @@ const Book = (props) => {
   const is_owner = currentUser?.username === created_by;
   const history = useHistory();
 
+  const handleEdit = () => {
+    history.push(`/books/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/books/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Card className={styles.Comment}>
+      <Card.Body>
+        <Media className="align-items-center justify-content-between">
+          <Link></Link>
+          <div className="d-flex align-items-center">
+            <span>{updated_on}</span>
+            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          </div>
+        </Media>
+      </Card.Body>
       <Card.Body>
         <Media>
           {onlyone === "True" ? (

@@ -17,6 +17,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import BooksPage from "./pages/books/BooksPage";
 import BookPage from "./pages/books/BookPage";
+import BookEditForm from "./pages/books/BookEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -100,6 +101,7 @@ function App() {
           />
           <Route exact path="/books" render={() => <BooksPage />} />
           <Route exact path="/books/:id" render={() => <BookPage />} />
+          <Route exact path="/books/:id/edit" render={() => <BookEditForm />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
