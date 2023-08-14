@@ -1,13 +1,47 @@
 .ProfileImage {
   object-fit: cover;
-  height: 120px;
-  width: 120px;
-  margin: 4px;
+  height: 150px;
+  width: 150px;
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 991px) {
   .ProfileImage {
     width: 250px;
     height: 250px;
+  }
+}
+
+.ProfileTextContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.ProfileTextContent span {
+  font-size: 130%;
+  display: inline-block;
+  padding-right: 4px;
+  text-align: center;
+  color: #2ca630ac;
+}
+
+.ProfileBioContent {
+  display: flex;
+  margin-bottom: 20px;
+  background-color: aliceblue;
+  height: 120px;
+}
+
+@media (max-width: 767px) {
+  .RowWidth {
+    margin-left: 65px;
+    margin-right: 15px;
+    margin-top: 10px;
   }
 }

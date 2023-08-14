@@ -1,12 +1,25 @@
-.NavBar {
+.NavBar,
+.NavBarLarge {
   background-color: #ffffff;
   border: 1px solid #dadadf;
 }
 
-.NavLink {
-  padding: 5px;
+.NavLink .NavBarLarge {
+  padding: 8px;
 }
 
 .Active i {
   color: #2ed9ff;
+}
+
+@media (min-width: 1520px) {
+  .NavBar {
+    display: none;
+  }
+}
+
+@media (max-width: 1520px) {
+  .NavBarLarge {
+    display: none;
+  }
 }

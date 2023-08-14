@@ -1,5 +1,6 @@
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
+import SideNavBar from "./components/SideNavBar";
 import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import "./api/axiosDefaults";
@@ -24,6 +25,8 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
+      {currentUser ? <SideNavBar /> : null}
+
       <Container className={styles.Main}>
         <Switch>
           <Route

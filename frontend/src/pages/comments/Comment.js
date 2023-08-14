@@ -126,6 +126,7 @@ const Comment = (props) => {
           </Media.Body>
         </Media>
         <Card.Text className={`text-center ${styles.CommentBar}`}>
+          <hr />
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -150,7 +151,7 @@ const Comment = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
-          
+
           <Link to={`/comments/${id}`}>
             <i className="far fa-comment-dots" />
           </Link>

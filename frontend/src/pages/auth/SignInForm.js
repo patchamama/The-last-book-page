@@ -10,12 +10,15 @@ import Image from "react-bootstrap/Image";
 import Container from "react-bootstrap/Container";
 
 import { Link, useHistory } from "react-router-dom";
-
+// Utils
+import { setTokenTimestamp } from "../../utils/utils";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+// Notifications
+import { NotificationManager } from "react-notifications";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -30,18 +33,31 @@ function SignInForm() {
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+
+  // Handling the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
+      // Sending a post request to the backend with the signInData object
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      // Setting the current user with the data returned from the backend
       setCurrentUser(data.user);
+      // Extract expiry date for the access token & save to users local storage
+      setTokenTimestamp(data);
+      // Navigating to the previous page in the navigation history
       history.goBack();
-    } catch (err) {
-      setErrors(err.response?.data);
+      // Displaying a success notification to the user
+      NotificationManager.success(
+        "Welcome " + username + ". You are now signed in",
+        "Success!"
+      );
+    } catch (error) {
+      setErrors(error.response?.data);
+      // Displaying an error notification to the user
+      NotificationManager.error("There was an issue logging you in", "Error");
     }
   };
-
+  // Handling input changes and updating the signInData object
   const handleChange = (event) => {
     setSignInData({
       ...signInData,

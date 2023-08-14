@@ -70,7 +70,7 @@ const Book = (props) => {
 
             <Card.Text>
               <small className="text-muted">
-                Genres: <cite title="Genre">{genre}</cite>
+                {genre ? `Genres: ${genre}` : null}
               </small>
             </Card.Text>
             <Card.Text>
@@ -82,6 +82,7 @@ const Book = (props) => {
           </Media.Body>
         </Media>
         <Card.Text className="text-center">
+          <hr />
           <Link to={`/comments/book/${id}`}>
             <i className="far fa-comments" />
           </Link>
