@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Comment.module.css";
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, NavLink, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -7,6 +8,8 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq } from "../../api/axiosDefaults";
+import Bookmark from "./Bookmark";
 
 const Book = (props) => {
   const {
@@ -24,6 +27,8 @@ const Book = (props) => {
     genre,
     synopsis,
     cover,
+    bookmark_id,
+    bookmark_status,
 
     created_by,
     updated_by,
@@ -33,6 +38,7 @@ const Book = (props) => {
     bookmarks_count,
     setBooks,
     onlyone,
+    bookmark,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -99,6 +105,15 @@ const Book = (props) => {
                 </Card.Subtitle>
               </>
             )}
+
+            {currentUser && (
+              <Bookmark
+                book_id={id}
+                bookmark_id={bookmark_id}
+                bookmark_status={bookmark_status}
+              />
+            )}
+
             {synopsis && <Card.Text>{synopsis}</Card.Text>}
 
             <Card.Text>
@@ -120,9 +135,8 @@ const Book = (props) => {
             <Link to={`/comments/book/${id}`}>
               <i className="far fa-comments" />
             </Link>
-          ) : 
-          (
-          <i className="far fa-comments" />
+          ) : (
+            <i className="far fa-comments" />
           )}
           {comments_count}
           <Link to={`/bookmarks/${id}`}>

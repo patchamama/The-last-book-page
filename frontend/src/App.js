@@ -113,6 +113,16 @@ function App() {
           />
           <Route exact path="/books/create" render={() => <BookEditForm />} />
           <Route exact path="/books/:id" render={() => <BookPage />} />
+          <Route
+            exact
+            path="/bookmarks"
+            render={() => (
+              <BooksPage
+                message="No results found. Adjust the search keyword or like a post."
+                filter={`bookmark__owner__profile=${profile_id}`}
+              />
+            )}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

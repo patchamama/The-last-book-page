@@ -26,7 +26,9 @@ const BooksPage = ({ message, filter = "" }) => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const { data } = await axiosReq.get(`/books/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(
+          `/books/?${filter}&search=${query}`
+        );
         setBooks(data);
         setHasLoaded(true);
       } catch (err) {

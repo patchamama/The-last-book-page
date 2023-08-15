@@ -25,6 +25,7 @@ function CommentsPage({ message, filter = "" }) {
   const [query, setQuery] = useState("");
   const { id } = useParams();
   filter = filter.includes("book=") ? `book=${id}&` : filter;
+  
 
   useEffect(() => {
     const fetchComments = async () => {

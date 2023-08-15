@@ -10,6 +10,7 @@ class BookSerializer(serializers.ModelSerializer):
     """
     comments_count = serializers.ReadOnlyField()
     bookmark_id = serializers.SerializerMethodField()
+    bookmark_status = serializers.SerializerMethodField()
     bookmarks_count = serializers.ReadOnlyField()
 
     def get_bookmark_id(self, obj):
@@ -19,6 +20,15 @@ class BookSerializer(serializers.ModelSerializer):
                 owner=user, book=obj
             ).first()
             return bookmark.id if bookmark else None
+        return None
+
+    def get_bookmark_status(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            bookmark = Bookmark.objects.filter(
+                owner=user, book=obj
+            ).first()
+            return bookmark.status if bookmark else None
         return None
 
     def validate_image(self, value):
@@ -43,7 +53,8 @@ class BookSerializer(serializers.ModelSerializer):
             'id', 'title', 'auth', 'pub_date', 'publisher', 'pages_no', 
             'isbn', 'lang_orig', 'lang', 'translators', 'genre', 
             'synopsis', 'cover', 'created_by', 'updated_by', 'created_on', 
-            'updated_on', 'comments_count', 'bookmark_id', 'bookmarks_count',
+            'updated_on', 'comments_count', 'bookmark_id', 'bookmark_status',
+            'bookmarks_count',
         ]
 
     
