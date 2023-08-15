@@ -30,8 +30,8 @@ const SideNavBar = () => {
         activeClassName={styles.Active}
         to="/comments/create"
       >
-        <i className="fas fa-plus-circle"></i>{" "}
-        <span className="d-none d-md-inline"> comment</span>
+        <i className="fas fa-plus-circle"></i>
+        <span className="d-none d-md-inline">Comment</span>
       </NavLink>
     </Nav.Item>
   );

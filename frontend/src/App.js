@@ -100,8 +100,9 @@ function App() {
             render={() => <ProfileEditForm />}
           />
           <Route exact path="/books" render={() => <BooksPage />} />
-          <Route exact path="/books/:id" render={() => <BookPage />} />
           <Route exact path="/books/:id/edit" render={() => <BookEditForm />} />
+          <Route exact path="/books/create" render={() => <BookEditForm />} />
+          <Route exact path="/books/:id" render={() => <BookPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

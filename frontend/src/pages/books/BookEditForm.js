@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
+import notCover from "../../assets/not-cover.png";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -94,11 +94,11 @@ function BookEditForm() {
         console.log(data);
       } catch (err) {
         console.log(err);
-        // history.push("/");
+        history.push("/books");
       }
     };
 
-    handleMount();
+    id && handleMount();
   }, [history, id]);
 
   const handleChange = (event) => {
@@ -121,7 +121,7 @@ function BookEditForm() {
 
     formData.append("title", title);
     formData.append("auth", auth);
-    formData.append("pub_date", pub_date);
+    formData.append("pub_date", dateOfPub);
     formData.append("publisher", publisher);
     formData.append("pages_no", pages_no);
     formData.append("isbn", isbn);
@@ -130,7 +130,7 @@ function BookEditForm() {
     formData.append("translators", translators);
     formData.append("genre", genre);
     formData.append("synopsis", synopsis);
-    formData.append("cover", cover);
+    // formData.append("cover", cover);
     if (imageFile?.current?.files[0]) {
       formData.append("cover", imageFile?.current?.files[0]);
     }
@@ -541,7 +541,7 @@ function BookEditForm() {
           <Form.Control
             type="text"
             name="translators"
-            value={lang}
+            value={translators}
             onChange={handleChange}
             placeholder=""
           />
@@ -601,7 +601,7 @@ function BookEditForm() {
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        {id ? "update" : "create"}
       </Button>
     </div>
   );
@@ -612,9 +612,13 @@ function BookEditForm() {
         <Col className="py-2 p-0 p-md-2 text-center" md={4} lg={5}>
           <Container className={`${appStyles.Content} ${styles.Container}`}>
             <Form.Group>
-              {cover && (
+              {cover ? (
                 <figure>
                   <Image src={cover} fluid />
+                </figure>
+              ) : (
+                <figure>
+                  <Image src={notCover} fluid />
                 </figure>
               )}
               {/* Displaying any errors with the cover */}

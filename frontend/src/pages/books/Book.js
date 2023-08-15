@@ -120,12 +120,9 @@ const Book = (props) => {
             <Link to={`/comments/book/${id}`}>
               <i className="far fa-comments" />
             </Link>
-          ) : currentUser ? (
-            <Link to={`/comments/${id}/create`}>
-              <i className="far fa-comments" />
-            </Link>
-          ) : (
-            <i className="far fa-comments" />
+          ) : 
+          (
+          <i className="far fa-comments" />
           )}
           {comments_count}
           <Link to={`/bookmarks/${id}`}>
@@ -136,7 +133,7 @@ const Book = (props) => {
       </Card.Body>
       {onlyone === "True" && currentUser ? (
         <Link className="align-self-center" to={`/comments/${id}/create`}>
-          <i className="far fa-plus-square"></i> Add comment
+          <i className="fas fa-plus-circle"></i> Add comment
         </Link>
       ) : null}
     </Card>
