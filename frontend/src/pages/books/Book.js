@@ -24,7 +24,7 @@ const Book = (props) => {
     genre,
     synopsis,
     cover,
-    
+
     created_by,
     updated_by,
     created_on,
@@ -44,6 +44,10 @@ const Book = (props) => {
   };
 
   const handleDelete = async () => {
+    if (!is_owner) {
+      alert("Only the owner of the book cand delete it!");
+      return;
+    }
     try {
       await axiosRes.delete(`/books/${id}/`);
       history.goBack();
@@ -57,10 +61,15 @@ const Book = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link></Link>
-          <div className="d-flex align-items-center">
-            <span>{updated_on}</span>
-            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
-          </div>
+          {currentUser ? (
+            <div className="d-flex align-items-center">
+              <span>{updated_on}</span>
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            </div>
+          ) : null}
         </Media>
       </Card.Body>
       <Card.Body>
@@ -107,9 +116,17 @@ const Book = (props) => {
         </Media>
         <Card.Text className="text-center">
           <hr />
-          <Link to={`/comments/book/${id}`}>
+          {comments_count ? (
+            <Link to={`/comments/book/${id}`}>
+              <i className="far fa-comments" />
+            </Link>
+          ) : currentUser ? (
+            <Link to={`/comments/${id}/create`}>
+              <i className="far fa-comments" />
+            </Link>
+          ) : (
             <i className="far fa-comments" />
-          </Link>
+          )}
           {comments_count}
           <Link to={`/bookmarks/${id}`}>
             <i className="far fa-bookmark" />
@@ -119,7 +136,7 @@ const Book = (props) => {
       </Card.Body>
       {onlyone === "True" && currentUser ? (
         <Link className="align-self-center" to={`/comments/${id}/create`}>
-          <i className="far fa-plus-square"></i> comment
+          <i className="far fa-plus-square"></i> Add comment
         </Link>
       ) : null}
     </Card>

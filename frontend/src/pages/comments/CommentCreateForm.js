@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -35,8 +35,12 @@ function CommentCreateForm() {
 
   const history = useHistory();
   const { id } = useParams();
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
+    if (!currentUser) {
+      history.push("/");
+    }
     const fetchBooks = async () => {
       try {
         const { data } = await axiosReq.get(
