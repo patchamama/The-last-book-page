@@ -99,8 +99,18 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route exact path="/books" render={() => <BooksPage />} />
+          <Route
+            exact
+            path="/books"
+            message="No results found. Adjust the search keyword or add a new book."
+            render={() => <BooksPage />}
+          />
           <Route exact path="/books/:id/edit" render={() => <BookEditForm />} />
+          <Route
+            exact
+            path="/books/create/:newtitle"
+            render={() => <BookEditForm />}
+          />
           <Route exact path="/books/create" render={() => <BookEditForm />} />
           <Route exact path="/books/:id" render={() => <BookPage />} />
           <Route render={() => <p>Page not found!</p>} />

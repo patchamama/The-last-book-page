@@ -24,10 +24,10 @@ function BookEditForm() {
   const [errors, setErrors] = useState({});
   const [selectedBook, setSelectedBook] = useState("");
   const history = useHistory();
-  const { id } = useParams();
+  const { id, newtitle } = useParams();
   const { dateOfPub, setDateOfPub } = useState(new Date());
   const [bookData, setBookData] = useState({
-    title: "",
+    title: newtitle ? newtitle : "",
     auth: "",
     pub_date: "",
     publisher: "",
