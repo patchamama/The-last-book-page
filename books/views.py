@@ -1,5 +1,6 @@
 from django.db.models import Count
-from rest_framework import generics, filters
+from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Book
 from .serializers import BookSerializer
@@ -20,8 +21,11 @@ class BookList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend,
     ]
     filterset_fields = [
+        'bookmark__owner__profile', 
+        
     ]
     search_fields = [
         'title',

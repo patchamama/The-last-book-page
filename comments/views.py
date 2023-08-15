@@ -12,7 +12,6 @@ class CommentList(generics.ListCreateAPIView):
     No create view as comment creation is handled by django signals.
     """
     serializer_class = CommentSerializer
-    queryset = Comment.objects.all().order_by('-created_on')
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.annotate(
         stickers_count=Count('sticker', distinct=True),

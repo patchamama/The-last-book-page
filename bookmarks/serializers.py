@@ -11,6 +11,8 @@ class BookmarkSerializer(serializers.ModelSerializer):
 
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
+    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     book_cover = serializers.ImageField(source='book.cover', read_only=True)
     book_title = serializers.ReadOnlyField(source='book.title')
     book_auth = serializers.ReadOnlyField(source='book.auth')
@@ -23,7 +25,8 @@ class BookmarkSerializer(serializers.ModelSerializer):
         model = Bookmark
         fields = [
             'id', 'owner', 'status', 'book', 'book_cover', 
-            'book_title', 'book_auth', 'created_on', 'is_owner'
+            'book_title', 'book_auth', 'created_on', 'is_owner', 'profile_id',
+            'profile_image'
         ]
         
 

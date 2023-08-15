@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from drf_api_lastpage.permissions import IsOwnerOrReadOnly
 from .models import Bookmark
+from bookmarks.models import Bookmark
 from .serializers import BookmarkSerializer, BookmarkDetailSerializer
 
 
@@ -26,6 +27,7 @@ class BookmarkList(generics.ListCreateAPIView):
     filterset_fields = [
         'book',
     ]
+   
     search_fields = [
     ]
     ordering_fields = [
@@ -40,13 +42,11 @@ class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Bookmarks can be retrieved, update and deleted if is the owner
     """
-    serializer_class = BookmarkDetailSerializer
+    serializer_class = BookmarkSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Bookmark.objects.annotate(
         book_count=Count('book', distinct=True),
      ).order_by('owner', 'book')
-    filterset_fields = [
-            'book',
-        ]
+   
     # def perform_update(self, serializer):
     #     serializer.save(owner=self.request.user)

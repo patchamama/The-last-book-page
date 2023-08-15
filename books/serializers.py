@@ -1,5 +1,7 @@
+
 from rest_framework import serializers
 from .models import Book
+from bookmarks.models import Bookmark
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -7,7 +9,17 @@ class BookSerializer(serializers.ModelSerializer):
     Book serializer class inheriting from ModelSerializer
     """
     comments_count = serializers.ReadOnlyField()
+    bookmark_id = serializers.SerializerMethodField()
     bookmarks_count = serializers.ReadOnlyField()
+
+    def get_bookmark_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            bookmark = Bookmark.objects.filter(
+                owner=user, book=obj
+            ).first()
+            return bookmark.id if bookmark else None
+        return None
 
     def validate_image(self, value):
         """
@@ -31,7 +43,7 @@ class BookSerializer(serializers.ModelSerializer):
             'id', 'title', 'auth', 'pub_date', 'publisher', 'pages_no', 
             'isbn', 'lang_orig', 'lang', 'translators', 'genre', 
             'synopsis', 'cover', 'created_by', 'updated_by', 'created_on', 
-            'updated_on', 'comments_count', 'bookmarks_count',
+            'updated_on', 'comments_count', 'bookmark_id', 'bookmarks_count',
         ]
 
     
