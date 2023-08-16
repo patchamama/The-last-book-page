@@ -8,28 +8,42 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
-import Book from "./Book.js";
+import Book from "../books/Book.js";
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { axiosReq } from "../../api/axiosDefaults";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-const BooksPage = ({ message, filter = "" }) => {
-  const [books, setBooks] = useState({ results: [] });
+const BookmarkPage = ({ message, filter = "" }) => {
+  const [bookmarks, setBookmarks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
   const currentUser = useCurrentUser();
 
+  const { id } = useParams();
+
+  const statusOptions = (
+    <>
+      <option value=""> - No filter - </option>
+      <option value="Want to read">Want to read</option>
+      <option value="Currently Reading">Currently Reading</option>
+      <option value="Read">Read</option>
+      <option value="To Check">To Check</option>
+    </>
+  );
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         const { data } = await axiosReq.get(
-          `/books/?${filter}&search=${query}`
+          `/bookmarks/?book=${id}&status=${query}`
         );
-        setBooks(data);
+
+        setBookmarks(data);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -50,37 +64,40 @@ const BooksPage = ({ message, filter = "" }) => {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
-        <i className={`fas fa-search ${styles.SearchIcon}`} />
+
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
           <Form.Control
+            as="select"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            type="text"
             className="mr-sm-2"
             placeholder="Search books"
-          />
+          >
+            {statusOptions}
+          </Form.Control>
         </Form>
-
+        <br />
         {hasLoaded ? (
           <>
-            {books.results.length ? (
+            {bookmarks.results.length ? (
               <InfiniteScroll
-                children={books.results.map((book) => (
+                children={bookmarks.results.map((book) => (
                   <Book
                     key={book.id}
                     {...book}
-                    setBooks={setBooks}
+                    setBookmarks={setBookmarks}
                     onlyone={false}
-                    showfooter={true}
+                    showfooter={false}
+                    showBookmark={true}
                   />
                 ))}
-                dataLength={books.results.length}
+                dataLength={bookmarks.results.length}
                 loader={<Asset spinner />}
-                hasMore={!!books.next}
-                next={() => fetchMoreData(books, setBooks)}
+                hasMore={!!bookmarks.next}
+                next={() => fetchMoreData(bookmarks, setBookmarks)}
               />
             ) : (
               <Container className={appStyles.Content}>
@@ -88,16 +105,6 @@ const BooksPage = ({ message, filter = "" }) => {
                   src={NoResults}
                   message="No results found. Adjust the search keyword or add a new book."
                 />
-                {currentUser && (
-                  <div className="text-center">
-                    <Link
-                      className="align-self-center"
-                      to={`/books/create/${query}`}
-                    >
-                      <i className="fas fa-plus-circle"></i> Add book
-                    </Link>
-                  </div>
-                )}
               </Container>
             )}
           </>
@@ -113,5 +120,4 @@ const BooksPage = ({ message, filter = "" }) => {
     </Row>
   );
 };
-
-export default BooksPage;
+export default BookmarkPage;

@@ -26,6 +26,7 @@ class BookmarkList(generics.ListCreateAPIView):
     ]
     filterset_fields = [
         'book',
+        'status',
     ]
    
     search_fields = [

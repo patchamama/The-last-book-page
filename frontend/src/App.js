@@ -18,6 +18,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import BooksPage from "./pages/books/BooksPage";
 import BookPage from "./pages/books/BookPage";
 import BookEditForm from "./pages/books/BookEditForm";
+import BookmarkPage from "./pages/bookmarks/BookmarkPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -113,6 +114,7 @@ function App() {
           />
           <Route exact path="/books/create" render={() => <BookEditForm />} />
           <Route exact path="/books/:id" render={() => <BookPage />} />
+          <Route exact path="/bookmarks/:id" render={() => <BookmarkPage />} />
           <Route
             exact
             path="/bookmarks"
@@ -123,6 +125,7 @@ function App() {
               />
             )}
           />
+
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

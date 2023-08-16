@@ -9,6 +9,7 @@ class BookSerializer(serializers.ModelSerializer):
     Book serializer class inheriting from ModelSerializer
     """
     comments_count = serializers.ReadOnlyField()
+    book_id = serializers.ReadOnlyField(source='id')
     bookmark_id = serializers.SerializerMethodField()
     bookmark_status = serializers.SerializerMethodField()
     bookmarks_count = serializers.ReadOnlyField()
@@ -54,7 +55,7 @@ class BookSerializer(serializers.ModelSerializer):
             'isbn', 'lang_orig', 'lang', 'translators', 'genre', 
             'synopsis', 'cover', 'created_by', 'updated_by', 'created_on', 
             'updated_on', 'comments_count', 'bookmark_id', 'bookmark_status',
-            'bookmarks_count',
+            'bookmarks_count', 'book_id'
         ]
 
     

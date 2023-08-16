@@ -9,7 +9,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
-import Bookmark from "./Bookmark";
+import Bookmark from "../bookmarks/Bookmark";
 
 const Book = (props) => {
   const {
@@ -29,6 +29,11 @@ const Book = (props) => {
     cover,
     bookmark_id,
     bookmark_status,
+    book_id,
+    profile_id,
+    profile_image,
+    owner,
+    is_owner,
 
     created_by,
     updated_by,
@@ -39,10 +44,13 @@ const Book = (props) => {
     setBooks,
     onlyone,
     bookmark,
+    showfooter = true,
+    showBookmark = true,
+    showAvatar = false,
   } = props;
 
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === created_by;
+  // const is_owner = currentUser?.username === created_by;
   const history = useHistory();
 
   const handleEdit = () => {
@@ -66,7 +74,15 @@ const Book = (props) => {
     <Card className={styles.Comment}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          <Link></Link>
+          {showAvatar ? (
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_image} height={40} />
+              {owner}
+            </Link>
+          ) : (
+            <Link></Link>
+          )}
+
           {currentUser ? (
             <div className="d-flex align-items-center">
               <span>{updated_on}</span>
@@ -80,14 +96,14 @@ const Book = (props) => {
       </Card.Body>
       <Card.Body>
         <Media>
-          {onlyone === "True" ? (
+          {onlyone ? (
             <Card.Img
               src={cover}
               alt={`Bookcover of ${title}`}
               className={`mr-3 ${styles.Image}`}
             />
           ) : (
-            <Link to={`/books/${id}`}>
+            <Link to={`/books/${book_id}`}>
               <Card.Img
                 src={cover}
                 alt={`Bookcover of ${title}`}
@@ -105,12 +121,12 @@ const Book = (props) => {
                 </Card.Subtitle>
               </>
             )}
-
-            {currentUser && (
+            {showBookmark && (
               <Bookmark
-                book_id={id}
+                book_id={book_id}
                 bookmark_id={bookmark_id}
                 bookmark_status={bookmark_status}
+                owner={owner}
               />
             )}
 
@@ -129,27 +145,35 @@ const Book = (props) => {
             </Card.Text>
           </Media.Body>
         </Media>
-        <Card.Text className="text-center">
-          <hr />
-          {comments_count ? (
-            <Link to={`/comments/book/${id}`}>
+        {showfooter && (
+          <Card.Text className="text-center">
+            <hr />
+            {comments_count ? (
+              <Link to={`/comments/book/${id}`}>
+                <i className="far fa-comments" />
+              </Link>
+            ) : (
               <i className="far fa-comments" />
-            </Link>
-          ) : (
-            <i className="far fa-comments" />
-          )}
-          {comments_count}
-          <Link to={`/bookmarks/${id}`}>
-            <i className="far fa-bookmark" />
-          </Link>
-          {bookmarks_count}
-        </Card.Text>
+            )}
+            {comments_count}
+
+            {bookmarks_count ? (
+              <Link to={`/bookmarks/${id}`}>
+                <i className="far fa-bookmark" />
+              </Link>
+            ) : (
+              <i className="far fa-bookmark" />
+            )}
+            {bookmarks_count}
+          </Card.Text>
+        )}
       </Card.Body>
-      {onlyone === "True" && currentUser ? (
+
+      {onlyone && currentUser && showfooter && (
         <Link className="align-self-center" to={`/comments/${id}/create`}>
           <i className="fas fa-plus-circle"></i> Add comment
         </Link>
-      ) : null}
+      )}
     </Card>
   );
 };

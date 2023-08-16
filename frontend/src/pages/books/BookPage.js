@@ -43,7 +43,7 @@ const BookPage = () => {
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
-        <Book {...book.results[0]} setBook={setBook} onlyone="True" />
+        <Book {...book.results[0]} setBook={setBook} onlyone={true} />
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />

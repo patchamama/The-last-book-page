@@ -11,11 +11,18 @@ class BookmarkSerializer(serializers.ModelSerializer):
 
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
+    book_id = serializers.ReadOnlyField(source='book.id')
+    bookmark_id = serializers.ReadOnlyField(source='id')
+    bookmark_status = serializers.ReadOnlyField(source='status')
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
-    book_cover = serializers.ImageField(source='book.cover', read_only=True)
-    book_title = serializers.ReadOnlyField(source='book.title')
-    book_auth = serializers.ReadOnlyField(source='book.auth')
+    cover = serializers.ImageField(source='book.cover', read_only=True)
+    title = serializers.ReadOnlyField(source='book.title')
+    auth = serializers.ReadOnlyField(source='book.auth')
+    synopsis = serializers.ReadOnlyField(source='book.synopsis')
+    genre = serializers.ReadOnlyField(source='book.genre')
+    pages_no = serializers.ReadOnlyField(source='book.pages_no')
+    pub_date = serializers.ReadOnlyField(source='book.pub_date')
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -24,9 +31,11 @@ class BookmarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
         fields = [
-            'id', 'owner', 'status', 'book', 'book_cover', 
-            'book_title', 'book_auth', 'created_on', 'is_owner', 'profile_id',
-            'profile_image'
+            'id', 'owner', 'status', 'book', 'cover', 
+            'is_owner', 'profile_id', 'profile_image',
+            'book_id', 'bookmark_id', 'bookmark_status',
+            'title', 'auth', 'created_on',  'synopsis',
+            'genre', 'pages_no', 'pub_date',
         ]
         
 

@@ -3,29 +3,37 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-const Bookmark = ({ book_id, bookmark_id, bookmark_status }) => {
+const Bookmark = ({ book_id, bookmark_id, bookmark_status, owner }) => {
   const [status, setStatus] = useState(bookmark_status);
   const [errors, setErrors] = useState({});
 
-  const handleChange = (event) => {
-    setStatus(event.target.value);
-  };
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const formData = new FormData();
 
     setStatus(event.target.value);
     formData.append("book", book_id);
-    formData.append("status", status);
+    formData.append("owner", currentUser.username);
+    formData.append("status", event.target.value);
 
     try {
       if (bookmark_id) {
-        alert(`bookmarkId: put ${book_id} ${bookmark_id} ${status}`);
-        const { data } = await axiosReq.put("/bookmarks/", formData);
+        event.target.value ? (
+          const { data } = await axiosReq.put(
+            `/bookmarks/${bookmark_id}`,
+            formData
+          );
+        ) : (
+          await axiosReq.delete(
+            `/bookmarks/${bookmark_id}`);
+        )
+        
       } else {
-        alert(`bookmarkId: post ${book_id} ${bookmark_id} ${status}`);
         const { data } = await axiosReq.post("/bookmarks/", formData);
       }
     } catch (err) {
@@ -56,6 +64,7 @@ const Bookmark = ({ book_id, bookmark_id, bookmark_status }) => {
           name="status"
           rows={7}
           placeholder=""
+          disabled={!currentUser}
         >
           {statusOptions}
         </Form.Control>
