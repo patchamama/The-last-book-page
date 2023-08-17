@@ -7,7 +7,7 @@ from drf_api_lastpage.globals import LANGUAGES
 
 class Profile(models.Model):
     """
-    User Profile Model 
+    User Profile Model
     default image set so that we can always reference image.url.
     """
 
@@ -16,7 +16,8 @@ class Profile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     language = models.CharField(max_length=50, choices=LANGUAGES, blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_hk81a7.jpg') 
+        upload_to="images/", default="../default_profile_hk81a7.jpg"
+    )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -24,7 +25,8 @@ class Profile(models.Model):
         """
         Return profile where the newest are the first
         """
-        ordering = ['-created_on']
+
+        ordering = ["-created_on"]
 
     def __str__(self):
         return f"{self.owner}'s profile"

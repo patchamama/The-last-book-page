@@ -14,40 +14,39 @@ class BookmarkList(generics.ListCreateAPIView):
     create new boorkmarks. perform_create method associates the bookmark.owner
     with the logged-in user
     """
+
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = BookmarkSerializer
     queryset = Bookmark.objects.annotate(
-        book_count=Count('book', distinct=True),
-     ).order_by('owner', 'book')
+        book_count=Count("book", distinct=True),
+    ).order_by("owner", "book")
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        'book',
-        'status',
-    ]
-   
-    search_fields = [
-    ]
-    ordering_fields = [
-        'owner',
-        'book'
+        "book",
+        "status",
     ]
 
+    search_fields = []
+    ordering_fields = ["owner", "book"]
+
     def perform_create(self, serializer):
-            serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user)
+
 
 class BookmarkDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Bookmarks can be retrieved, update and deleted if is the owner
     """
+
     serializer_class = BookmarkSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Bookmark.objects.annotate(
-        book_count=Count('book', distinct=True),
-     ).order_by('owner', 'book')
-   
+        book_count=Count("book", distinct=True),
+    ).order_by("owner", "book")
+
     # def perform_update(self, serializer):
     #     serializer.save(owner=self.request.user)

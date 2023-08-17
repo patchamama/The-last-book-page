@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from drf_api_lastpage.globals import LANGUAGES
 
+
 class Book(models.Model):
     """
     Book model with content of books
@@ -20,16 +21,27 @@ class Book(models.Model):
     genre = models.TextField(blank=True)
     synopsis = models.TextField(blank=True)
     cover = models.ImageField(
-        upload_to='images/', default='../No_image_available.svg_t2xrtz.png')
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True)
-    updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True)
+        upload_to="images/", default="../No_image_available.svg_t2xrtz.png"
+    )
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        related_name="book_createdby",
+        blank=True,
+        null=True,
+    )
+    updated_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        related_name="book_updatedby",
+        blank=True,
+        null=True,
+    )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ["-created_on"]
 
     def __str__(self):
-        return f'{self.id} {self.title} - {self.auth}'
-
-    
+        return f"{self.id} {self.title} - {self.auth}"

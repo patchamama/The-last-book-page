@@ -147,7 +147,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 # Agile Methodology
 
-For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the link:
+For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
@@ -165,7 +165,7 @@ A PostgreSQL database hosted by ElephantSQL was used throughout most of the proc
 
 ### Comment
 
-The Comment model will allow users to create their own comments about any existed book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The comment field is a TextField that can allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the Book model with Comment allowing to create different comments for the same book from one user or from several users (owner field that relates to the User model in the same one-to-many way: one user can have several comments).
+The Comment model will allow users to create their own comments about any existed book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The comment field is a TextField that can allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the Book model with Comment allowing to create different comments for the same book from one or several users (`owner` field that relates to the User model in the same one-to-many way: one user can have several comments). The owner and the book fields are ForeignKeys, that creates a relationship between the model and the User and Book model, indicating that each Commment instance belongs to one user and one book. The on_delete=models.CASCADE argument specifies that if the associated user or book is deleted, all related Comment instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**               |
 | -------------- | -------------- | -------------------------------- |
@@ -177,7 +177,7 @@ The Comment model will allow users to create their own comments about any existe
 
 ### Sticker
 
-The Sticker template allows the user to create personal notes or stickers of a comment on an entry. If a comment is deleted, the sticker is removed from both the user model and the entry model. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+The Sticker template allows the user to create personal notes or stickers of a comment on an entry. If a comment is deleted, the sticker is removed from both the user model and the entry model. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively. The owner and the comment fields are ForeignKeys, that creates a relationship between the model and the User and Comment model, indicating that each Sticker instance belongs to one user and one comment. The on_delete=models.CASCADE argument specifies that if the associated user or comment is deleted, all related Sticker instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**                  |
 | -------------- | -------------- | ----------------------------------- |
@@ -189,7 +189,7 @@ The Sticker template allows the user to create personal notes or stickers of a c
 
 ### Book
 
-The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, isbn, original language of publication and current language of the book in the record, genre, synopsis and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only he/she can delete it: `created_by` and `updated_by`). Other models such as Comment and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, isbn, original language of publication and current language of the book in the record, genre, synopsis and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only it can delete it: `created_by` and `updated_by`). Other models such as Comment and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
 
 | **Field name** | **Field Type** | **Field Argument**                                                                      |
 | -------------- | -------------- | --------------------------------------------------------------------------------------- |
@@ -212,7 +212,7 @@ The Book model contains the entire record with the fields relating to a book (ti
 
 ### Bookmark
 
-The Bookmark model allows to register the status or interest of users in a book (e.g.: to read, to check, read, ...). To fulfil its objective, it is related through the `owner` field with the User model and `book` with the Book model in a one-to-many relationship, which allows that a book can have several bookmarks (statuses) from one or many users, as well as that a user can have several books with different options to be consulted.  The owner field is a ForeignKey that creates a relationship between the Bookmark model and the User model, indicating that each Bookmark instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Bookmark instances will also be deleted. The book field is also a ForeignKey, creating a relationship between the Bookmark model and the Book model. The on_delete=models.CASCADE argument specifies that if the associated book is deleted, all related Bookmark instances will also be deleted. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+The Bookmark model allows to register the status or interest of users in a book (e.g.: to read, to check, read, ...). To fulfil its objective, it is related through the `owner` field with the User model and `book` with the Book model in a one-to-many relationship, which allows that a book can have several bookmarks (statuses) from one or many users, as well as that a user can have several books with different options to be consulted. The `owner` field is a ForeignKey that creates a relationship between the Bookmark model and the User model, indicating that each Bookmark instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Bookmark instances will also be deleted. The book field is also a ForeignKey, creating a relationship between the Bookmark model and the Book model. The on_delete=models.CASCADE argument specifies that if the associated book is deleted, all related Bookmark instances will also be deleted. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
 
 | **Field name** | **Field Type** | **Field Argument**                                           |
 | -------------- | -------------- | ------------------------------------------------------------ |
@@ -234,7 +234,7 @@ The User model is predefined by Django for authentication management and as an e
 
 ### Profile
 
-The Profile model in Django has a unique one-to-one relationship with the User model, meaning that each registered user on the website will have a corresponding Profile model. This allows for additional values to be defined relative to the user, such as an image and language. The Profile model serves as a convenient extension to the User model, providing an efficient way to store and access user-specific information.
+The Profile model in Django has a unique one-to-one relationship with the User model, meaning that each registered user on the website will have a corresponding Profile model. This allows for additional values to be defined relative to the user, such as an image and language. The Profile model serves as a convenient extension to the User model, providing an efficient way to store and access user-specific information. The on_delete=models.CASCADE argument of `owner` specifies that if the associated user is deleted, all related Profile instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**                                             |
 | -------------- | -------------- | -------------------------------------------------------------- |
@@ -271,6 +271,30 @@ The owner field is a ForeignKey that creates a relationship between the Like mod
 ### Python
 
 #### PEP8 Validation
+
+To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.herokuapp.com/). The table below shows the pages tested and their result, all pages are error-free in the final deployment.
+
+| _File / App_     | **drf_api_lastpage** | **comments** | **stickers** | **books** |
+| ---------------- | :------------------: | :----------: | :----------: | :-------: |
+| `admin.py`       |        _n/a_         |    _pass_    |    _n/a_     |   _pass_   |
+| `apps.py`        |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
+| `permissions.py` |        _pass_        |    _n/a_     |    _n/a_     |   _n/a_   |
+| `serializers.py` |        _pass_        |    _pass_    |    _pass_    |  _pass_   |
+| `models.py`      |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
+| `urls.py`        |        _pass_        |    _pass_    |    _pass_    |  _pass_   |
+| `views.py`       |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
+| `wsgi.py`        |        _pass_        |    _n/a_     |    _n/a_     |   _n/a_   |
+
+| _File / App_     | **bookmarks** | **profiles** | **followers** | **likes** |
+| ---------------- | :-----------: | :----------: | :-----------: | :-------: |
+| `admin.py`       |     _pass_     |    _pass_     |     _n/a_     |   _n/a_   |
+| `apps.py`        |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
+| `permissions.py` |     _n/a_     |    _n/a_     |     _n/a_     |   _n/a_   |
+| `serializers.py` |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
+| `models.py`      |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
+| `urls.py`        |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
+| `views.py`       |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
+| `wsgi.py`        |     _n/a_     |    _n/a_     |     _n/a_     |   _n/a_   |
 
 ## Manual Testing
 
