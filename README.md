@@ -276,7 +276,7 @@ To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.heroku
 
 | _File / App_     | **drf_api_lastpage** | **comments** | **stickers** | **books** |
 | ---------------- | :------------------: | :----------: | :----------: | :-------: |
-| `admin.py`       |        _n/a_         |    _pass_    |    _n/a_     |   _pass_   |
+| `admin.py`       |        _n/a_         |    _pass_    |    _n/a_     |  _pass_   |
 | `apps.py`        |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
 | `permissions.py` |        _pass_        |    _n/a_     |    _n/a_     |   _n/a_   |
 | `serializers.py` |        _pass_        |    _pass_    |    _pass_    |  _pass_   |
@@ -287,7 +287,7 @@ To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.heroku
 
 | _File / App_     | **bookmarks** | **profiles** | **followers** | **likes** |
 | ---------------- | :-----------: | :----------: | :-----------: | :-------: |
-| `admin.py`       |     _pass_     |    _pass_     |     _n/a_     |   _n/a_   |
+| `admin.py`       |    _pass_     |    _pass_    |     _n/a_     |   _n/a_   |
 | `apps.py`        |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
 | `permissions.py` |     _n/a_     |    _n/a_     |     _n/a_     |   _n/a_   |
 | `serializers.py` |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
@@ -297,6 +297,96 @@ To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.heroku
 | `wsgi.py`        |     _n/a_     |    _n/a_     |     _n/a_     |   _n/a_   |
 
 ## Manual Testing
+
+---
+
+## Manual Testing
+
+Using Django's development mode, the defined URLs were visited to check if they met their objectives.
+
+| _App_     |                   **Endpoint**                   | **Expected Result**                                                                                                           | **Pass/Fail** |
+| --------- | :----------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------- | :-----------: |
+| profiles  |                    profiles/                     | Return a list of all the profiles in the database ordered by `created_on`                                                     |   **pass**    |
+| profiles  |                    profiles/                     | When a user updates their profile, the new data is displayed                                                                  |   **pass**    |
+| profiles  |                profiles/<int:pk>/                | Return a single profile detail page                                                                                           |   **pass**    |
+| profiles  |                profiles/<int:pk>/                | Display edit options if the logged-in user is the owner of the profile                                                        |   **pass**    |
+| profiles  |                profiles/<int:pk>/                | If the user is not the owner of the profile, do not display edit options                                                      |   **pass**    |
+| profiles  |                profiles/<int:pk>/                | When a user updates their profile, the new data is displayed                                                                  |   **pass**    |
+| profiles  |        profiles/?ordering=comments_count         | Display a list of comments from a particular profile in ascending order                                                       |   **pass**    |
+| profiles  |        profiles/?ordering=-comments_count        | Display a list of comments from a particular profile in decending order                                                       |   **pass**    |
+| profiles  |        profiles/?ordering=followers_count        | Display a users `followers_count` in ascending order                                                                          |   **pass**    |
+| profiles  |       profiles/?ordering=-followers_count        | Display a users `followers_count` in decending order                                                                          |   **pass**    |
+| profiles  |        profiles/?ordering=following_count        | Display a users `following_count` in ascending order                                                                          |   **pass**    |
+| profiles  |       profiles/?ordering=-following_count        | Display a users `following_count` in decending order                                                                          |   **pass**    |
+| profiles  | profiles/?ordering=owner**following**created_on  | Display a list of profiles a user is following by `created_on` in acending order                                              |   **pass**    |
+| profiles  | profiles/?ordering=-owner**following**created_on | Display a list of profiles a user is following by `created_on` in decending order                                             |   **pass**    |
+| comments  |                    comments/                     | Return a list of all the comments in the database ordered by `created_on`                                                     |   **pass**    |
+| comments  |                    comments/                     | If the user is logged in, display option to add a comment                                                                     |   **pass**    |
+| comments  |                    comments/                     | When a logged in user updates a comment, their updated data is reflected within the comments list & comment detail page       |   **pass**    |
+| comments  |                comments/<int:pk>/                | Return a single comment detail page                                                                                           |   **pass**    |
+| comments  |                comments/<int:pk>/                | Display edit option if the logged-in user is the owner of the comment                                                         |   **pass**    |
+| comments  |                comments/<int:pk>/                | Display delete option if the logged-in user is the owner of the comment                                                       |   **pass**    |
+| comments  |                comments/<int:pk>/                | When a logged in user deletes a comment, the comment is removed from the database                                             |   **pass**    |
+| comments  |                comments/<int:pk>/                | When a logged in user updates a comment, their updated data is reflected within the comments detail page                      |   **pass**    |
+| comments  |          comments/?ordering=likes_count          | Display a comments `likes_count` in ascending order                                                                           |   **pass**    |
+| comments  |         comments/?ordering=-likes_count          | Display a comments `likes_count` in decending order                                                                           |   **pass**    |
+| comments  |      comments/?ordering=likes\_\_created_on      | Display comment likes by created date in ascending order                                                                      |   **pass**    |
+| comments  |     comments/?ordering=-likes\_\_created_on      | Display comment likes by created date in decending order                                                                      |   **pass**    |
+| comments  |        comments/?ordering=stickers_count         | Display a comments `stickers_count` in ascending order                                                                        |   **pass**    |
+| comments  |        comments/?ordering=-stickers_count        | Display a comments `stickers_count` in decending order                                                                        |   **pass**    |
+| stickers  |                    stickers/                     | Display a list of stickers which has a corresponding post ID                                                                  |   **pass**    |
+| stickers  |                    stickers/                     | Display a list of stickers in descending order - newest stickers first                                                        |   **pass**    |
+| stickers  |                    stickers/                     | Filter a sticker by comment and display results                                                                               |   **pass**    |
+| stickers  |                    stickers/                     | If the user is logged in, display option to add a sticker from a list of posts                                                |   **pass**    |
+| stickers  |                    stickers/                     | When a user adds a sticker to a comment, the `stickers_count` within the comment list page and comment detail page increases  |   **pass**    |
+| stickers  |                stickers/<int:pk>/                | Return a single sticker with a correct ID and a list of all it's values                                                       |   **pass**    |
+| stickers  |                stickers/<int:pk>/                | If the user is the owner of the sticker, display edit and delete options                                                      |   **pass**    |
+| stickers  |                stickers/<int:pk>/                | If the user updates a sticker, the data is reflected in the stickers list and sticker detail page                             |   **pass**    |
+| stickers  |                stickers/<int:pk>/                | If the user deletes a sticker, the sticker is removed from the database                                                       |   **pass**    |
+| stickers  |                stickers/<int:pk>/                | If the user is not the sticker author, edit and delete options should not be displayed                                        |   **pass**    |
+| books     |                      books/                      | Return a list of all the books in the database ordered by `created_on`                                                        |   **pass**    |
+| books     |                      books/                      | When a user updates their book, the new data is displayed                                                                     |   **pass**    |
+| books     |                      books/                      | If the user is logged in and adds an image, the image is uploaded to Cloudinary and is viewable in a new browser tab          |   **pass**    |
+| books     |                 books/<int:pk>/                  | Return a single book detail page                                                                                              |   **pass**    |
+| books     |                 books/<int:pk>/                  | Display edit options if is an logged-in user                                                                                  |   **pass**    |
+| books     |                 books/<int:pk>/                  | If the user is not logged in, do not display edit options                                                                     |   **pass**    |
+| books     |                 books/<int:pk>/                  | When a user updates their book, the new data is displayed                                                                     |   **pass**    |
+| books     |          books/?ordering=comments_count          | Display a list of books order by count of comment in ascending order                                                          |   **pass**    |
+| books     |         books/?ordering=-comments_count          | Display a list of books order by count of comment in decending order                                                          |   **pass**    |
+| books     |         books/?ordering=bookmarks_count          | Display a list of books order by count of bookmarks in ascending order                                                        |   **pass**    |
+| books     |         books/?ordering=-bookmarks_count         | Display a list of books order by count of bookmarks in decending order                                                        |   **pass**    |
+| books     |              books/?ordering=title               | Display a list of books order by title in ascending order                                                                     |   **pass**    |
+| books     |              books/?ordering=-title              | Display a list of books order by title in decending order                                                                     |   **pass**    |
+| books     |               books/?ordering=auth               | Display a list of books order by auth in ascending order                                                                      |   **pass**    |
+| books     |              books/?ordering=-auth               | Display a list of books order by auth in decending order                                                                      |   **pass**    |
+| books     |               books/?search=<text>               | Display a list of books with auth, title or user like <text>                                                                  |   **pass**    |
+| books     |   books/?bookmark**owner**profile=<profile id>   | Display a list of books with bookmarks created by User equal to <profileid>                                                   |   **pass**    |
+| bookmarks |                    bookmarks/                    | Display a list of bookmarks with a corresponding book and user ID                                                             |   **pass**    |
+| bookmarks |                    bookmarks/                    | Display a users list of bookmarks in descending order, newest first                                                           |   **pass**    |
+| bookmarks |                    bookmarks/                    | If the user is logged in, display the option to bookmark a book from a list of books and with a status from a list of options |   **pass**    |
+| bookmarks |                    bookmarks/                    | If the user is not logged in, no option to bookmark a book                                                                    |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | Display a single bookmark with a correct ID and a list of all it's values                                                     |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | If the user is logged in, display the option to delete a bookmark                                                             |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | If a logged in user deletes a bookmark, the bookmark is removed from the database                                             |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | If a non logged in user tries to delete a bookmark, 403 Forbiddden displayed                                                  |   **pass**    |
+| likes     |                      likes/                      | Display a list of likes with a corresponding comment ID                                                                       |   **pass**    |
+| likes     |                      likes/                      | Display a users list of likes in descending order, newest first                                                               |   **pass**    |
+| likes     |                      likes/                      | If the user is logged in, display the option to like a comment from a list of comments                                        |   **pass**    |
+| likes     |                      likes/                      | When a logged in user adds a like, the `likes_count` within the comment list page and comment detail page increases           |   **pass**    |
+| likes     |                      likes/                      | If the user is not logged in, no option to like a comment                                                                     |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | Display a single like with a correct ID and a list of all it's values                                                         |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | If the user is logged in display the option to delete a like                                                                  |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | If a logged in user deletes a like, the like is removed from the database and all corresponding pages                         |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | If a non logged in user tries to delete a like, 403 Forbiddden displayed                                                      |   **pass**    |
+| followers |                    followers/                    | Display a list of followers with a corresponding comment ID                                                                   |   **pass**    |
+| followers |                    followers/                    | Display a users list of followers in descending order, newest first                                                           |   **pass**    |
+| followers |                    followers/                    | If the user is logged in, display the option to follow a profile from a list of profiles                                      |   **pass**    |
+| followers |                    followers/                    | When a logged in user adds a follower, the `followers_count` within the comment list page and comment detail page increases   |   **pass**    |
+| followers |                    followers/                    | If the user is not logged in, no option to follow a profile                                                                   |   **pass**    |
+| followers |               followers/<int:pk>/                | Display a single follower with a correct ID and a list of all it's values                                                     |   **pass**    |
+| followers |               followers/<int:pk>/                | If the user is logged in, display the option to delete a follower                                                             |   **pass**    |
+| followers |               followers/<int:pk>/                | If a logged in user deletes a follower, the follower is removed from the database and all corresponding pages                 |   **pass**    |
+| followers |               followers/<int:pk>/                | If a non logged in user tries to delete a follower, 403 Forbiddden displayed                                                  |   **pass**    |
 
 ## Security Fixed
 
@@ -322,23 +412,76 @@ book_cover = serializers.ImageField(source='book.cover', read_only=True)
 
 ## Languages
 
+- [Python](https://www.python.org/) - A programming language that lets you work quickly
+  and integrate systems more effectively
+
 ## Libraries and Frameworks
+
+- [Django](https://pypi.org/project/Django/) - Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
+
+- [Django REST Framework](https://pypi.org/project/djangorestframework/) - A powerful and flexible toolkit for building Web APIs
+
+- [cloudinary](https://pypi.org/project/cloudinary/) - Easily integrate your application with Cloudinary
+- [dj-database-url](https://pypi.org/project/dj-database-url/) - Allows you to utilize the 12factor inspired DATABASE_URL environment variable to configure your Django application.
+- [dj-rest-auth](https://pypi.org/project/dj-rest-auth/) - API endpoints for handling authentication securely in Django Rest Framework
+- [django-allauth](https://pypi.org/project/django-allauth/) - Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
+- [django-cloudinary-storage](https://pypi.org/project/django-cloudinary-storage/) - package that facilitates integration with Cloudinary by implementing Django Storage API
+- [django-cors-headers](https://pypi.org/project/django-cors-headers/) - Adds Cross-Origin Resource Sharing (CORS) headers to responses.
+- [django-extensions](https://pypi.org/project/django-extensions/) - Collection of global custom management extensions for the Django Framework.
+- [django-filter](https://pypi.org/project/django-filter/) - Declaratively add dynamic QuerySet filtering from URL parameters.
+- [django-rest-auth](https://pypi.org/project/django-rest-auth/) - Provides a set of REST API endpoints for Authentication and Registration
+- [djangorestframework-simplejwt](https://pypi.org/project/djangorestframework-simplejwt/) - JSON Web Token authentication plugin for the Django REST Framework.
+- [gunicorn](https://pypi.org/project/gunicorn/) - A Python WSGI HTTP Server for UNIX.
+- [oauthlib](https://pypi.org/project/oauthlib/) - Implements the logic of OAuth1 or OAuth2 without assuming a specific HTTP request object or web framework.
+- [pathspec](https://pypi.org/project/pathspec/) - Utility library for pattern matching of file paths
+- [Pillow](https://pypi.org/project/Pillow/) - Adds image processing capabilities to your Python interpreter
+- [psycopg2](https://pypi.org/project/psycopg2/) - PostgreSQL database adapter for Python
+- [pycodestyle](https://pypi.org/project/pycodestyle/) - A tool to check your Python code against some of the style conventions in PEP 8.
+- [pydot](https://pypi.org/project/pydot/) - Library to generate .dot files which can be used to show ERD's
+- [PyJWT](https://pypi.org/project/PyJWT/) - Library for encoding and decoding JSON Web Tokens (JWT)
+- [pyparsing](https://pypi.org/project/pyparsing/) - Python parsing module
+- [pytz](https://pypi.org/project/pytz/) - Allows accurate and cross platform timezone calculations
+- [requests](https://pypi.org/project/requests/) - Allows you to send HTTP/1.1 requests
+- [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) - OAuthlib authentication support for Requests
+
+- [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python. It provides support for parsing, splitting and formatting SQL statements.
+- [urllib3](https://pypi.org/project/urllib3/) - A powerful, user-friendly HTTP client for Python
 
 ## Other Tools
 
+- [GitHub](https://github.com/) - Used to host and deploy the website as well as manage the project.
+- [Heroku](https://dashboard.heroku.com) - Used to deploy the website
+- [SQLite](https://www.sqlite.org/index.html) - An open-source, zero-configuration, self-contained, stand-alone, transaction relational database engine designed to be embedded into an application.
+- [ElephantSQL](https://www.elephantsql.com/) - Provides a browser tool for SQL queries where you can create, read, update and delete data directly from your web browser.
+- [Cloudinary](https://cloudinary.com/) - Used to host all static files .
+- [CI PEP8 Linter](https://pep8ci.herokuapp.com/#)
+
 # Development
 
-## Installing Django and libraries
+This site was made using [GitHub](#github) & [Gitpod](https://www.gitpod.io/). The site was further developed using Django and Django REST framework.
+
+## GitHub
+
+### Create the repository. Basics to get up and running
+
+1. Sign in to GitHub and navigate to [Code Institute's Gitpod template](https://github.com/Code-Institute-Org/gitpod-full-template).
+
+- At the top of the repository, click **Use this template** followed by **Create a new repository**.
+
+- Navigate to the [GitHub repository](https://github.com/patchamama/PP5-drf-api-The-last-book-page) or use [Code Institute's template](https://github.com/Code-Institute-Org/ci-full-template) to create your own workspace
+- Click on Gitpod and create workspace
+
+## Installing Django and libraries tha you will use to deploy in Heroku
 
 ### Install Django
 
 ```
-pip3 install 'django<4'
+pip3 install 'django<4' gunicorn
 ```
 
 _The Long Term Support (LTS 3.2.x) version (in my case 3.2.20) will installed and is the most advisable for production as it is kept up to date with security patches._
 
-### Create Project
+### Create Django Project
 
 ```
 django-admin startproject drf_api_lastpage .
@@ -351,6 +494,8 @@ _A new directory called your `'drf_api_lastpage'` and a `manage.py` file will be
 ```
 pip install django-cloudinary-storage==0.3.0
 ```
+
+- Cloudinary will be used to store our static media files.
 
 ### Install Pillow (to Image Processing)
 
@@ -367,6 +512,7 @@ python3 manage.py startapp comments
 python3 manage.py startapp likes
 python3 manage.py startapp bookmarks
 python3 manage.py startapp followers
+python3 manage.py startapp stickers
 ```
 
 ### Add Installed Apps in settings `drf_api_lastpage/settings.py`
@@ -383,7 +529,8 @@ INSTALLED_APPS = [
     'comments',
     'likes',
     'bookmarks',
-    'followers'
+    'followers',
+    'stickers'
 ]
 ```
 
@@ -436,15 +583,283 @@ os.environ['CLOUDINARY_URL'] = 'cloudinary://**<cloudinary_key>**'
 _Note: Ensure `env.py` is listed in the .gitignore file so it does not get pushed to GitHub._
 _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudinary.com/console/). Make sure to only paste the correct part of the URL_
 
-###
+### Save changes and then **Migrate changes** in the terminal
+
+```
+python3 manage.py migrate
+```
+
+### In order to use JSON web tokens we will be using the Django rest auth library, install by typing in the command:
+
+```
+pip3 install dj-rest-auth
+```
+
+### In `settings.py`, add **rest_framework.authtoken** and **dj_rest_auth** to `INSTALLED_APPS`
+
+```
+INSTALLED_APPS = [
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+]
+```
+
+### Add the _rest auths urls_ to the main **urlpatterns** list.
+
+```
+urlpatterns = [
+    path("dj-rest-auth/", include("dj_rest_auth.urls")),
+]
+```
+
+### Migrate the database by typing
+
+```
+python3 manage.py migrate
+```
+
+### Next install Django allauth with the following command
+
+```
+pip install 'dj-rest-auth[with_social]'
+```
+
+And add the new application to the `INSTALLED_APPS` variable in **settings.py**.
+
+```
+INSTALLED_APPS = [
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
+]
+```
+
+### Add a `SITE_ID` variable in **settings.py**
+
+`SITE_ID = 1`
+
+### Add the _registration urls_ to the main **urlpatterns** list.
+
+```
+urlpatterns = [
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+]
+```
+
+### The Django rest framework doesn’t support JWT tokens for the browser interface out-of-the-box, we’ll need to use session authentication in development and for Production we’ll use Tokens. This will allow us to continue to be able to log into our API as we work on it. To start, install the JWT library
+
+```
+pip install djangorestframework-simplejwt
+```
+
+### In `settings.py`, set the **DEBUG** value to True only if the `DEV` environment variable exists. This will mean it is True in development, and False in production.
+
+```
+DEBUG = 'DEV' in os.environ
+```
+
+### To enable token authentication, cookie declaration and to also ensure that the tokens are sent over HTTPS only, add the following code to `settings.py`.
+
+```
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = "my-app-auth"
+JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
+JWT_AUTH_SAMESITE = "None"
+```
+
+### Add the `profile_id` and `profile_image` to fields returned when requesting logged in user details. Firstly create a `serializers.py` file in the main project folder.
+
+### Import the appropriate files
+
+```
+from dj_rest_auth.serializers import UserDetailsSerializer
+from rest_framework import serializers
+```
+
+### Create the **profile_id** and **profile_image** fields.
+
+```
+class CurrentUserSerializer(UserDetailsSerializer):
+    profile_id = serializers.ReadOnlyField(source='profile.id')
+    profile_image = serializers.ReadOnlyField(source='profile.image.url')
+    class Meta(UserDetailsSerializer.Meta):
+        fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')
+```
+
+### Overwrite the default `USER_DETAILS_SERIALIZER` in **settings.py**:
+
+```
+REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'}
+```
+
+### Set the default renderer to JSON for the production environment. This means that we want this nice, in-browser interface to be available in development only. All the frontend app cares about is JSON so sending HTML would be pointless. In `settings.py`, below the `REST_FRAMEWORK` variable, add:
+
+```
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+```
+
+### If the **DEV** environment variable is **NOT** present, set the rest framework’s default renderer classes attribute to JSONRenderer inside a list.
+
+### Create a new root route which will act as a welcome screen to anyone who visits the homepage of our API.
+
+- First create a new `views.py` file in the main project folder (where_next_drf_api) and add the following code:
+
+```
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .settings import (JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE,
+                       JWT_AUTH_SAMESITE, JWT_AUTH_SECURE,)
+
+@api_view()
+def root_route(request):
+    return Response(
+        {"message": "Welcome to my django rest framework API for Where next\
+        - social media platform"})
+```
+
+- Add the new route to the **urlpatterns** list in the main `urls.py` file and remember to import root_route from .views - `from .views import root_route`
+
+```
+urlpatterns = [
+    path('', root_route),
+]
+```
+
+### Remove the value for `SECRET_KEY` in **settings.py** and replace with the following code to use an environment variable instead.
+
+- `SECRET_KEY = os.getenv('SECRET_KEY')`
+
+### Create a new env.py file at the top-level directory - `env.py`
+
+#### - Within `env.py`:
+
+| Instruction              | Code                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| **1.** Import os library | `import os`                                                  |
+| **2.** Add in secret key | `os.environ.setdefault("SECRET_KEY", "NEW_SECRET_KEY_HERE")` |
+
+- Set a new value for your `SECRET_KEY` environment variable.
+
+### In the terminal of your Gitpod workspace, install **gunicorn**.
+
+```
+pip3 install gunicorn django-cors-headers
+```
+
+### Update your `requirements.txt`
+
+```
+pip freeze --local > requirements.txt
+```
+
+### Create a file named **Procfile** at the top-level directory - `Procfile`
+
+- Add the following code:
+
+```
+release: python manage.py makemigrations && python manage.py migrate
+web: gunicorn drf_api.wsgi
+```
 
 # Deployment
 
+## Using Heroku to deploy the project
+
+- Setup of the local workspace:
+  - This project was developed with the use of [pipenv](https://pypi.org/project/pipenv/) to handle all dependencies
+  - Managing a `requirements.txt` file can be problematic, so Pipenv uses the upcoming `Pipfile` and `Pipfile.lock` instead, which is superior for basic use cases.
+  - Create a `Procfile` in the local workspace and type in `web: gunicorn <name app>.wsgi:application` inside the file.
+  - Commit and push to GitHub
+
+This project was deployed using [Heroku](https://dashboard.heroku.com/) using the following steps:
+
+1. Click on _New_ in the top-right corner and then _Create New App_.
+
+![Heroku New App](docs/deployment/heroku-1.png)
+
+2. On the next page give the app the unique name.
+3. Choose a region (the USA or Europe).
+4. Click _Create app_.
+
+![Heroku Unique Name](docs/deployment/heroku-2.png)
+
+5. Go to the _Resources_ tab and search for PostgreSQL. Select _Hobby dev - Free_ and click on the provision button to add it to the project
+
+![Heroku Postgresql Resources](docs/deployment/heroku-3.png)
+
+6. On the next page click on the _Settings_ tab.
+7. In the Settings page open _Config Vars_ and add the following:
+
+![Heroku Conifg Vars](docs/deployment/heroku-4.png)
+
+7. Copy the value of _DATABASE_URL_ and paste it into your `.env` file in your workspace together with your secret key.
+
+   - This application uses [Gmail](https://www.google.com/intl/pl/gmail/about/) as an email SMTP server. This requires adding following variables to the project's `settings.py` file:
+
+     - `EMAIL_USE_TLS = True`
+     - `EMAIL_PORT = 587`
+     - `EMAIL_HOST = 'smtp.gmail.com'`
+     - `EMAIL_HOST_USER = 'your_account@gmail.com' `
+     - `EMAIL_HOST_PASSWORD = 'yourGmailPassword'`
+
+   - For **Heroku** deployment add folowing values to _Config Vars_:
+     - `EMAIL_HOST_USER = 'your_account@gmail.com' `
+     - `EMAIL_HOST_PASSWORD = 'yourGmailPassword'`
+
+8. Set `DEBUG = False` in `settings.py`.
+9. Commit and push your changes to GitHub.
+10. Click on the _Deploy_ tab.
+11. In the _Deploy_ page in the _Deployment Method_ select GitHub.
+12. After a successful connection to GitHub locate your repository and add it to Heroku.
+
+![Heroku GitHub](docs/deployment/heroku-5.png)
+
+13. In the _Manual Deploy_ section confirm that _main_ branch is selected and click _Deploy Branch_
+14. For Final Deployment confirm `DEBUG = False` in `settings.py` and delete `DISABLE_COLLECTSTATIC` from _Config Vars_ in **Heroku**.
+15. Commit and push changes to GitHub.
+
+![Heroku Deploy](docs/deployment/heroku-6.png)
+
+## Fork a repository
+
+A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. The steps are as follows:
+
+1. On GitHub.com navigate to the repository page.
+2. In the top-right corner of the page, click **Fork**.
+
+![GitHub Fork](docs/deployment/github-fork.png)
+
+You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
+
+## Clone a repository
+
+In GitHub, you have the option to create a local copy (clone) of your repository on your device's hard drive. The steps are as follows:
+
+1. On GitHub.com navigate to the repository page.
+2. Locate the _Code_ tab and click on it.
+3. In the expanded window, click the two squares icon to copy the HTTPS link of the repository.
+
+![GitHub Clone](docs/deployment/github-clone.png)
+
+4. On your computer, open **Terminal**.
+5. Navigate to the directory of choice.
+6. Type **git clone** and paste the copied link of the repository.
+7. Press **Enter** and the local clone of the repository will be created in the selected directory.
+
 # Credits
 
+- Deployment section is based on the owner's previous project [OneTeam](https://github.com/miloszmisiek/ci-pp4-one_team).
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 - Images of profiles: https://www.pexels.com/
 - To generate secret-keys: https://djecrety.ir/
 - The logo was created by https://Logo.com
+- Python Formatter: https://codebeautify.org/python-formatter-beautifier
+- CI Python Linter from code institute: https://pep8ci.herokuapp.com/
 
 # Acknowledgments
