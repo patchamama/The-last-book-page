@@ -264,5 +264,6 @@ _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudi
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 - Images of profiles: https://www.pexels.com/
 - To generate secret-keys: https://djecrety.ir/
+- The logo was created by https://Logo.com
 
 # Acknowledgments
