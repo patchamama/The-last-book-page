@@ -1,14 +1,23 @@
+// React / router
 import React from "react";
-import styles from "../../styles/Comment.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// React Bootstrap components
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+// Components
+import Avatar from "../../components/Avatar";
+import { MoreDropdown } from "../../components/MoreDropdown";
+// Notifications
+import { NotificationManager } from "react-notifications";
+// API
+import { axiosRes } from "../../api/axiosDefaults";
+// Styles
+import styles from "../../styles/Comment.module.css";
 
 const Comment = (props) => {
+  // Destructure the props object
   const {
     id,
     owner,
@@ -26,23 +35,35 @@ const Comment = (props) => {
     setComments,
   } = props;
 
+  // Get the current user from CurrentUserContext.js
   const currentUser = useCurrentUser();
+  // Declare is_owner
   const is_owner = currentUser?.username === owner;
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
 
   const handleEdit = () => {
     history.push(`/comments/${id}/edit`);
   };
 
+  // Handle deleting a post
   const handleDelete = async () => {
     try {
+      // Send a request to delete a post by its ID
       await axiosRes.delete(`/comments/${id}/`);
+      // Display a success notification
+      NotificationManager.info("Comment Removed");
+      // Navigating to the previous page in the navigation history
       history.goBack();
     } catch (err) {
-      console.log(err);
+      NotificationManager.error(
+        "There was an issue deleting your comment",
+        "Error"
+      );
     }
   };
 
+  // Like a comment functionality
   const handleLike = async () => {
     try {
       const { data } = await axiosRes.post("/likes/", { comment: id });
@@ -58,11 +79,17 @@ const Comment = (props) => {
             : comment;
         }),
       }));
+      // Display a notification
+      NotificationManager.info("Comment liked");
     } catch (err) {
-      console.log(err);
+      NotificationManager.error(
+        "There was an issue adding a like to your comment",
+        "Error"
+      );
     }
   };
 
+  // Unlike a comment functionality
   const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/likes/${like_id}`);
@@ -78,8 +105,13 @@ const Comment = (props) => {
             : comment;
         }),
       }));
+      // Display a notification
+      NotificationManager.info("Comment Unliked");
     } catch (err) {
-      console.log(err);
+      NotificationManager.error(
+        "There was an issue adding unlike to your comment",
+        "Error"
+      );
     }
   };
 
@@ -87,13 +119,16 @@ const Comment = (props) => {
     <Card className={styles.Comment}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
+          {/* Link to profile id of comment */}
           <Link to={`/profiles/${profile_id}`}>
+            {/* Display Avatar component */}
             <Avatar src={profile_image} height={40} />
             {owner}
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_on}</span>
             {/* {is_owner && commentPage && <MoreDropdown />} */}
+            {/* If the user is the owner of the comment display PostDropdownBar component */}
             {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
@@ -125,8 +160,9 @@ const Comment = (props) => {
             {comment && <Card.Text>{comment}</Card.Text>}
           </Media.Body>
         </Media>
+        <hr />
         <Card.Text className={`text-center ${styles.CommentBar}`}>
-          <hr />
+          {/* If the user is the owner of the comment, display message */}
           {is_owner ? (
             <OverlayTrigger
               placement="top"

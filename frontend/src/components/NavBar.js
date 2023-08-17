@@ -1,16 +1,26 @@
+// React / router
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import logo from "../assets/logo.png";
-import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
+// React Bootstrap components
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+// Images
+import logo from "../assets/logo.png";
+// Styles
+import styles from "../styles/NavBar.module.css";
+// Contexts
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 // Utils
 import { removeTokenTimestamp } from "../utils/utils";
+// Component
 import Avatar from "./Avatar";
+// API
 import axios from "axios";
+// Hooks
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 // Notifications
 import { NotificationManager } from "react-notifications";

@@ -1,28 +1,42 @@
+// React / router
 import React, { useEffect, useState } from "react";
-
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
+// React Bootstrap components
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+// API
+import { axiosReq } from "../../api/axiosDefaults";
+// Hooks
+import useRedirect from "../../hooks/useRedirect";
+// Notifications
+import { NotificationManager } from "react-notifications";
+// Styles
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import {
-  useHistory,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
-import { axiosReq } from "../../api/axiosDefaults";
 
-function CommentEditForm() {
+const CommentEditForm = () => {
+  // Using the useRedirect hook to redirect if the user is logged out
+  useRedirect("loggedOut");
+  // Setting the initial state of the errors object to an empty object
   const [errors, setErrors] = useState({});
   const [selectedBook, setSelectedBook] = useState("");
+  // Setting the initial state of the commentData object with empty strings for the fields
   const [commentData, setCommentData] = useState({
     book: "",
     comment: "",
   });
+  // Destructuring the values of fields from the commentData object
   const { book, comment } = commentData;
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
+  // get id from the URL parameter
   const { id } = useParams();
 
   useEffect(() => {
@@ -31,15 +45,21 @@ function CommentEditForm() {
         const { data } = await axiosReq.get(`/comments/${id}/`);
         const { book, comment, book_title, is_owner } = data;
         setSelectedBook(book_title);
+        // If the user is not the owner of the comment, redirect to the home page
         is_owner ? setCommentData({ book, comment }) : history.push("/");
       } catch (err) {
-        console.log(err);
+        // Display error notification
+        NotificationManager.error(
+          "There was an issue with the request of the data",
+          "Error"
+        );
       }
     };
 
     handleMount();
   }, [history, id]);
 
+  // Handle input changes
   const handleChange = (event) => {
     setCommentData({
       ...commentData,
@@ -47,6 +67,7 @@ function CommentEditForm() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -55,16 +76,24 @@ function CommentEditForm() {
     formData.append("comment", comment);
 
     try {
-      const { data } = await axiosReq.put("/comments/", formData);
+      // Submit updated formdata to the API
+      const { data } = await axiosReq.put(`/comments/${id}`, formData);
+      // Redirect to the updated comment page
       history.push(`/comments/${data.id}`);
+      // Show success notification
+      NotificationManager.success("Comment Updated", "Success!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        NotificationManager.error(
+          "There was an issue updating your comment",
+          "Error"
+        );
       }
     }
   };
-
+  // Text input fields for the book and comment
   const textFields = (
     <div className="text-center">
       <Form.Group as={Row} controlId="formHorizontalEmail">
@@ -82,6 +111,7 @@ function CommentEditForm() {
           />
         </Col>
       </Form.Group>
+      {/* Display any book errors */}
       {errors?.book?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
@@ -102,6 +132,7 @@ function CommentEditForm() {
           />
         </Col>
       </Form.Group>
+      {/* Display any comment errors */}
       {errors?.comment?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
@@ -135,6 +166,6 @@ function CommentEditForm() {
       )}
     </>
   );
-}
+};
 
 export default CommentEditForm;

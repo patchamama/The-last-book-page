@@ -1,32 +1,40 @@
+// React / router
 import React, { useEffect, useState } from "react";
-
+import { useHistory, useParams } from "react-router-dom";
+// React Bootstrap components
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-
-import { useHistory, useParams } from "react-router-dom";
+// API
 import { axiosRes } from "../../api/axiosDefaults";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+// Notifications
+import { NotificationManager } from "react-notifications";
+// Styles
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const UserPasswordForm = () => {
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
+  // Get id from the URL parameter
   const { id } = useParams();
+  // Get the current user from CurrentUserContext.js
   const currentUser = useCurrentUser();
-
+  //// State to store the userpassword entered in the form
   const [userData, setUserData] = useState({
     new_password1: "",
     new_password2: "",
   });
   const { new_password1, new_password2 } = userData;
-
+  // State to store any validation errors returned by the server
   const [errors, setErrors] = useState({});
 
+  // Handle input changes
   const handleChange = (event) => {
     setUserData({
       ...userData,
@@ -41,14 +49,21 @@ const UserPasswordForm = () => {
     }
   }, [currentUser, history, id]);
 
+  // Function to handle the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
+      // Show a success notification
+      NotificationManager.success("Password Updated", "Success!");
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data);
+      // If there's an error, show an error notification
+      NotificationManager.error(
+        "There was an issue updating the password",
+        "Error"
+      );
     }
   };
 

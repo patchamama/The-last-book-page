@@ -1,41 +1,48 @@
+// React / router
 import React, { useEffect, useState } from "react";
-
+import { useParams } from "react-router";
+// React Bootstrap components
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
+import { Button, Image } from "react-bootstrap";
+// Components
 import Asset from "../../components/Asset";
-
-import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-
-import PopularProfiles from "./PopularProfiles";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
 import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+// API
+import { axiosReq } from "../../api/axiosDefaults";
+// React components
 import InfiniteScroll from "react-infinite-scroll-component";
+// Other pages
 import Comment from "../comments/Comment";
+import PopularProfiles from "./PopularProfiles";
+// Utils
 import { fetchMoreData } from "../../utils/utils";
+// Image
 import NoResults from "../../assets/no-results.png";
-import { ProfileEditDropdown } from "../../components/MoreDropdown";
+// Styles
+import styles from "../../styles/ProfilePage.module.css";
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
-function ProfilePage() {
+const ProfilePage = () => {
+  // Set state variables
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
-
+  // Get the current user from CurrentUserContext.js
   const currentUser = useCurrentUser();
+  // get id from the URL parameter
   const { id } = useParams();
-
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
-
   const [profile] = pageProfile.results;
+  // Determine if the current user is the owner of the profile
   const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
@@ -43,9 +50,11 @@ function ProfilePage() {
       try {
         const [{ data: pageProfile }, { data: profilePosts }] =
           await Promise.all([
+            // Retrieve the profile id & posts created by the user from the API
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/comments/?owner__profile=${id}`),
           ]);
+        // Update state
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
@@ -53,7 +62,7 @@ function ProfilePage() {
         setProfilePosts(profilePosts);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     fetchData();
@@ -61,6 +70,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+      {/* If the user is the owner of the profile display ProfileEditDropdown component */}
       {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
@@ -87,6 +97,7 @@ function ProfilePage() {
             </Col>
           </Row>
         </Col>
+        {/* Follow/unfollow buttons */}
         <Col lg={3} className="text-lg-right">
           {currentUser &&
             !is_owner &&
@@ -159,6 +170,6 @@ function ProfilePage() {
       </Col>
     </Row>
   );
-}
+};
 
 export default ProfilePage;

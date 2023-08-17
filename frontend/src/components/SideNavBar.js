@@ -1,11 +1,19 @@
+// React / router
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import styles from "../styles/SideNavBar.module.css";
 import { NavLink } from "react-router-dom";
+// React Bootstrap components
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+// Components
+// Styles
+import styles from "../styles/SideNavBar.module.css";
+// Context
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
+// API
 import axios from "axios";
 
 const SideNavBar = () => {

@@ -1,39 +1,47 @@
+// React / router
 import React, { useState } from "react";
-import axios from "axios";
-import login from "../../assets/login.webp";
-
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
-
 import { Link, useHistory } from "react-router-dom";
+// API
+import axios from "axios";
+// Contexts
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+// Hooks
+import useRedirect from "../../hooks/useRedirect";
 // Utils
 import { setTokenTimestamp } from "../../utils/utils";
+// React Bootstrap components
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+// Image
+import login from "../../assets/login.webp";
+// Styles
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import { useRedirect } from "../../hooks/useRedirect";
 // Notifications
 import { NotificationManager } from "react-notifications";
 
-function SignInForm() {
+const SignInForm = () => {
+  // Using the useSetCurrentUser hook to set the current user
   const setCurrentUser = useSetCurrentUser();
+  // Setting the initial state of the errors object to an empty object
+  const [errors, setErrors] = useState({});
+  // Using the useHistory hook to handle navigation history
+  const history = useHistory();
+  // Using the useRedirect hook to redirect if the user is already logged in
   useRedirect("loggedIn");
-
+  // Setting the initial state of the signInData object with empty strings for the username and password
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
+  // Destructuring the values of username and password from the signInData object
   const { username, password } = signInData;
-
-  const [errors, setErrors] = useState({});
-
-  const history = useHistory();
 
   // Handling the form submission
   const handleSubmit = async (event) => {
@@ -128,13 +136,10 @@ function SignInForm() {
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
       >
-        <Image
-          className={`${appStyles.FillerImage}`}
-          src={login}
-        />
+        <Image className={`${appStyles.FillerImage}`} src={login} />
       </Col>
     </Row>
   );
-}
+};
 
 export default SignInForm;

@@ -1,6 +1,7 @@
+// React / router
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-
+// React Bootstrap components
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -8,41 +9,49 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-
+// API
 import { axiosReq } from "../../api/axiosDefaults";
+// Contexts
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
+// Notifications
+import { NotificationManager } from "react-notifications";
+// Styles
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 const ProfileEditForm = () => {
+  // Get current user from contexts
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  // get id from the URL parameter
   const { id } = useParams();
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
   const imageFile = useRef();
-
+  // Setting the initial state of the profileData object with empty strings
   const [profileData, setProfileData] = useState({
     name: "",
     content: "",
     image: "",
   });
+  // Destructuring the values from the profileData object
   const { name, content, image } = profileData;
-
+  // Setting the initial state of the errors object to an empty object
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const handleMount = async () => {
+      // If the current user is logged in
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, content, image } = data;
           setProfileData({ name, content, image });
         } catch (err) {
-          console.log(err);
+          // console.log(err);
           history.push("/");
         }
       } else {
@@ -53,6 +62,7 @@ const ProfileEditForm = () => {
     handleMount();
   }, [currentUser, history, id]);
 
+  // Handling input changes and updating the profileData object
   const handleChange = (event) => {
     setProfileData({
       ...profileData,
@@ -60,6 +70,7 @@ const ProfileEditForm = () => {
     });
   };
 
+  // Handling the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -77,9 +88,15 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
+      // Display success notification
+      NotificationManager.success("Profile Updated", "Success!");
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data);
+      // Display error notification
+      NotificationManager.error(
+        "There was an issue updating your profile",
+        "Error"
+      );
     }
   };
 
@@ -124,6 +141,7 @@ const ProfileEditForm = () => {
                   <Image src={image} width={300} fluid />
                 </figure>
               )}
+              {/* Displaying any image errors */}
               {errors?.image?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                   {message}

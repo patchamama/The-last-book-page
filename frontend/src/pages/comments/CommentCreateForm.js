@@ -1,5 +1,12 @@
+// React / router
 import React, { useEffect, useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
+import { useRedirect } from "../../hooks/useRedirect";
+// React Bootstrap components
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -7,32 +14,37 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import { Card, Media } from "react-bootstrap";
+// Images
+import NoResults from "../../assets/no-results.png";
+// API
+import { axiosReq } from "../../api/axiosDefaults";
+// Components
+import Asset from "../../components/Asset";
+// Notifications
+import { NotificationManager } from "react-notifications";
+// Styles
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import {
-  useHistory,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
-import { axiosReq } from "../../api/axiosDefaults";
-import Asset from "../../components/Asset";
-import NoResults from "../../assets/no-results.png";
-import { useRedirect } from "../../hooks/useRedirect";
-import { Card, Media } from "react-bootstrap";
 
-function CommentCreateForm() {
+const CommentCreateForm = () => {
+  // Using the useRedirect hook to redirect if the user is logged out
   useRedirect("loggedOut");
+  // Setting the initial state of the errors object to an empty object
   const [errors, setErrors] = useState({});
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState({ results: [] });
   const [cover, setCover] = useState("");
   const [selectedBook, setSelectedBook] = useState("");
+  // Setting the initial state of the commentData object with empty strings for the fields
   const [commentData, setCommentData] = useState({
     book: "",
     comment: "",
   });
+  // Destructuring the values of fields from the commentData object
   const { book, comment } = commentData;
-
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
   const { id } = useParams();
   const currentUser = useCurrentUser();
@@ -66,6 +78,7 @@ function CommentCreateForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, id]);
 
+  // Handling input changes and updating the commentData object
   const handleChange = (event) => {
     setCommentData({
       ...commentData,
@@ -86,20 +99,28 @@ function CommentCreateForm() {
     setCover(coverurl[0].cover);
   };
 
+  // Handling the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
     formData.append("book", book);
     formData.append("comment", comment);
-
+    // Append the data and request the post request from the API
     try {
       const { data } = await axiosReq.post("/comments/", formData);
       history.push(`/comments/${data.id}`);
+      // Display success notification
+      NotificationManager.success("Comment Created", "Success!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        // Display error notification
+        NotificationManager.error(
+          "There was an issue adding your comment",
+          "Error"
+        );
       }
     }
   };
@@ -135,6 +156,7 @@ function CommentCreateForm() {
               onChange={handleChange}
             />
           </Form.Group>
+          {/* Displaying any comment errors */}
           {errors?.comment?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
               {message}
@@ -183,11 +205,14 @@ function CommentCreateForm() {
                 </ListGroup.Item>
               ))}
             </ListGroup>
-          ) : !id && !query ? (
-            <Container className={appStyles.Content}>
-              <Asset src={NoResults} message="No results found!" />
-            </Container>
-          ) : null}
+          ) : (
+            !id &&
+            !query && (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message="No results found!" />
+              </Container>
+            )
+          )}
         </Form>
       ) : (
         <Form onSubmit={handleSubmit}>
@@ -200,6 +225,6 @@ function CommentCreateForm() {
       )}
     </>
   );
-}
+};
 
 export default CommentCreateForm;

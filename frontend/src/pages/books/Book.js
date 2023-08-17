@@ -1,29 +1,31 @@
-import React, { useState } from "react";
-import styles from "../../styles/Comment.module.css";
-
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media, NavLink, OverlayTrigger, Tooltip } from "react-bootstrap";
+// React / router
+import React from "react";
 import { Link } from "react-router-dom";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { axiosReq } from "../../api/axiosDefaults";
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// React Bootstrap components
+import { Card, Media } from "react-bootstrap";
+// Components
+import Avatar from "../../components/Avatar";
+import { MoreDropdown } from "../../components/MoreDropdown";
+// API
+import { axiosRes } from "../../api/axiosDefaults";
+// Other patees
 import Bookmark from "../bookmarks/Bookmark";
+// Notifications
+import { NotificationManager } from "react-notifications";
+// Styles
+import styles from "../../styles/Book.module.css";
 
 const Book = (props) => {
+  // Destructure the props object
   const {
     id,
-
     title,
     auth,
     pub_date,
-    publisher,
     pages_no,
-    isbn,
-    lang_orig,
-    lang,
-    translators,
     genre,
     synopsis,
     cover,
@@ -34,56 +36,62 @@ const Book = (props) => {
     profile_image,
     owner,
     is_owner,
-
-    created_by,
-    updated_by,
-    created_on,
     updated_on,
     comments_count,
     bookmarks_count,
-    setBooks,
     onlyone,
-    bookmark,
     showfooter = true,
-    showBookmark = true,
-    showAvatar = false,
+    fromBooksPage = true,
   } = props;
-
+  // Get the current user from CurrentUserContext.js
   const currentUser = useCurrentUser();
   // const is_owner = currentUser?.username === created_by;
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
 
+  // Handle edit
   const handleEdit = () => {
     history.push(`/books/${id}/edit`);
   };
 
+  // Handle delete a book
   const handleDelete = async () => {
     if (!is_owner) {
       alert("Only the owner of the book cand delete it!");
       return;
     }
     try {
+      // Send a request to delete a book by its ID
       await axiosRes.delete(`/books/${id}/`);
+      // Navigating to the previous page in the navigation history
       history.goBack();
+      // Display a success notification
+      NotificationManager.info("Book deleted");
     } catch (err) {
-      console.log(err);
+      // Display error notification
+      NotificationManager.error(
+        "There was an issue deleting the book",
+        "Error"
+      );
     }
   };
 
   return (
-    <Card className={styles.Comment}>
+    <Card className={styles.Book}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          {showAvatar ? (
+          {/* Link to profile id of post */}
+          {!fromBooksPage ? (
             <Link to={`/profiles/${profile_id}`}>
+              {/* Display Avatar component */}
               <Avatar src={profile_image} height={40} />
               {owner}
             </Link>
           ) : (
-            <Link></Link>
+            <Link to="#"></Link>
           )}
-
-          {currentUser ? (
+          {/* If there is a active user logged */}
+          {currentUser && (
             <div className="d-flex align-items-center">
               <span>{updated_on}</span>
               <MoreDropdown
@@ -91,7 +99,7 @@ const Book = (props) => {
                 handleDelete={handleDelete}
               />
             </div>
-          ) : null}
+          )}
         </Media>
       </Card.Body>
       <Card.Body>
@@ -121,12 +129,13 @@ const Book = (props) => {
                 </Card.Subtitle>
               </>
             )}
-            {showBookmark && (
+            {((currentUser && fromBooksPage) || !fromBooksPage) && (
               <Bookmark
                 book_id={book_id}
                 bookmark_id={bookmark_id}
                 bookmark_status={bookmark_status}
                 owner={owner}
+                fromBooksPage={fromBooksPage}
               />
             )}
 
@@ -134,20 +143,20 @@ const Book = (props) => {
 
             <Card.Text>
               <small className="text-muted">
-                {genre ? `Genres: ${genre}` : null}
+                {genre && `Genres: ${genre}`}
               </small>
             </Card.Text>
             <Card.Text>
               <small className="text-muted">
-                {pages_no ? `${pages_no} pages` : null}
-                {pub_date ? `, published ${pub_date}` : null}
+                {pages_no && `${pages_no} pages`}
+                {pub_date && `, published ${pub_date}`}
               </small>
             </Card.Text>
           </Media.Body>
         </Media>
+        <hr />
         {showfooter && (
           <Card.Text className="text-center">
-            <hr />
             {comments_count ? (
               <Link to={`/comments/book/${id}`}>
                 <i className="far fa-comments" />

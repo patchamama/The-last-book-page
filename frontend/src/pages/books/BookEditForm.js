@@ -1,31 +1,43 @@
+// React / router
 import React, { useEffect, useRef, useState } from "react";
+import {
+  useHistory,
+  useParams,
+} from "react-router-dom/cjs/react-router-dom.min";
+// Image
 import notCover from "../../assets/not-cover.png";
+// React Bootstrap components
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import Alert from "react-bootstrap/Alert";
 // React components
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
+// Hooks
+import useRedirect from "../../hooks/useRedirect";
+// Notifications
+import { NotificationManager } from "react-notifications";
+// API
+import { axiosReq } from "../../api/axiosDefaults";
 // Styles
 import styles from "../../styles/BookEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import {
-  useHistory,
-  useParams,
-} from "react-router-dom/cjs/react-router-dom.min";
-import { axiosReq } from "../../api/axiosDefaults";
 
-function BookEditForm() {
+const BookEditForm = () => {
+  // Using the useRedirect hook to redirect if the user is logged out
+  useRedirect("loggedOut");
+  // Setting the initial state of the errors and dateOfPub(lication) object to an empty object
   const [errors, setErrors] = useState({});
-  const [selectedBook, setSelectedBook] = useState("");
+  const { dateOfPub, setDateOfPub } = useState(new Date());
+  // Using the useHistory hook to handle navigation history
   const history = useHistory();
   const { id, newtitle } = useParams();
-  const { dateOfPub, setDateOfPub } = useState(new Date());
+  // Setting the initial state of the bookData object with empty strings for the fields
   const [bookData, setBookData] = useState({
     title: newtitle ? newtitle : "",
     auth: "",
@@ -58,6 +70,7 @@ function BookEditForm() {
   } = bookData;
 
   useEffect(() => {
+    // Update the init values of Book with API request
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/books/${id}/`);
@@ -75,6 +88,8 @@ function BookEditForm() {
           synopsis,
           cover,
         } = data;
+
+        // Update the useState obj with request values
         setBookData({
           title,
           auth,
@@ -90,7 +105,7 @@ function BookEditForm() {
           cover,
         });
 
-        setDateOfPub(new Date(pub_date));
+        // setDateOfPub(new Date(pub_date));
         console.log(data);
       } catch (err) {
         console.log(err);
@@ -98,9 +113,12 @@ function BookEditForm() {
       }
     };
 
+    //If thereis a ID will take the init value of the request API
+    //if there is not ID value, will start with empty values (createBookForm)
     id && handleMount();
   }, [history, id]);
 
+  // Handling input changes and updating the setBookData object
   const handleChange = (event) => {
     setBookData({
       ...bookData,
@@ -115,6 +133,7 @@ function BookEditForm() {
     });
   };
 
+  // Handling the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -134,14 +153,18 @@ function BookEditForm() {
     if (imageFile?.current?.files[0]) {
       formData.append("cover", imageFile?.current?.files[0]);
     }
-
+    // Append the data and request the book request from the API
     try {
       const { data } = await axiosReq.put("/books/", formData);
       history.push(`/books/${data.id}`);
+      // Display success notification
+      NotificationManager.success("Book updated", "Success!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        // Display error notification
+        NotificationManager.error("There was an issue adding your post", err);
       }
     }
   };
@@ -664,6 +687,6 @@ function BookEditForm() {
       </Row>
     </Form>
   );
-}
+};
 
 export default BookEditForm;

@@ -1,31 +1,39 @@
+// React / router
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/BooksPage.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router";
+// React Bootstrap components
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+// Components
 import Asset from "../../components/Asset";
-import NoResults from "../../assets/no-results.png";
+// Other pages
 import Book from "../books/Book.js";
-import appStyles from "../../App.module.css";
-import { useLocation } from "react-router";
+// React components
 import InfiniteScroll from "react-infinite-scroll-component";
+// API
 import { axiosReq } from "../../api/axiosDefaults";
+// Utils
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+// Images
+import NoResults from "../../assets/no-results.png";
+// Styles
+import styles from "../../styles/BookmarkPage.module.css";
+import appStyles from "../../App.module.css";
 
 const BookmarkPage = ({ message, filter = "" }) => {
+  // State variables
   const [bookmarks, setBookmarks] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
-  const currentUser = useCurrentUser();
-
+  // Get id from the URL parameter
   const { id } = useParams();
 
+  // Options to select from book status
   const statusOptions = (
     <>
       <option value=""> - No filter - </option>
@@ -37,13 +45,15 @@ const BookmarkPage = ({ message, filter = "" }) => {
   );
 
   useEffect(() => {
+    // Hook to fetch bookmarks on component mount
     const fetchBooks = async () => {
       try {
         const { data } = await axiosReq.get(
           `/bookmarks/?book=${id}&status=${query}`
         );
-
+        // update bookmarks state with fetched bookmarks
         setBookmarks(data);
+        // Set hasLoaded state variable to true
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -51,20 +61,21 @@ const BookmarkPage = ({ message, filter = "" }) => {
     };
 
     setHasLoaded(false);
+    // Add timer to delay the fetchPosts function by 1 second
     const timer = setTimeout(() => {
       fetchBooks();
     }, 1000);
-
+    // Clean up function for the useEffect hook
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, id]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        {/* Render PopularProfiles mobile page */}
         <PopularProfiles mobile />
-
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
@@ -80,6 +91,7 @@ const BookmarkPage = ({ message, filter = "" }) => {
           </Form.Control>
         </Form>
         <br />
+        {/* // If posts have loaded and there are results, render infinite scroll component with bookmarks page */}
         {hasLoaded ? (
           <>
             {bookmarks.results.length ? (
@@ -91,7 +103,7 @@ const BookmarkPage = ({ message, filter = "" }) => {
                     setBookmarks={setBookmarks}
                     onlyone={false}
                     showfooter={false}
-                    showBookmark={true}
+                    fromBooksPage={false}
                   />
                 ))}
                 dataLength={bookmarks.results.length}
@@ -115,6 +127,7 @@ const BookmarkPage = ({ message, filter = "" }) => {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        {/* Render PopularProfiles page */}
         <PopularProfiles />
       </Col>
     </Row>
