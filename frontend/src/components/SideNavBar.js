@@ -29,7 +29,7 @@ const SideNavBar = () => {
       setCurrentUser(null); // Setting the current user to null to log them out
     } catch (err) {}
   };
-  // Add post icon
+  // Add comment icon
   const addCommentIcon = (
     <Nav.Item>
       <NavLink

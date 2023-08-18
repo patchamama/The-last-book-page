@@ -9,6 +9,7 @@ import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 // Components
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import ResumeText from "../../components/ResumeText";
 // Notifications
 import { NotificationManager } from "react-notifications";
 // API
@@ -157,7 +158,11 @@ const Comment = (props) => {
                 </Card.Subtitle>
               </>
             )}
-            {comment && <Card.Text>{comment}</Card.Text>}
+            {comment && (
+              <Card.Text>
+                <ResumeText text={comment} />
+              </Card.Text>
+            )}
           </Media.Body>
         </Media>
         <hr />

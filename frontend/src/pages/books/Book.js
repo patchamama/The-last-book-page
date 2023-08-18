@@ -9,6 +9,7 @@ import { Card, Media } from "react-bootstrap";
 // Components
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import ResumeText from "../../components/ResumeText";
 // API
 import { axiosRes } from "../../api/axiosDefaults";
 // Other patees
@@ -139,7 +140,11 @@ const Book = (props) => {
               />
             )}
 
-            {synopsis && <Card.Text>{synopsis}</Card.Text>}
+            {synopsis && (
+              <Card.Text>
+                <ResumeText text={synopsis} />
+              </Card.Text>
+            )}
 
             <Card.Text>
               <small className="text-muted">

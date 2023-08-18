@@ -57,6 +57,15 @@ const NavBar = () => {
         <i className="fas fa-home"></i>Home
       </NavLink>
       <NavLink
+        exact
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/comments/create"
+      >
+        <i className="fas fa-plus-circle"></i>
+        <span className="d-none d-md-inline">Comment</span>
+      </NavLink>
+      <NavLink
         className={`sm-screen ${styles.NavLink}`}
         activeClassName={styles.Active}
         to="/books"

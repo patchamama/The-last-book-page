@@ -258,7 +258,7 @@ The owner field is a ForeignKey that creates a relationship between the Follow m
 
 ### Like
 
-The owner field is a ForeignKey that creates a relationship between the Like model and the User model, indicating that each Like instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Like instances will also be deleted. The post field is also a ForeignKey, creating a relationship between the Like model and the Comment model. The related_name='likes' argument specifies the reverse relation from the Comment model to the Like model, allowing comments to access their associated likes. The on_delete=models.CASCADE argument specifies that if the associated comment is deleted, all related Like instances will also be deleted.
+The owner field is a ForeignKey that creates a relationship between the Like model and the User model, indicating that each Like instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Like instances will also be deleted. The comment field is also a ForeignKey, creating a relationship between the Like model and the Comment model. The related_name='likes' argument specifies the reverse relation from the Comment model to the Like model, allowing comments to access their associated likes. The on_delete=models.CASCADE argument specifies that if the associated comment is deleted, all related Like instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**                                        |
 | -------------- | -------------- | --------------------------------------------------------- |
@@ -330,10 +330,10 @@ Using Django's development mode, the defined URLs were visited to check if they 
 | comments  |     comments/?ordering=-likes\_\_created_on      | Display comment likes by created date in decending order                                                                      |   **pass**    |
 | comments  |        comments/?ordering=stickers_count         | Display a comments `stickers_count` in ascending order                                                                        |   **pass**    |
 | comments  |        comments/?ordering=-stickers_count        | Display a comments `stickers_count` in decending order                                                                        |   **pass**    |
-| stickers  |                    stickers/                     | Display a list of stickers which has a corresponding post ID                                                                  |   **pass**    |
+| stickers  |                    stickers/                     | Display a list of stickers which has a corresponding comment ID                                                               |   **pass**    |
 | stickers  |                    stickers/                     | Display a list of stickers in descending order - newest stickers first                                                        |   **pass**    |
 | stickers  |                    stickers/                     | Filter a sticker by comment and display results                                                                               |   **pass**    |
-| stickers  |                    stickers/                     | If the user is logged in, display option to add a sticker from a list of posts                                                |   **pass**    |
+| stickers  |                    stickers/                     | If the user is logged in, display option to add a sticker from a list of comments                                             |   **pass**    |
 | stickers  |                    stickers/                     | When a user adds a sticker to a comment, the `stickers_count` within the comment list page and comment detail page increases  |   **pass**    |
 | stickers  |                stickers/<int:pk>/                | Return a single sticker with a correct ID and a list of all it's values                                                       |   **pass**    |
 | stickers  |                stickers/<int:pk>/                | If the user is the owner of the sticker, display edit and delete options                                                      |   **pass**    |
@@ -852,12 +852,10 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 - Deployment section is based on the owner's previous project [OneTeam](https://github.com/miloszmisiek/ci-pp4-one_team).
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
-- Images of profiles: https://www.pexels.com/
+- Django REST framework: https://www.django-rest-framework.org/
 - To generate secret-keys: https://djecrety.ir/
-- The logo was created by https://Logo.com
 - Python Formatter: https://codebeautify.org/python-formatter-beautifier
 - CI Python Linter from code institute: https://pep8ci.herokuapp.com/
-- Django REST framework: https://www.django-rest-framework.org/
 - Code Institute - _drf_api_ walkthrough project: https://github.com/Code-Institute-Solutions/drf-api
 
 # Acknowledgments

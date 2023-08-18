@@ -83,7 +83,7 @@ function StickerCreateForm(props) {
         disabled={!content.trim()}
         type="submit"
       >
-        comment
+        add sticker
       </button>
     </Form>
   );
