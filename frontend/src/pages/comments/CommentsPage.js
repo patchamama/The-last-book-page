@@ -16,6 +16,8 @@ import Asset from "../../components/Asset";
 import { axiosReq } from "../../api/axiosDefaults";
 // Utils
 import { fetchMoreData } from "../../utils/utils";
+// Context
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // Other pages
 import PopularProfiles from "../profiles/PopularProfiles";
 import Comment from "./Comment";
@@ -29,6 +31,7 @@ const CommentsPage = ({ message, filter = "" }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const currentUser = useCurrentUser();
   const { id } = useParams();
   filter = filter.includes("book=") ? `book=${id}&` : filter;
 
@@ -57,7 +60,7 @@ const CommentsPage = ({ message, filter = "" }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
