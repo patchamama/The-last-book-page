@@ -21,7 +21,7 @@
   "scripts": {
     "heroku-prebuild": "npm install -g serve",
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "heroku-prebuild": "npm install -g serve",
     "eject": "react-scripts eject"
