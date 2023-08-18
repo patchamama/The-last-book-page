@@ -298,10 +298,6 @@ To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.heroku
 
 ## Manual Testing
 
----
-
-## Manual Testing
-
 Using Django's development mode, the defined URLs were visited to check if they met their objectives.
 
 | _App_     |                   **Endpoint**                   | **Expected Result**                                                                                                           | **Pass/Fail** |
@@ -861,5 +857,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 - The logo was created by https://Logo.com
 - Python Formatter: https://codebeautify.org/python-formatter-beautifier
 - CI Python Linter from code institute: https://pep8ci.herokuapp.com/
+- Django REST framework: https://www.django-rest-framework.org/
+- Code Institute - _drf_api_ walkthrough project: https://github.com/Code-Institute-Solutions/drf-api
 
 # Acknowledgments
