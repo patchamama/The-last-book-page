@@ -1,10 +1,16 @@
-# **_The last book page - Django REST Framework API_**
+# **_The last book page - The social network for reading_**
 
 ![Last page logo](docs/logo-sd.png)
 
+![Am i responsive]()
+
+The live link can be found [**here**]()
+
+To view the README of the backend _API repository_, please click [**here**](README-backend.md)
+
 # Objective
 
-The reason for this API is to provide all the information required for querying and updating data from the front-end "The last book page". To do this using the (MVC) pattern, this application manages the model and controller that serve the data required by the front-end (the View managed with React). To meet its objectives, exhaustive tests are carried out to validate the correct manipulation of data and limited and secure access to the data, depending on the pre-established permissions in the application, taking care of security.
+The aim of this application is to provide the possibility of commenting on book readings, hence the name: _the last book page_, as a call to socialise reading every time the last page of a book is closed, and also to organise future readings (hence the bookmarks).
 
 # User Experience (UX)
 
@@ -145,623 +151,366 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#54](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/54) As **logged-in User**, I can **read messages from any user,** so that **, I can be informed about any communication received**
 
+### Design
+
+For the design of the site we have opted for simplicity and few colours to achieve good visibility of the content with good contrast.
+
+#### Wireframes
+
+Wireframes have been generated to guide the design and development process to achieve the desired functionality. For the creation of the wireframes [miro](https://miro.com) has been used.
+
+### Desktop
+
+<details>
+
+ <summary>Homepage <i>logged out</i></summary>
+
+![Desktop - Homepage logged-out](frontend/src/docs/wireframes/homepage-logged-out.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Homepage = comments / Feed / Liked structure web <i>logged in</i></summary>
+
+![Desktop - Homepage logged-in](frontend/src/docs/wireframes/homepage-logged-in.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Create comment</summary>
+
+![Desktop - Create comment](frontend/src/docs/wireframes/create-comment.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Book / Bookmarks structure</summary>
+
+![Desktop - Homepage logged-in](frontend/src/docs/wireframes/book.jpeg)
+
+</details>
+
+### Mobile
+
+<details>
+
+ <summary>Homepage <i>sign in</i></summary>
+
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_sign-in.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Homepage <i>sign up</i></summary>
+
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_sign-up.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Homepage / Feed / Liked structure web <i>logged in</i></summary>
+
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_homepage-logged-in.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Book / Bookmarks structure</summary>
+
+![Desktop - Homepage logged-in](frontend/src/docs/wireframes/m_book.jpeg)
+
+</details>
+
+#### Colour Scheme
+
+Colours have been chosen to provide good contrast to allow good access to and viewing of the content. The aim is to create a positive user experience for all visitors to the site.
+
+![Colour Palette](frontend/src/docs/palete.png)
+
+_Colour palette from_ [_Coolors_](https://coolors.co/)
+
+### Images
+
+The images used on the site relate to the context in which they are shown or to books and libraries. Images are taken from [Pexels](https://www.pexels.com/)
+
+### Tipografy
+
+As font, was selected Roboto, intending to create an elegant and calming visual theme, while ensuring easy readability and consistency across multiple devices. In case there are any issues with the primary font choices, a reliable backup font, Sans-serif, has been selected to ensure consistent styling throughout the app.
+
 # Agile Methodology
 
 For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
-# Entity Relationship Diagram
+A GitHub Issue was created for each User Story, which was then allocated to a milestone (Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Story's execution. The issues were closed automatically when the pull request was linked to the issue, most of them were closed automatically but some were closed manually.
 
-To create the entity relationship diagram, I used a graph modelling tool [Miro](https://miro.com/). It shows the relationship between all models in the database.
+## Security Features and Defensive Design
 
-![Entity Relationship Diagram](docs/model_database.png)
+### Form Validation
 
-# Database
+A warning message will appear to the user when inaccurate or empty data is entered into a form, identifying the specific field that caused the issue. This prevents the form from being submitted until the issue is resolved, ensuring that only accurate and complete data is processed.
 
-A PostgreSQL database hosted by ElephantSQL was used throughout most of the process during the production process. SQLite was only used in the initial steps to create the structure (model) of the tables.
+## Features
 
-# Models
+### Header
 
-### Comment
+**Logo**
 
-The Comment model will allow users to create their own comments about any existed book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The comment field is a TextField that can allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the Book model with Comment allowing to create different comments for the same book from one or several users (`owner` field that relates to the User model in the same one-to-many way: one user can have several comments). The owner and the book fields are ForeignKeys, that creates a relationship between the model and the User and Book model, indicating that each Commment instance belongs to one user and one book. The on_delete=models.CASCADE argument specifies that if the associated user or book is deleted, all related Comment instances will also be deleted.
+- A customised logo was created using [Logo.com](https://logo.com/) which is a free logo generator.
 
-| **Field name** | **Field Type** | **Field Argument**               |
-| -------------- | -------------- | -------------------------------- |
-| owner          | FK             | `User, on_delete=models.CASCADE` |
-| book           | FK             | `Book, on_delete=models.CASCADE` |
-| comment        | TextField      |                                  |
-| created_on     | DateTimeField  | `auto_now_add=True`              |
-| updated_on     | DateTimeField  | `auto_now=True`                  |
+![The last page logo](docs/logo-sd.png)
 
-### Sticker
+- The logo is prominently positioned in the top-left corner of the navigation bar. It is linked to the homepage to make it easy for users to navigate back to the main page of the website.
 
-The Sticker template allows the user to create personal notes or stickers of a comment on an entry. If a comment is deleted, the sticker is removed from both the user model and the entry model. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively. The owner and the comment fields are ForeignKeys, that creates a relationship between the model and the User and Comment model, indicating that each Sticker instance belongs to one user and one comment. The on_delete=models.CASCADE argument specifies that if the associated user or comment is deleted, all related Sticker instances will also be deleted.
+**Navigation Bar**
 
-| **Field name** | **Field Type** | **Field Argument**                  |
-| -------------- | -------------- | ----------------------------------- |
-| owner          | FK             | `User, on_delete=models.CASCADE`    |
-| comment        | FK             | `Comment, on_delete=models.CASCADE` |
-| sticker        | TextField      |                                     |
-| created_on     | DateTime       | `auto_now_add=True`                 |
-| updated_on     | DateTime       | `auto_now=True`                     |
+- The navigation bar is present on all pages of the website and allows for easy navigation. The Navbar includes a logo and links to various pages. The links on the Navbar will change depending on whether the user is logged into their account or not.
 
-### Book
+#### _User has not logged in Navbar_
 
-The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, isbn, original language of publication and current language of the book in the record, genre, synopsis and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only it can delete it: `created_by` and `updated_by`). Other models such as Comment and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+![Navigation section logged out user](frontend/src/docs/images/navigation-logged-out.png)
 
-| **Field name** | **Field Type** | **Field Argument**                                                                      |
-| -------------- | -------------- | --------------------------------------------------------------------------------------- |
-| title          | Char           | `max_length=150, unique=False`                                                          |
-| auth           | Char           | `max_length=150, unique=False`                                                          |
-| pub_date       | DateTime       | `blank=True, null=True`                                                                 |
-| publisher      | Char           | `max_length=100, unique=False, blank=True`                                              |
-| pages_no       | Integer        | `default=0`                                                                             |
-| isbn           | Char           | `max_length=13, unique=False, blank=True`                                               |
-| lang_orig      | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
-| lang           | Char           | `max_length=50, choices=LANGUAGES, blank=True`                                          |
-| translators    | Char           | `max_length=200, unique=False, blank=True`                                              |
-| genre          | Text           | `blank=True`                                                                            |
-| synopsis       | Text           | `blank=True`                                                                            |
-| cover          | Image          | `upload_to='images/', default='../No_image_available.svg_t2xrtz.png'`                   |
-| created_by     | FK             | `User, on_delete=models.SET_NULL, related_name="book_createdby", blank=True, null=True` |
-| updated_by     | FK             | `User, on_delete=models.SET_NULL, related_name="book_updatedby", blank=True, null=True` |
-| created_on     | DateTime       | `auto_now_add=True`                                                                     |
-| updated_on     | DateTime       | `auto_now=True`                                                                         |
+- The information icon is visible at all times, and when the user hovers over it, a tooltip displays the word 'Information', providing a clear and concise way for users to access additional information.
 
-### Bookmark
+#### _User logged-in Navbar_
 
-The Bookmark model allows to register the status or interest of users in a book (e.g.: to read, to check, read, ...). To fulfil its objective, it is related through the `owner` field with the User model and `book` with the Book model in a one-to-many relationship, which allows that a book can have several bookmarks (statuses) from one or many users, as well as that a user can have several books with different options to be consulted. The `owner` field is a ForeignKey that creates a relationship between the Bookmark model and the User model, indicating that each Bookmark instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Bookmark instances will also be deleted. The book field is also a ForeignKey, creating a relationship between the Bookmark model and the Book model. The on_delete=models.CASCADE argument specifies that if the associated book is deleted, all related Bookmark instances will also be deleted. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+![Navigation section logged in user](frontend/src/docs/images/navigation-logged-in.png)
 
-| **Field name** | **Field Type** | **Field Argument**                                           |
-| -------------- | -------------- | ------------------------------------------------------------ |
-| owner          | FK             | `User, on_delete=models.CASCADE`                             |
-| book           | FK             | `Book, on_delete=models.CASCADE`                             |
-| status         | Char           | `max_length=25, choices=STATUS_TYPE, default='Want to read'` |
-| created_on     | DateTime       | `auto_now_add=True`                                          |
+![Navigation section logged in user](frontend/src/docs/images/side-navigation-logged-in.png)
 
-### User (predefined for the system admin)
+- If a user is logged in, their profile avatar will be displayed in the navigation bar and also a side navigation menu will appear. This menu provides a logged-in user with the ability to manage and save comments, books and sign out of their account.
 
-The User model is predefined by Django for authentication management and as an extension of the data provided, the Profile model is added, which is related one-to-one with User and allows access to more user data. This model has a central position in the relationship diagram as it is present in the other models by referencing it.
+### Home Page
 
-| **Field name** | **Field Type** | **Field Argument** |
-| -------------- | -------------- | ------------------ |
-| first_name     | Char           |                    |
-| last_name      | Char           |                    |
-| email          | Char           |                    |
-| is_active      | Boolean        |                    |
+- The homepage offers a variety of features for both logged-in and logged-out users, including the search functionality which allows users to search for comments and profiles. To improve the user experience, a loading spinner appears while the user is typing their search query. If no search results are found, an image accompanied by the text 'No results found' is displayed to help users quickly understand the outcome of their search.
 
-### Profile
+![Homepage](frontend/src/docs/images/homepage-logged-in.png)
 
-The Profile model in Django has a unique one-to-one relationship with the User model, meaning that each registered user on the website will have a corresponding Profile model. This allows for additional values to be defined relative to the user, such as an image and language. The Profile model serves as a convenient extension to the User model, providing an efficient way to store and access user-specific information. The on_delete=models.CASCADE argument of `owner` specifies that if the associated user is deleted, all related Profile instances will also be deleted.
+**Search Functionality**
 
-| **Field name** | **Field Type** | **Field Argument**                                             |
-| -------------- | -------------- | -------------------------------------------------------------- |
-| owner          | OneToOne       | `User, on_delete=models.CASCADE`                               |
-| name           | Char           | `max_length=200, blank=True`                                   |
-| date_of_birth  | Date           | `blank=True, null=True`                                        |
-| language       | Char           | `max_length=50, choices=LANGUAGES, blank=True`                 |
-| image          | Image          | `upload_to='images/', default='../default_profile_hk81a7.jpg'` |
-| created_on     | DateTime       | `auto_now_add=True`                                            |
-| updated_on     | DateTime       | `auto_now=True`                                                |
+![Search bar](frontend/src/docs/images/search-no-result.png)
 
-### Follower
+### User Account Pages
 
-The owner field is a ForeignKey that creates a relationship between the Follow model and the User model, indicating that each Follow instance belongs to one user. The related_name='following' argument specifies the reverse relation from the User model to the Follow model, allowing users to access their associated following instances. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Follow instances will also be deleted. The followed field is also a ForeignKey, creating a relationship between the Follow model and the User model. The related_name='followed' argument specifies the reverse relation from the User model to the Follow model, allowing users to access their associated followed instances. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Follow instances will also be deleted.
+- The authentication pages are based on the _'moments walkthrough'_ provided by Code Institute, with minor adjustments made to suit the needs of my project. The authentication process works seamlessly and meets the requirements I had in mind for my project.
 
-| **Field name** | **Field Type** | **Field Argument**                                         |
-| -------------- | -------------- | ---------------------------------------------------------- |
-| owner          | FK             | `User, related_name='following', on_delete=models.CASCADE` |
-| followed       | FK             | `User, related_name='followed', on_delete=models.CASCADE`  |
-| created_on     | DateTime       | `auto_now_add=True`                                        |
+**Sign Up**
 
-### Like
+![Register form](frontend/src/docs/images/sign-up-page.png)
 
-The owner field is a ForeignKey that creates a relationship between the Like model and the User model, indicating that each Like instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Like instances will also be deleted. The comment field is also a ForeignKey, creating a relationship between the Like model and the Comment model. The related_name='likes' argument specifies the reverse relation from the Comment model to the Like model, allowing comments to access their associated likes. The on_delete=models.CASCADE argument specifies that if the associated comment is deleted, all related Like instances will also be deleted.
+**Sign In**
 
-| **Field name** | **Field Type** | **Field Argument**                                        |
-| -------------- | -------------- | --------------------------------------------------------- |
-| owner          | FK             | `User, on_delete=models.CASCADE`                          |
-| comment        | FK             | `Comment, related_name='likes', on_delete=models.CASCADE` |
-| created_on     | DateTime       | `auto_now_add=True`                                       |
+![Login section](frontend/src/docs/images/sign-in-page.png)
+
+**Sign Out**
+
+- When the user clicks on the sign-out tab in the side navigation bar, a pop-up sign-out modal appears, providing users with a clear confirmation option to sign out of their account. This feature ensures a smooth and secure user experience, enhancing the usability of the application.
+
+![Sign out nav link](frontend/src/docs/images/sign-out-nav-link.png)
+
+### Comment Detail Page
+
+**Comment Action Buttons**
+
+![Comment action buttons](frontend/src/docs/images/comment-edit-menu.png)
+
+- On the comment detail page, if the logged-in user is the owner of the comment, they will have the option to edit or delete the comment by the presence of a menu which consists of an edit and delete icon.
+
+### Edit Comment
+
+- Clicking on the edit icon for a comment will display the comment with the prepopulated data, allowing users to easily make edits and updates to their content.
+
+![Edit comment page](frontend/src/docs/images/comment-edit-page.png)
+
+### Add Comment
+
+- Users can easily add new comment by accessing the 'Add comment' tab located in the side navigation bar, providing a simple and streamlined way to create content.
+
+![Add comment tab](frontend/src/docs/images/add-comment-tab.png)
+
+![Create comment](frontend/src/docs/images/create-comment.png)
+
+### Delete Comment
+
+- By clicking on the delete icon in the Comment Edit dropdown menu, users can easily remove their comments from the database.
+
+![Delete comment option](frontend/src/docs/images/comment-delete-option.png)
+
+**Stickers Section**
+
+- The stickers section on a comment detail page is accessible to both logged-in and logged-out users. However, to create a sticker, users must be signed in, as the sticker input field is only displayed to authenticated users. This ensures a secure and efficient adding of stickers process for users.
+
+![Sticker section for unauth user](frontend/src/docs/images/sticker-logged-out.png)
+
+### Update Sticker
+
+- The process of updating a sticker has been made even more user-friendly through the implementation of the Comment dropdown menu component. This feature provides users with the ability to easily update or delete their stickers. By clicking on the edit icon, the sticker data is automatically prepopulated, making the editing process seamless and efficient.
+
+![Update sticker box](frontend/src/docs/images/sticker-update.png)
+
+### Delete Sticker
+
+![Delete sticker icon](frontend/src/docs/images/sticker-delete-icon.png)
+
+### My Feed Page
+
+- A user's feed will compose of comments which the user is following. The feed page has the same styling as Home and Liked as it uses the Comment component. The Infinite scroll component is used to continuously display comments, allowing the user to not have to change pages to view more comments.
+
+![Feed tab](frontend/src/docs/images/feed-tab.png)
+
+### My Bookmarks Page
+
+- The Bookmarks page displays a user's collection of bookmarked books, easily identified by a bookmark icon on the comment component. By simply selecting the bookmark option, a comment can be saved to the user's personal Bookmarks page. The bookmark page has the same styling as Book as it uses the Book component.
+
+![Bookmarks tab](frontend/src/docs/images/bookmarks-tab.png)
+
+![Bookmark options](frontend/src/docs/images/bookmark-options.png)
+
+### Profile Page
+
+- The user profile page features an avatar image, along with the total number of comments, followers, and the following count. This functionality has been thoroughly tested to ensure that the counts accurately increment and decrement in response to various user actions, such as following a user or adding a new comment.
+
+![Profile page](frontend/src/docs/images/avatar.png)
+
+### Edit Profile
+
+- For an improved user experience, the edit profile page comes with prepopulated data, making it easier for users to quickly update their profile information without having to re-enter existing data.
+
+![Profile edit tab](frontend/src/docs/images/profile-edit-tab.png)
+
+![Profile edit page](frontend/src/docs/images/profile-edit-page.png)
+
+### Change Username
+
+- For an improved user experience, the change username functionality comes prepopulated with the user's current username.
+
+![Profile change username](frontend/src/docs/images/profile-change-username.png)
+
+### Change password
+
+- To enhance the security of users' accounts, the application provides an option for users to change their password, giving them greater control over the protection of their personal information.
+
+![Profile change password](frontend/src/docs/images/profile-change-password.png)
+
+### Error Page
+
+- A simple 404 error page has been implemented to improve the user experience in cases where the user enters an incorrect URL. This page provides a clear and user-friendly message, guiding the user back to the website's homepage and helping them find the information they are looking for.
+
+![404 page display](frontend/src/docs/images/404-page.png)
+
+### Notifications
+
+- React notifications have been used in the app to enhance the user experience by providing real-time feedback and alerts to the user. This has contributed to a better user experience as users are immediately notified of any changes or actions taken within the app, such as successful logins, errors or notifications for removing content. By providing these notifications, users can stay informed and engaged with the app, leading to a smoother and more seamless experience. Additionally, the use of notifications also adds an element of interactivity and visual appeal to the app, making it more engaging and dynamic for users.
+
+---
+
+### Future Features
+
+In the future, there are several functionalities that I would like to implement. I have left the initial user stories that were created in the project kanban board as potential areas for future improvement and these have been left in the [Future Features](https://github.com/users/patchamama/projects/8/views/1) section of the kanban board. The key areas I would like to add to the site include:
+
+- [#53](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/53) As **logged-in User**, I can **send message to any other user,** so that **I can do any communication about books comments, readings...**
+
+- [#54](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/54) As **logged-in User**, I can **read messages from any user,** so that **, I can be informed about any communication received**
+
+It could also be interesting to add the option of rating books.
+
+## Some reusable components
+
+### `Asset.js`
+
+_Asset.js_ is a versatile and reusable component that is used throughout my app to display a loading spinner in a visually appealing way. With customizable props such as spinner, src, and message, the component can be easily adapted to suit different use cases and design requirements. When the spinner prop is set to true, the component displays a rotating Earth animation to indicate that content is being loaded. When the src prop is present, the component displays an image with customizable alt text provided by the message prop. When the message prop is present, the component displays a paragraph of text below the image.
+
+### `Avatar.js`
+
+The _Avatar.js_ component is designed to display user avatars with a high degree of flexibility and reusability. Separating the avatar display from other components and pages enables more efficient code organization and easier maintenance. With customizable height and an optional text overlay, the Avatar component can adapt to different page designs and layouts, allowing for seamless integration into different parts of the site. Additionally, by including a timestamp in the image source, the Avatar component ensures that the image is always up-to-date and reloaded from the server when necessary. This feature helps prevent the browser from caching outdated images and ultimately contributes to improved site performance.
+
+![Avatar](frontend/src/docs/images/avatar1.png)
+
+### `MoreDropdown.js`
+
+_MoreDropdown.js_ is a reusable component that renders a dropdown bar with edit and delete options. It is built using React and React Bootstrap components and styled using CSS. The component consists of a custom DropdownMenu component that renders a menu icon _(fas fa-ellipsis-v)_, and a Bootstrap Dropdown component that contains the dropdown menu items. The menu items include an Edit option and a Delete option, each with an associated icon. The component is designed to be flexible and customizable, allowing it to easily integrate elsewhere and modify its behaviour and appearance as needed. This component is being used within `Comment.js`, `Book.js` and `Sticker.js` to allow users to edit and delete elements.
+
+![Dropdown menu](frontend/src/docs/images/dropdown.png)
+
+### React Infinite Scroll component
+
+React Infinite Scroll is used to load content continuously as the user scrolls down a webpage. This feature works by loading new content into the webpage when the user reaches the bottom of the page, without requiring the user to manually click a _Load More_ button. In the app, the React Infinite Scroll feature is being used to display a list of comments, books, and bookmarks. When a user scrolls down the page, the application automatically loads new comments, books, and bookmarks from the server and displays them in the list. This means that the user can continue scrolling indefinitely and the application will keep loading new content as needed, without requiring the user to refresh the page or click a button to load more content. This feature provides a seamless user experience, as the user can easily browse through a large amount of content without interruptions or delays.
+
+## Hooks
+
+### `useClickOutsideToggle.js`
+
+This custom hook allows you to toggle a component's state based on clicks outside of it. It is useful for things like menus or popovers that need to be dismissed when the user clicks outside of them. I am using this hook in my `NavBar.js` component to automatically close the Navbar.Toggle Bootstrap component for small screen sizes. When the user clicks on the menu, it toggles the expanded state using the setExpanded function. The expanded value is then used to conditionally render the menu items. When the user clicks outside of the menu, the `useClickOutsideToggle` hook automatically updates the expanded state to false, hiding the menu.
+
+### `useRedirect.js`
+
+The useRedirect hook is a custom React hook that uses the React Router and Axios libraries to handle navigation and API requests. Its primary function is to redirect the user based on their authentication status, ensuring that they are directed to the appropriate page based on whether they are logged in or out. When called, the hook sends a POST request to refresh the authentication token using the Axios library. If the user is logged in, they will be redirected to the home page using the useHistory hook from the React Router library. If there is an error refreshing the token or the user is logged out, they will also be redirected to the home page. This hook streamlines navigation in my React app and simplifies the logic for handling authentication.
+
+## Languages Used
+
+[![Javascript](https://img.shields.io/badge/javascript-3670A0?style=for-the-badge&logo=javascript&logoColor=ffdd54)](<https://en.wikipedia.org/wiki/Python_(programming_language)>)
+
+[![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)](https://en.wikipedia.org/wiki/CSS)
+
+## Programs, Frameworks & Libraries Used
+
+### Programs
+
+[**Miro**](https://miro.com/) - Miro was used to create the basic wireframes during the design process.
+
+[**Google DevTools**](https://developer.chrome.com/docs/devtools/) - Once the website was made to a basic deployment level, Google DevTools was used frequently
+
+[**Git**](https://git-scm.com/) - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+
+[**GitHub**](https://github.com/) - GitHub is used to store the project's code after being pushed from Git.
+
+[**Heroku**](http://heroku.com/) - Heroku is a cloud platform that lets people build, deliver, monitor, and scale apps. It supports several programming languages. Heroku was used for the deployment of this project.
+
+[**W3C Markup Validator**](https://validator.w3.org/) -
+
+[**JSHint Validator**](https://jshint.com/) - Jshint was used to validate the JavaScript code. It shows any warnings and errors within my code.
+
+[**Cloudinary**](https://imgpile.com/) - A cloud-hosting website, used for hosting my images.
+
+### Frameworks
+
+[**ReactJS**](https://react.dev/) - React allows you to build user interfaces out of individual pieces called components. React components are JavaScript functions.
+[**React Bootstrap**](https://react-bootstrap-v4.netlify.app/) - It was used as a supportive toolkit for front-end styling.
+
+### Libraries & NPM packages
+
+[**React Bootstrap 4.6**](https://react-bootstrap-v4.netlify.app/) - React Bootstrap provides a popular framework for building responsive mobile-first sites with built-in CSS & Javascript libraries.
+
+[**axios**](https://axios-http.com/docs/intro) - Axios is a promise-based HTTP Client for node.js and the browser.
+
+[**jwt-decode**](https://jwt.io/) - Securely implement authentication with JSON Web Tokens.
+
+[**react-datepicker**](https://www.npmjs.com/package/react-datepicker) - A simple and reusable Datepicker component used for my date of birth field in a profile.
+
+[**react-dom**](https://legacy.reactjs.org/docs/react-dom.html) - React library for rendering components in the DOM.
+
+[**react-infinite-scroll-component**](https://www.npmjs.com/package/react-infinite-scroll-component) - React component for implementing infinite scrolling.
+
+[**react-notifications**](https://www.npmjs.com/package/react-notifications) - Library for displaying notifications.
+
+[**react-router-dom**](https://www.npmjs.com/package/react-router-dom) - React Router is a JavaScript framework that enables the creation of single-page web or mobile apps that allows navigating without refreshing the page.
+
+[**web-vitals**](https://www.npmjs.com/package/web-vitals) - Library for measuring web performance metrics.
 
 # Testing
 
-### Python
-
-#### PEP8 Validation
-
-To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.herokuapp.com/). The table below shows the pages tested and their result, all pages are error-free in the final deployment.
-
-| _File / App_     | **drf_api_lastpage** | **comments** | **stickers** | **books** |
-| ---------------- | :------------------: | :----------: | :----------: | :-------: |
-| `admin.py`       |        _n/a_         |    _pass_    |    _n/a_     |  _pass_   |
-| `apps.py`        |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
-| `permissions.py` |        _pass_        |    _n/a_     |    _n/a_     |   _n/a_   |
-| `serializers.py` |        _pass_        |    _pass_    |    _pass_    |  _pass_   |
-| `models.py`      |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
-| `urls.py`        |        _pass_        |    _pass_    |    _pass_    |  _pass_   |
-| `views.py`       |        _n/a_         |    _pass_    |    _pass_    |  _pass_   |
-| `wsgi.py`        |        _pass_        |    _n/a_     |    _n/a_     |   _n/a_   |
-
-| _File / App_     | **bookmarks** | **profiles** | **followers** | **likes** |
-| ---------------- | :-----------: | :----------: | :-----------: | :-------: |
-| `admin.py`       |    _pass_     |    _pass_    |     _n/a_     |   _n/a_   |
-| `apps.py`        |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
-| `permissions.py` |     _n/a_     |    _n/a_     |     _n/a_     |   _n/a_   |
-| `serializers.py` |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
-| `models.py`      |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
-| `urls.py`        |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
-| `views.py`       |    _pass_     |    _pass_    |    _pass_     |  _pass_   |
-| `wsgi.py`        |     _n/a_     |    _n/a_     |     _n/a_     |   _n/a_   |
-
-## Manual Testing
-
-Using Django's development mode, the defined URLs were visited to check if they met their objectives.
-
-| _App_     |                   **Endpoint**                   | **Expected Result**                                                                                                           | **Pass/Fail** |
-| --------- | :----------------------------------------------: | ----------------------------------------------------------------------------------------------------------------------------- | :-----------: |
-| profiles  |                    profiles/                     | Return a list of all the profiles in the database ordered by `created_on`                                                     |   **pass**    |
-| profiles  |                    profiles/                     | When a user updates their profile, the new data is displayed                                                                  |   **pass**    |
-| profiles  |                profiles/<int:pk>/                | Return a single profile detail page                                                                                           |   **pass**    |
-| profiles  |                profiles/<int:pk>/                | Display edit options if the logged-in user is the owner of the profile                                                        |   **pass**    |
-| profiles  |                profiles/<int:pk>/                | If the user is not the owner of the profile, do not display edit options                                                      |   **pass**    |
-| profiles  |                profiles/<int:pk>/                | When a user updates their profile, the new data is displayed                                                                  |   **pass**    |
-| profiles  |        profiles/?ordering=comments_count         | Display a list of comments from a particular profile in ascending order                                                       |   **pass**    |
-| profiles  |        profiles/?ordering=-comments_count        | Display a list of comments from a particular profile in decending order                                                       |   **pass**    |
-| profiles  |        profiles/?ordering=followers_count        | Display a users `followers_count` in ascending order                                                                          |   **pass**    |
-| profiles  |       profiles/?ordering=-followers_count        | Display a users `followers_count` in decending order                                                                          |   **pass**    |
-| profiles  |        profiles/?ordering=following_count        | Display a users `following_count` in ascending order                                                                          |   **pass**    |
-| profiles  |       profiles/?ordering=-following_count        | Display a users `following_count` in decending order                                                                          |   **pass**    |
-| profiles  | profiles/?ordering=owner**following**created_on  | Display a list of profiles a user is following by `created_on` in acending order                                              |   **pass**    |
-| profiles  | profiles/?ordering=-owner**following**created_on | Display a list of profiles a user is following by `created_on` in decending order                                             |   **pass**    |
-| comments  |                    comments/                     | Return a list of all the comments in the database ordered by `created_on`                                                     |   **pass**    |
-| comments  |                    comments/                     | If the user is logged in, display option to add a comment                                                                     |   **pass**    |
-| comments  |                    comments/                     | When a logged in user updates a comment, their updated data is reflected within the comments list & comment detail page       |   **pass**    |
-| comments  |                comments/<int:pk>/                | Return a single comment detail page                                                                                           |   **pass**    |
-| comments  |                comments/<int:pk>/                | Display edit option if the logged-in user is the owner of the comment                                                         |   **pass**    |
-| comments  |                comments/<int:pk>/                | Display delete option if the logged-in user is the owner of the comment                                                       |   **pass**    |
-| comments  |                comments/<int:pk>/                | When a logged in user deletes a comment, the comment is removed from the database                                             |   **pass**    |
-| comments  |                comments/<int:pk>/                | When a logged in user updates a comment, their updated data is reflected within the comments detail page                      |   **pass**    |
-| comments  |          comments/?ordering=likes_count          | Display a comments `likes_count` in ascending order                                                                           |   **pass**    |
-| comments  |         comments/?ordering=-likes_count          | Display a comments `likes_count` in decending order                                                                           |   **pass**    |
-| comments  |      comments/?ordering=likes\_\_created_on      | Display comment likes by created date in ascending order                                                                      |   **pass**    |
-| comments  |     comments/?ordering=-likes\_\_created_on      | Display comment likes by created date in decending order                                                                      |   **pass**    |
-| comments  |        comments/?ordering=stickers_count         | Display a comments `stickers_count` in ascending order                                                                        |   **pass**    |
-| comments  |        comments/?ordering=-stickers_count        | Display a comments `stickers_count` in decending order                                                                        |   **pass**    |
-| stickers  |                    stickers/                     | Display a list of stickers which has a corresponding comment ID                                                               |   **pass**    |
-| stickers  |                    stickers/                     | Display a list of stickers in descending order - newest stickers first                                                        |   **pass**    |
-| stickers  |                    stickers/                     | Filter a sticker by comment and display results                                                                               |   **pass**    |
-| stickers  |                    stickers/                     | If the user is logged in, display option to add a sticker from a list of comments                                             |   **pass**    |
-| stickers  |                    stickers/                     | When a user adds a sticker to a comment, the `stickers_count` within the comment list page and comment detail page increases  |   **pass**    |
-| stickers  |                stickers/<int:pk>/                | Return a single sticker with a correct ID and a list of all it's values                                                       |   **pass**    |
-| stickers  |                stickers/<int:pk>/                | If the user is the owner of the sticker, display edit and delete options                                                      |   **pass**    |
-| stickers  |                stickers/<int:pk>/                | If the user updates a sticker, the data is reflected in the stickers list and sticker detail page                             |   **pass**    |
-| stickers  |                stickers/<int:pk>/                | If the user deletes a sticker, the sticker is removed from the database                                                       |   **pass**    |
-| stickers  |                stickers/<int:pk>/                | If the user is not the sticker author, edit and delete options should not be displayed                                        |   **pass**    |
-| books     |                      books/                      | Return a list of all the books in the database ordered by `created_on`                                                        |   **pass**    |
-| books     |                      books/                      | When a user updates their book, the new data is displayed                                                                     |   **pass**    |
-| books     |                      books/                      | If the user is logged in and adds an image, the image is uploaded to Cloudinary and is viewable in a new browser tab          |   **pass**    |
-| books     |                 books/<int:pk>/                  | Return a single book detail page                                                                                              |   **pass**    |
-| books     |                 books/<int:pk>/                  | Display edit options if is an logged-in user                                                                                  |   **pass**    |
-| books     |                 books/<int:pk>/                  | If the user is not logged in, do not display edit options                                                                     |   **pass**    |
-| books     |                 books/<int:pk>/                  | When a user updates their book, the new data is displayed                                                                     |   **pass**    |
-| books     |          books/?ordering=comments_count          | Display a list of books order by count of comment in ascending order                                                          |   **pass**    |
-| books     |         books/?ordering=-comments_count          | Display a list of books order by count of comment in decending order                                                          |   **pass**    |
-| books     |         books/?ordering=bookmarks_count          | Display a list of books order by count of bookmarks in ascending order                                                        |   **pass**    |
-| books     |         books/?ordering=-bookmarks_count         | Display a list of books order by count of bookmarks in decending order                                                        |   **pass**    |
-| books     |              books/?ordering=title               | Display a list of books order by title in ascending order                                                                     |   **pass**    |
-| books     |              books/?ordering=-title              | Display a list of books order by title in decending order                                                                     |   **pass**    |
-| books     |               books/?ordering=auth               | Display a list of books order by auth in ascending order                                                                      |   **pass**    |
-| books     |              books/?ordering=-auth               | Display a list of books order by auth in decending order                                                                      |   **pass**    |
-| books     |               books/?search=<text>               | Display a list of books with auth, title or user like <text>                                                                  |   **pass**    |
-| books     |   books/?bookmark**owner**profile=<profile id>   | Display a list of books with bookmarks created by User equal to <profileid>                                                   |   **pass**    |
-| bookmarks |                    bookmarks/                    | Display a list of bookmarks with a corresponding book and user ID                                                             |   **pass**    |
-| bookmarks |                    bookmarks/                    | Display a users list of bookmarks in descending order, newest first                                                           |   **pass**    |
-| bookmarks |                    bookmarks/                    | If the user is logged in, display the option to bookmark a book from a list of books and with a status from a list of options |   **pass**    |
-| bookmarks |                    bookmarks/                    | If the user is not logged in, no option to bookmark a book                                                                    |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | Display a single bookmark with a correct ID and a list of all it's values                                                     |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | If the user is logged in, display the option to delete a bookmark                                                             |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | If a logged in user deletes a bookmark, the bookmark is removed from the database                                             |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | If a non logged in user tries to delete a bookmark, 403 Forbiddden displayed                                                  |   **pass**    |
-| likes     |                      likes/                      | Display a list of likes with a corresponding comment ID                                                                       |   **pass**    |
-| likes     |                      likes/                      | Display a users list of likes in descending order, newest first                                                               |   **pass**    |
-| likes     |                      likes/                      | If the user is logged in, display the option to like a comment from a list of comments                                        |   **pass**    |
-| likes     |                      likes/                      | When a logged in user adds a like, the `likes_count` within the comment list page and comment detail page increases           |   **pass**    |
-| likes     |                      likes/                      | If the user is not logged in, no option to like a comment                                                                     |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | Display a single like with a correct ID and a list of all it's values                                                         |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | If the user is logged in display the option to delete a like                                                                  |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | If a logged in user deletes a like, the like is removed from the database and all corresponding pages                         |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | If a non logged in user tries to delete a like, 403 Forbiddden displayed                                                      |   **pass**    |
-| followers |                    followers/                    | Display a list of followers with a corresponding comment ID                                                                   |   **pass**    |
-| followers |                    followers/                    | Display a users list of followers in descending order, newest first                                                           |   **pass**    |
-| followers |                    followers/                    | If the user is logged in, display the option to follow a profile from a list of profiles                                      |   **pass**    |
-| followers |                    followers/                    | When a logged in user adds a follower, the `followers_count` within the comment list page and comment detail page increases   |   **pass**    |
-| followers |                    followers/                    | If the user is not logged in, no option to follow a profile                                                                   |   **pass**    |
-| followers |               followers/<int:pk>/                | Display a single follower with a correct ID and a list of all it's values                                                     |   **pass**    |
-| followers |               followers/<int:pk>/                | If the user is logged in, display the option to delete a follower                                                             |   **pass**    |
-| followers |               followers/<int:pk>/                | If a logged in user deletes a follower, the follower is removed from the database and all corresponding pages                 |   **pass**    |
-| followers |               followers/<int:pk>/                | If a non logged in user tries to delete a follower, 403 Forbiddden displayed                                                  |   **pass**    |
-
-## Security Fixed
-
-During the updates in git I did not check the updates to be discarded in the .gitignore file, which resulted in the env.py file being published with the cloudinary, postgres (ElephantSQL) and secret-key keys. This determined to regenerate the keys again and update them in env.py and the configuration variables in heroku.
-
-## Bugs Fixed
-
-- In the app comments/serializers.py don't render the image cover of the book with the line:
-
-```
-book_cover = serializers.ReadOnlyField(source='book.cover.image.url')
-```
-
-after a lot of tests/debugs and the checking of the documentation was resolve with the line:
-
-```
-book_cover = serializers.ImageField(source='book.cover', read_only=True)
-```
-
-## Bugs Unresolved
-
-# Technologies Used
-
-## Languages
-
-- [Python](https://www.python.org/) - A programming language that lets you work quickly
-  and integrate systems more effectively
-
-## Libraries and Frameworks
-
-- [Django](https://pypi.org/project/Django/) - Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
-
-- [Django REST Framework](https://pypi.org/project/djangorestframework/) - A powerful and flexible toolkit for building Web APIs
-
-- [cloudinary](https://pypi.org/project/cloudinary/) - Easily integrate your application with Cloudinary
-- [dj-database-url](https://pypi.org/project/dj-database-url/) - Allows you to utilize the 12factor inspired DATABASE_URL environment variable to configure your Django application.
-- [dj-rest-auth](https://pypi.org/project/dj-rest-auth/) - API endpoints for handling authentication securely in Django Rest Framework
-- [django-allauth](https://pypi.org/project/django-allauth/) - Integrated set of Django applications addressing authentication, registration, account management as well as 3rd party (social) account authentication
-- [django-cloudinary-storage](https://pypi.org/project/django-cloudinary-storage/) - package that facilitates integration with Cloudinary by implementing Django Storage API
-- [django-cors-headers](https://pypi.org/project/django-cors-headers/) - Adds Cross-Origin Resource Sharing (CORS) headers to responses.
-- [django-extensions](https://pypi.org/project/django-extensions/) - Collection of global custom management extensions for the Django Framework.
-- [django-filter](https://pypi.org/project/django-filter/) - Declaratively add dynamic QuerySet filtering from URL parameters.
-- [django-rest-auth](https://pypi.org/project/django-rest-auth/) - Provides a set of REST API endpoints for Authentication and Registration
-- [djangorestframework-simplejwt](https://pypi.org/project/djangorestframework-simplejwt/) - JSON Web Token authentication plugin for the Django REST Framework.
-- [gunicorn](https://pypi.org/project/gunicorn/) - A Python WSGI HTTP Server for UNIX.
-- [oauthlib](https://pypi.org/project/oauthlib/) - Implements the logic of OAuth1 or OAuth2 without assuming a specific HTTP request object or web framework.
-- [pathspec](https://pypi.org/project/pathspec/) - Utility library for pattern matching of file paths
-- [Pillow](https://pypi.org/project/Pillow/) - Adds image processing capabilities to your Python interpreter
-- [psycopg2](https://pypi.org/project/psycopg2/) - PostgreSQL database adapter for Python
-- [pycodestyle](https://pypi.org/project/pycodestyle/) - A tool to check your Python code against some of the style conventions in PEP 8.
-- [pydot](https://pypi.org/project/pydot/) - Library to generate .dot files which can be used to show ERD's
-- [PyJWT](https://pypi.org/project/PyJWT/) - Library for encoding and decoding JSON Web Tokens (JWT)
-- [pyparsing](https://pypi.org/project/pyparsing/) - Python parsing module
-- [pytz](https://pypi.org/project/pytz/) - Allows accurate and cross platform timezone calculations
-- [requests](https://pypi.org/project/requests/) - Allows you to send HTTP/1.1 requests
-- [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) - OAuthlib authentication support for Requests
-
-- [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python. It provides support for parsing, splitting and formatting SQL statements.
-- [urllib3](https://pypi.org/project/urllib3/) - A powerful, user-friendly HTTP client for Python
-
-## Other Tools
-
-- [GitHub](https://github.com/) - Used to host and deploy the website as well as manage the project.
-- [Heroku](https://dashboard.heroku.com) - Used to deploy the website
-- [SQLite](https://www.sqlite.org/index.html) - An open-source, zero-configuration, self-contained, stand-alone, transaction relational database engine designed to be embedded into an application.
-- [ElephantSQL](https://www.elephantsql.com/) - Provides a browser tool for SQL queries where you can create, read, update and delete data directly from your web browser.
-- [Cloudinary](https://cloudinary.com/) - Used to host all static files .
-- [CI PEP8 Linter](https://pep8ci.herokuapp.com/#)
+Testing and results can be found [here](/TESTING.md)
 
 # Development
 
-This site was made using [GitHub](#github) & [Gitpod](https://www.gitpod.io/). The site was further developed using Django and Django REST framework.
-
-## GitHub
-
-### Create the repository. Basics to get up and running
-
-1. Sign in to GitHub and navigate to [Code Institute's Gitpod template](https://github.com/Code-Institute-Org/gitpod-full-template).
-
-- At the top of the repository, click **Use this template** followed by **Create a new repository**.
-
-- Navigate to the [GitHub repository](https://github.com/patchamama/PP5-drf-api-The-last-book-page) or use [Code Institute's template](https://github.com/Code-Institute-Org/ci-full-template) to create your own workspace
-- Click on Gitpod and create workspace
-
-## Installing Django and libraries tha you will use to deploy in Heroku
-
-### Install Django
-
-```
-pip3 install 'django<4' gunicorn
-```
-
-_The Long Term Support (LTS 3.2.x) version (in my case 3.2.20) will installed and is the most advisable for production as it is kept up to date with security patches._
-
-### Create Django Project
-
-```
-django-admin startproject drf_api_lastpage .
-```
-
-_A new directory called your `'drf_api_lastpage'` and a `manage.py` file will be created within your project folder._
-
-### Install Cloudinary Storage to connect Django with Cloudinary
-
-```
-pip install django-cloudinary-storage==0.3.0
-```
-
-- Cloudinary will be used to store our static media files.
-
-### Install Pillow (to Image Processing)
-
-```
-pip install Pillow==8.2.0
-```
-
-### Install apps of the project
-
-```
-python3 manage.py startapp profiles
-python3 manage.py startapp books
-python3 manage.py startapp comments
-python3 manage.py startapp likes
-python3 manage.py startapp bookmarks
-python3 manage.py startapp followers
-python3 manage.py startapp stickers
-```
-
-### Add Installed Apps in settings `drf_api_lastpage/settings.py`
-
-```
-INSTALLED_APPS = [
-    (...)
-    **'cloudinary_storage',**
-    'django.contrib.staticfiles',
-    **'cloudinary',**
-
-    'profiles',
-    'books',
-    'comments',
-    'likes',
-    'bookmarks',
-    'followers',
-    'stickers'
-]
-```
-
-_Note: Cloudinary storage must go before django.contrib.staticfiles, as shown._
-_Note: Text in **bold** is newly added code_
-
-### Add the following lines in `drf_api_lastpage/settings.py`
-
-- Import os
-
-```
-from pathlib import Path
-import os
-```
-
-- Add statement to import env.py if it exists - _below import os_
-
-```
-if os.path.exists('env.py'):
-    import env
-```
-
-- Set CLOUDINARY_STORAGE variable equals to the CLOUDINARY_URL variable and place directly below imports
-
-```
-CLOUDINARY_STORAGE = {
-    'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
-}
-```
-
-- Define Media Storage URL and place directly below
-
-```
-MEDIA_URL = '/media/'
-```
-
-- Define Default File Storage to Cloudinary and place directly below
-
-```
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-```
-
-### Create an `env.py` file within the top level directory with the follow content:
-
-```
-import os
-os.environ['CLOUDINARY_URL'] = 'cloudinary://**<cloudinary_key>**'
-```
-
-_Note: Ensure `env.py` is listed in the .gitignore file so it does not get pushed to GitHub._
-_Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudinary.com/console/). Make sure to only paste the correct part of the URL_
-
-### Save changes and then **Migrate changes** in the terminal
-
-```
-python3 manage.py migrate
-```
-
-### In order to use JSON web tokens we will be using the Django rest auth library, install by typing in the command:
-
-```
-pip3 install dj-rest-auth
-```
-
-### In `settings.py`, add **rest_framework.authtoken** and **dj_rest_auth** to `INSTALLED_APPS`
-
-```
-INSTALLED_APPS = [
-    "rest_framework.authtoken",
-    "dj_rest_auth",
-]
-```
-
-### Add the _rest auths urls_ to the main **urlpatterns** list.
-
-```
-urlpatterns = [
-    path("dj-rest-auth/", include("dj_rest_auth.urls")),
-]
-```
-
-### Migrate the database by typing
-
-```
-python3 manage.py migrate
-```
-
-### Next install Django allauth with the following command
-
-```
-pip install 'dj-rest-auth[with_social]'
-```
-
-And add the new application to the `INSTALLED_APPS` variable in **settings.py**.
-
-```
-INSTALLED_APPS = [
-    "django.contrib.sites",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    "dj_rest_auth.registration",
-]
-```
-
-### Add a `SITE_ID` variable in **settings.py**
-
-`SITE_ID = 1`
-
-### Add the _registration urls_ to the main **urlpatterns** list.
-
-```
-urlpatterns = [
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-]
-```
-
-### The Django rest framework doesn’t support JWT tokens for the browser interface out-of-the-box, we’ll need to use session authentication in development and for Production we’ll use Tokens. This will allow us to continue to be able to log into our API as we work on it. To start, install the JWT library
-
-```
-pip install djangorestframework-simplejwt
-```
-
-### In `settings.py`, set the **DEBUG** value to True only if the `DEV` environment variable exists. This will mean it is True in development, and False in production.
-
-```
-DEBUG = 'DEV' in os.environ
-```
-
-### To enable token authentication, cookie declaration and to also ensure that the tokens are sent over HTTPS only, add the following code to `settings.py`.
-
-```
-REST_USE_JWT = True
-JWT_AUTH_SECURE = True
-JWT_AUTH_COOKIE = "my-app-auth"
-JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
-JWT_AUTH_SAMESITE = "None"
-```
-
-### Add the `profile_id` and `profile_image` to fields returned when requesting logged in user details. Firstly create a `serializers.py` file in the main project folder.
-
-### Import the appropriate files
-
-```
-from dj_rest_auth.serializers import UserDetailsSerializer
-from rest_framework import serializers
-```
-
-### Create the **profile_id** and **profile_image** fields.
-
-```
-class CurrentUserSerializer(UserDetailsSerializer):
-    profile_id = serializers.ReadOnlyField(source='profile.id')
-    profile_image = serializers.ReadOnlyField(source='profile.image.url')
-    class Meta(UserDetailsSerializer.Meta):
-        fields = UserDetailsSerializer.Meta.fields + ('profile_id', 'profile_image')
-```
-
-### Overwrite the default `USER_DETAILS_SERIALIZER` in **settings.py**:
-
-```
-REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'}
-```
-
-### Set the default renderer to JSON for the production environment. This means that we want this nice, in-browser interface to be available in development only. All the frontend app cares about is JSON so sending HTML would be pointless. In `settings.py`, below the `REST_FRAMEWORK` variable, add:
-
-```
-if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
-        'rest_framework.renderers.JSONRenderer',
-    ]
-```
-
-### If the **DEV** environment variable is **NOT** present, set the rest framework’s default renderer classes attribute to JSONRenderer inside a list.
-
-### Create a new root route which will act as a welcome screen to anyone who visits the homepage of our API.
-
-- First create a new `views.py` file in the main project folder (where_next_drf_api) and add the following code:
-
-```
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .settings import (JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE,
-                       JWT_AUTH_SAMESITE, JWT_AUTH_SECURE,)
-
-@api_view()
-def root_route(request):
-    return Response(
-        {"message": "Welcome to my django rest framework API for Where next\
-        - social media platform"})
-```
-
-- Add the new route to the **urlpatterns** list in the main `urls.py` file and remember to import root_route from .views - `from .views import root_route`
-
-```
-urlpatterns = [
-    path('', root_route),
-]
-```
-
-### Remove the value for `SECRET_KEY` in **settings.py** and replace with the following code to use an environment variable instead.
-
-- `SECRET_KEY = os.getenv('SECRET_KEY')`
-
-### Create a new env.py file at the top-level directory - `env.py`
-
-#### - Within `env.py`:
-
-| Instruction              | Code                                                         |
-| ------------------------ | ------------------------------------------------------------ |
-| **1.** Import os library | `import os`                                                  |
-| **2.** Add in secret key | `os.environ.setdefault("SECRET_KEY", "NEW_SECRET_KEY_HERE")` |
-
-- Set a new value for your `SECRET_KEY` environment variable.
-
-### In the terminal of your Gitpod workspace, install **gunicorn**.
-
-```
-pip3 install gunicorn django-cors-headers
-```
-
-### Update your `requirements.txt`
-
-```
-pip freeze --local > requirements.txt
-```
-
-### Create a file named **Procfile** at the top-level directory - `Procfile`
-
-- Add the following code:
-
-```
-release: python manage.py makemigrations && python manage.py migrate
-web: gunicorn drf_api.wsgi
-```
+This site was made using [GitHub](#github) & [Gitpod](https://www.gitpod.io/). The site was further developed using [React](#react), a JavaScript front-end framework.
 
 # Deployment
 
@@ -777,50 +526,37 @@ This project was deployed using [Heroku](https://dashboard.heroku.com/) using th
 
 1. Click on _New_ in the top-right corner and then _Create New App_.
 
-![Heroku New App](docs/deployment/heroku-1.png)
+![Heroku New App](frontend/src/docs/deploy/deploy-heroku.png)
 
 2. On the next page give the app the unique name.
 3. Choose a region (the USA or Europe).
 4. Click _Create app_.
 
-![Heroku Unique Name](docs/deployment/heroku-2.png)
+![Heroku Unique Name](frontend/src/docs/deploy/deploy-heroku-2.png)
 
 5. Go to the _Resources_ tab and search for PostgreSQL. Select _Hobby dev - Free_ and click on the provision button to add it to the project
 
-![Heroku Postgresql Resources](docs/deployment/heroku-3.png)
+![Heroku Postgresql Resources](frontend/src/docs/deploy/deploy-heroku-3.png)
 
 6. On the next page click on the _Settings_ tab.
 7. In the Settings page open _Config Vars_ and add the following:
 
-![Heroku Conifg Vars](docs/deployment/heroku-4.png)
+![Heroku Conifg Vars](frontend/src/docs/deploy/deploy-heroku-4.png)
 
 7. Copy the value of _DATABASE_URL_ and paste it into your `.env` file in your workspace together with your secret key.
-
-   - This application uses [Gmail](https://www.google.com/intl/pl/gmail/about/) as an email SMTP server. This requires adding following variables to the project's `settings.py` file:
-
-     - `EMAIL_USE_TLS = True`
-     - `EMAIL_PORT = 587`
-     - `EMAIL_HOST = 'smtp.gmail.com'`
-     - `EMAIL_HOST_USER = 'your_account@gmail.com' `
-     - `EMAIL_HOST_PASSWORD = 'yourGmailPassword'`
-
-   - For **Heroku** deployment add folowing values to _Config Vars_:
-     - `EMAIL_HOST_USER = 'your_account@gmail.com' `
-     - `EMAIL_HOST_PASSWORD = 'yourGmailPassword'`
-
 8. Set `DEBUG = False` in `settings.py`.
 9. Commit and push your changes to GitHub.
 10. Click on the _Deploy_ tab.
 11. In the _Deploy_ page in the _Deployment Method_ select GitHub.
 12. After a successful connection to GitHub locate your repository and add it to Heroku.
 
-![Heroku GitHub](docs/deployment/heroku-5.png)
+![Heroku GitHub](frontend/src/docs/deploy/deploy-heroku-5.png)
 
 13. In the _Manual Deploy_ section confirm that _main_ branch is selected and click _Deploy Branch_
 14. For Final Deployment confirm `DEBUG = False` in `settings.py` and delete `DISABLE_COLLECTSTATIC` from _Config Vars_ in **Heroku**.
 15. Commit and push changes to GitHub.
 
-![Heroku Deploy](docs/deployment/heroku-6.png)
+![Heroku Deploy](frontend/src/docs/deploy/deploy-heroku-6.png)
 
 ## Fork a repository
 
@@ -829,7 +565,7 @@ A fork is a copy of a repository. Forking a repository allows you to freely expe
 1. On GitHub.com navigate to the repository page.
 2. In the top-right corner of the page, click **Fork**.
 
-![GitHub Fork](docs/deployment/github-fork.png)
+![GitHub Fork](frontend/src/docs/deploy/deploy-github-fork.png)
 
 You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
 
@@ -841,7 +577,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 2. Locate the _Code_ tab and click on it.
 3. In the expanded window, click the two squares icon to copy the HTTPS link of the repository.
 
-![GitHub Clone](docs/deployment/github-clone.png)
+![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
 
 4. On your computer, open **Terminal**.
 5. Navigate to the directory of choice.
@@ -850,12 +586,15 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 # Credits
 
+### Content
+
+I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customise it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my own unique touch to the project. Overall, I really enjoyed putting this project together.
+
+- [React Bootstrap 4.6 docs](https://react-bootstrap-v4.netlify.app/)
+- [React datepicker docs](https://www.npmjs.com/package/react-datepicker)
+- [Code Institute - _'Moments'_ walkthrough project](https://github.com/Code-Institute-Solutions/moments)
 - Deployment section is based on the owner's previous project [OneTeam](https://github.com/miloszmisiek/ci-pp4-one_team).
-- Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
-- Django REST framework: https://www.django-rest-framework.org/
-- To generate secret-keys: https://djecrety.ir/
-- Python Formatter: https://codebeautify.org/python-formatter-beautifier
-- CI Python Linter from code institute: https://pep8ci.herokuapp.com/
-- Code Institute - _drf_api_ walkthrough project: https://github.com/Code-Institute-Solutions/drf-api
+- Images of sing in and sing up: https://www.pexels.com/
+- The logo was created by https://Logo.com
 
 # Acknowledgments
