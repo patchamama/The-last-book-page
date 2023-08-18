@@ -655,7 +655,7 @@ const BookEditForm = () => {
                   className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
                   htmlFor="image-upload"
                 >
-                  Change the cover
+                  {cover ? "Change the cover" : "Add a cover"}
                 </Form.Label>
               </div>
               <Form.File

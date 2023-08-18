@@ -2,11 +2,9 @@
 
 ![Last page logo](docs/logo-sd.png)
 
-This repository is the back-end **REST API** which is used by my front-end project - [The last book page]()
+This repository is the back-end **REST API** which is used by my front-end project - [The last book page](README.md)
 
-You can view the live site [**here**]()
-
-You can view the live API [**here**]()
+You can view the live site [**here**](https://drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com/)
 
 You can view the front-end _README.md_ [**here**](README.md)
 

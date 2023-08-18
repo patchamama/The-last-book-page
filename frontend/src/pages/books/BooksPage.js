@@ -7,7 +7,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { Link } from "react-router-dom";
+import Link from "react-router-dom/Link";
 import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";

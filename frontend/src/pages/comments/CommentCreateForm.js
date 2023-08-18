@@ -11,6 +11,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Link from "react-router-dom/Link";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
@@ -206,10 +207,22 @@ const CommentCreateForm = () => {
               ))}
             </ListGroup>
           ) : (
-            !id &&
-            !query && (
+            !id && (
               <Container className={appStyles.Content}>
-                <Asset src={NoResults} message="No results found!" />
+                <Asset
+                  src={NoResults}
+                  message="No results found. Adjust the search keyword or add a new book."
+                />
+                {currentUser && (
+                  <div className="text-center">
+                    <Link
+                      className="align-self-center"
+                      to={`/books/create/${query}`}
+                    >
+                      <i className="fas fa-plus-circle"></i> Add book
+                    </Link>
+                  </div>
+                )}
               </Container>
             )
           )}

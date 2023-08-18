@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 // Components
 import Asset from "./Asset";
 // Images
-import NoResults from "../assets/page-not-found.png";
+import NoResults from "../assets/page-not-found.jpg";
 // React Bootstrap components
 import { Button } from "react-bootstrap";
 // Styles

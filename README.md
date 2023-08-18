@@ -2,9 +2,9 @@
 
 ![Last page logo](docs/logo-sd.png)
 
-![Am i responsive]()
+![Am i responsive](docs/responsive.png)
 
-The live link can be found [**here**]()
+The live link can be found [**here**](https://drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com/)
 
 To view the README of the backend _API repository_, please click [**here**](README-backend.md)
 
