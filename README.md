@@ -436,7 +436,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 - A simple 404 error page has been implemented to improve the user experience in cases where the user enters an incorrect URL. This page provides a clear and user-friendly message, guiding the user back to the website's homepage and helping them find the information they are looking for.
 
-![404 page display](frontend/src/docs/images/404-page.png)
+![404 page display](frontend/src/docs/images/404-page1.png)
 
 ### Notifications
 
