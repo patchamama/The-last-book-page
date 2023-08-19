@@ -33,7 +33,7 @@ const BookEditForm = () => {
   useRedirect("loggedOut");
   // Setting the initial state of the errors and dateOfPub(lication) object to an empty object
   const [errors, setErrors] = useState({});
-  const { dateOfPub, setDateOfPub } = useState(new Date());
+  const [dateOfPub, setDateOfPub] = useState(new Date());
   // Using the useHistory hook to handle navigation history
   const history = useHistory();
   const { id, newtitle } = useParams();
@@ -41,7 +41,7 @@ const BookEditForm = () => {
   const [bookData, setBookData] = useState({
     title: newtitle ? newtitle : "",
     auth: "",
-    pub_date: "",
+    pub_date: null,
     publisher: "",
     pages_no: "",
     isbn: "",
@@ -105,8 +105,8 @@ const BookEditForm = () => {
           cover,
         });
 
-        // setDateOfPub(new Date(pub_date));
-        console.log(data);
+        setDateOfPub(new Date(pub_date));
+        // console.log(data);
       } catch (err) {
         // console.log(err);
         // Display error notification
@@ -142,10 +142,11 @@ const BookEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    const pub_date_new = new Date(pub_date).toISOString();
 
     formData.append("title", title);
     formData.append("auth", auth);
-    formData.append("pub_date", dateOfPub);
+    formData.append("pub_date", pub_date_new);
     formData.append("publisher", publisher);
     formData.append("pages_no", pages_no);
     formData.append("isbn", isbn);
@@ -154,7 +155,6 @@ const BookEditForm = () => {
     formData.append("translators", translators);
     formData.append("genre", genre);
     formData.append("synopsis", synopsis);
-    // formData.append("cover", cover);
     if (imageFile?.current?.files[0]) {
       formData.append("cover", imageFile?.current?.files[0]);
     }
@@ -172,7 +172,7 @@ const BookEditForm = () => {
         NotificationManager.success("Book added", "Success!");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       // Display error notification
       NotificationManager.error("There was an issue adding your book", "Error");
       if (err.response?.status !== 401) {

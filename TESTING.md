@@ -341,18 +341,19 @@ _[JSHint](https://jshint.com/)_ was used to check the JavaScript within the appl
 I have run the website through Google Chrome's Lighthouse audit application and the results are shown below.
 Mobile testing has been performed too and reported similar results to the desktop but with a lower performance score.
 
-| Page                   |                                                   Desktop                                                   |
-| ---------------------- | :---------------------------------------------------------------------------------------------------------: |
-| Home page              |          ![lighthouse result desktop home](frontend/src/docs/testing/lighthouse/desktop-home.png)           |
-| `SignInForm.js`        |       ![lighthouse result desktop sign-in](frontend/src/docs/testing/lighthouse/desktop-sign-in.png)        |
-| `SignUpForm.js`        |       ![lighthouse result desktop sign-up](frontend/src/docs/testing/lighthouse/desktop-sign-up.png)        |
-| `CommentsPage.js`      | ![lighthouse result desktop comment detail](frontend/src/docs/testing/lighthouse/desktop-comments-page.png) |
-| `CommentCreateForm.js` |   ![lighthouse result desktop add comment](frontend/src/docs/testing/lighthouse/desktop-add-comment.png)    |
-| `CommentEditForm.js`   |  ![lighthouse result desktop edit comment](frontend/src/docs/testing/lighthouse/desktop-edit-comment.png)   |
-| `BooksPage.js`         |     ![lighthouse result desktop group list](frontend/src/docs/testing/lighthouse/desktop-bookspage.png)     |
-| `BookEditForm.js`      | ![lighthouse result desktop create group](frontend/src/docs/testing/lighthouse/desktop-book-edit-form.png)  |
-| `BookmarkPage.js`      |  ![lighthouse result desktop create group](frontend/src/docs/testing/lighthouse/desktop-bookmark-page.png)  |
-| `ProfilePage.js`       |  ![lighthouse result desktop profile page](frontend/src/docs/testing/lighthouse/desktop-profile-page.png)   |
+| Page                 |                                                   Desktop                                                   |
+| -------------------- | :---------------------------------------------------------------------------------------------------------: |
+| Home page            |          ![lighthouse result desktop home](frontend/src/docs/testing/lighthouse/desktop-home.jpg)           |
+| `SignInForm.js`      |       ![lighthouse result desktop sign-in](frontend/src/docs/testing/lighthouse/desktop-sign-in.jpg)        |
+| `SignUpForm.js`      |       ![lighthouse result desktop sign-up](frontend/src/docs/testing/lighthouse/desktop-sign-up.jpg)        |
+| `CommentsPage.js`    | ![lighthouse result desktop comment detail](frontend/src/docs/testing/lighthouse/desktop-comments-page.jpg) |
+| `CommentEditForm.js` |  ![lighthouse result desktop edit comment](frontend/src/docs/testing/lighthouse/desktop-edit-comment.jpg)   |
+| `BooksPage.js`       |     ![lighthouse result desktop group list](frontend/src/docs/testing/lighthouse/desktop-bookspage.jpg)     |
+| `BookEditForm.js`    | ![lighthouse result desktop create group](frontend/src/docs/testing/lighthouse/desktop-book-edit-form.jpg)  |
+| `BookmarkPage.js`    |  ![lighthouse result desktop create group](frontend/src/docs/testing/lighthouse/desktop-bookmark-page.jpg)  |
+| `ProfilePage.js`     |  ![lighthouse result desktop profile page](frontend/src/docs/testing/lighthouse/desktop-profile-page.jpg)   |
+
+_Due to the delivery time of the project I will not make any additional changes to improve performance and accessibility, such as decreasing the size of images, changing the contrast of some text and revising some code to improve tagging._
 
 ---
 

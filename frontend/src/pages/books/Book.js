@@ -39,17 +39,17 @@ const Book = (props) => {
     profile_id,
     profile_image,
     owner,
-    is_owner,
     updated_on,
     comments_count,
     bookmarks_count,
+    created_by,
     onlyone,
     showfooter = true,
     fromBooksPage = true,
   } = props;
   // Get the current user from CurrentUserContext.js
   const currentUser = useCurrentUser();
-  // const is_owner = currentUser?.username === created_by;
+  const is_creator = currentUser?.pk === created_by;
   // Using the useHistory hook to handle navigation history
   const history = useHistory();
 
@@ -60,8 +60,8 @@ const Book = (props) => {
 
   // Handle delete a book
   const handleDelete = async () => {
-    if (!is_owner) {
-      alert("Only the owner of the book cand delete it!");
+    if (!is_creator) {
+      alert("Only the creator of the book can delete it!");
       return;
     }
     try {
