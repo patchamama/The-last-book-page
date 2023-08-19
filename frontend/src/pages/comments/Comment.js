@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // React Bootstrap components
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 // Components
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -177,11 +180,21 @@ const Comment = (props) => {
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Click to unlike comment</Tooltip>}
+              >
+                <i className={`fas fa-heart ${styles.Heart}`} />
+              </OverlayTrigger>
             </span>
           ) : currentUser ? (
             <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Click to like comment</Tooltip>}
+              >
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+              </OverlayTrigger>
             </span>
           ) : (
             <OverlayTrigger
@@ -194,8 +207,14 @@ const Comment = (props) => {
           {likes_count}
 
           <Link to={`/comments/${id}`}>
-            <i className="far fa-comment-dots" />
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>View Stickers</Tooltip>}
+            >
+              <i className="far fa-comment-dots" />
+            </OverlayTrigger>
           </Link>
+
           {stickers_count}
         </Card.Text>
       </Card.Body>

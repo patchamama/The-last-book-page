@@ -5,7 +5,10 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // React Bootstrap components
-import { Card, Media } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 // Components
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -164,7 +167,12 @@ const Book = (props) => {
           <Card.Text className="text-center">
             {comments_count ? (
               <Link to={`/comments/book/${id}`}>
-                <i className="far fa-comments" />
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>View Comments</Tooltip>}
+                >
+                  <i className="far fa-comments" />
+                </OverlayTrigger>
               </Link>
             ) : (
               <i className="far fa-comments" />
@@ -173,7 +181,12 @@ const Book = (props) => {
 
             {bookmarks_count ? (
               <Link to={`/bookmarks/${id}`}>
-                <i className="far fa-bookmark" />
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>View Bookmarks</Tooltip>}
+                >
+                  <i className="far fa-bookmark" />
+                </OverlayTrigger>
               </Link>
             ) : (
               <i className="far fa-bookmark" />

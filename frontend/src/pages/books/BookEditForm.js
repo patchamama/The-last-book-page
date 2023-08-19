@@ -161,7 +161,7 @@ const BookEditForm = () => {
     // Append the data and request the book request from the API
     try {
       if (id) {
-        const { data } = await axiosReq.put(`/books/${id}`, formData);
+        const { data } = await axiosReq.put(`/books/${id}/`, formData);
         history.push(`/books/${data.id}`);
         // Display success notification
         NotificationManager.success("Book updated", "Success!");

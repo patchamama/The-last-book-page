@@ -11,6 +11,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import Media from "react-bootstrap/Media";
+import Card from "react-bootstrap/Card";
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 // Hooks
@@ -20,6 +22,7 @@ import { NotificationManager } from "react-notifications";
 // Styles
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/CommentEditForm.module.css";
 
 const CommentEditForm = () => {
   // Using the useRedirect hook to redirect if the user is logged out
@@ -27,6 +30,7 @@ const CommentEditForm = () => {
   // Setting the initial state of the errors object to an empty object
   const [errors, setErrors] = useState({});
   const [selectedBook, setSelectedBook] = useState("");
+  const [bookCover, setbookCover] = useState("");
   // Setting the initial state of the commentData object with empty strings for the fields
   const [commentData, setCommentData] = useState({
     book: "",
@@ -43,8 +47,9 @@ const CommentEditForm = () => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/comments/${id}/`);
-        const { book, comment, book_title, is_owner } = data;
+        const { book, comment, book_title, book_cover, is_owner } = data;
         setSelectedBook(book_title);
+        setbookCover(book_cover);
         // If the user is not the owner of the comment, redirect to the home page
         is_owner ? setCommentData({ book, comment }) : history.push("/");
       } catch (err) {
@@ -146,7 +151,7 @@ const CommentEditForm = () => {
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        save
       </Button>
     </div>
   );
@@ -157,7 +162,17 @@ const CommentEditForm = () => {
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
-              <Container className={appStyles.Content}>{textFields}</Container>
+              <Container className={appStyles.Content}>
+                <Media>
+                  <Card.Img
+                    src={bookCover}
+                    alt={`Bookcover of ${selectedBook}`}
+                    className={`mr-3 ${styles.Image}`}
+                  />
+
+                  <Media.Body className="text-left">{textFields}</Media.Body>
+                </Media>
+              </Container>
             </Col>
           </Row>
         </Form>
