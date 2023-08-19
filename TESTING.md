@@ -265,11 +265,9 @@ Unfortunately, due to time constraints, automated testing could not be implement
 | ------------ | :----: | :-----------------------------------------------------------------------------------------------------------: |
 | `index.html` | _pass_ | _[result](https://validator.w3.org/nu/?doc=https://drp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com%2F)_ |
 
-![HTML w3c validator](src/docs/testing/html/html-w3c-validation.webp)
-
 The _[W3C HTML validator](https://validator.w3.org/)_ was used to test the one HTML file and **no errors** were reported in the final deployment.
 
-![HTML validator results](src/docs/testing/html/html-result-no-errors.webp)
+![HTML validator results](frontend/src/docs/testing/html-w3c-validation.png)
 
 ---
 
@@ -277,10 +275,11 @@ The _[W3C HTML validator](https://validator.w3.org/)_ was used to test the one H
 
 The _[W3C CSS Validator](https://jigsaw.w3.org/css-validator/)_ was used to validate the project, the results are shown below with **no errors reported.**
 
-![CSS w3c validator](frontend/src/docs/testing/css/css-w3c-validation.png)
-![CSS Result](frontend/src/docs/testing/css/css-last-page.png)
+![CSS w3c validator](frontend/src/docs/testing/css-w3c-validation.png)
 
 - _[ CSS results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdrp-api-the-last-book-page-4bcf6d1799b5.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=es)_
+
+An error was found in the css and it is reported that a css file was not found. I have not been able to fix the problem at the moment and will continue to investigate for future updates.
 
 ---
 
@@ -288,7 +287,7 @@ The _[W3C CSS Validator](https://jigsaw.w3.org/css-validator/)_ was used to vali
 
 _[JSHint](https://jshint.com/)_ was used to check the JavaScript within the application, the results are shown below with all pages passing and **no errors reported.**
 
-![JSHint Logo](src/docs/testing/javascript/testing-jshint.webp)
+![JSHint Logo](frontend/src/docs/testing/testing-jshint.webp)
 
 |     Folder     |            Page            |  Status  |
 | :------------: | :------------------------: | :------: |
@@ -376,3 +375,5 @@ The site has been tested through Google's [Mobile friendly test](https://search.
 ### Fixed Bugs
 
 ### Unfixed Bugs
+
+- An error was found in the css and it is reported that a css file was not found. I have not been able to fix the problem at the moment and will continue to investigate for future updates.
