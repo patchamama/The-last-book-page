@@ -1,5 +1,27 @@
 # Testing
 
+# Table of contents
+
+- [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+    - [_Navigation_](#-navigation-)
+    - [_Comment Component_](#-comment-component-)
+    - [_Add/Edit Comment_](#-add-edit-comment-)
+    - [_Book Component_](#-book-component-)
+    - [_Add/Edit Book_](#-add-edit-book-)
+    - [_Auth pages_](#-auth-pages-)
+    - [_Profiles_](#-profiles-)
+  - [Automated Testing](#automated-testing)
+  - [Validator Testing](#validator-testing)
+    - [HTML](#html)
+    - [CSS](#css)
+    - [JavaScript](#javascript)
+    - [Lighthouse](#lighthouse)
+  - [Browser Testing](#browser-testing)
+  - [Device Testing](#device-testing)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 ## Manual Testing
 
 The process and outcomes of manual testing are described in depth in the following section:
@@ -359,7 +381,7 @@ _Due to the delivery time of the project I will not make any additional changes 
 
 ## Browser Testing
 
-The Website was tested on Google Chrome, Microsoft Edge with no issues reported.
+The Website was tested on Google Chrome, Firefox and Microsoft Edge with no issues reported.
 
 ---
 
@@ -369,7 +391,7 @@ The website has been viewed on a variety of devices such as Desktop, Laptop, iPa
 
 ### Mobile
 
-The site has been tested through Google's [Mobile friendly test](https://search.google.com/test/mobile-friendly) with all pages passing.
+The site has been [tested](https://search.google.com/test/mobile-friendly/result?id=F2urGbHmb50I4TwQXTC_-w) through Google's [Mobile friendly test](https://search.google.com/test/mobile-friendly) with all pages passing.
 
 ---
 

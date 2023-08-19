@@ -12,6 +12,28 @@ To view the README of the backend _API repository_, please click [**here**](READ
 
 The aim of this application is to provide the possibility of commenting on book readings, hence the name: _the last book page_, as a call to socialise reading every time the last page of a book is closed, and also to organise future readings (hence the bookmarks).
 
+# Table of contents
+
+- [**_The last book page - The social network for reading_**](#---the-last-book-page---the-social-network-for-reading---)
+- [Objective](#objective)
+- [User Experience (UX)](#user-experience--ux-)
+  - [Backend Django REST API](#backend-django-rest-api)
+  - [Frontend React](#frontend-react)
+- [Design](#design)
+  - [Agile Methodology](#agile-methodology)
+  - [Security Features and Defensive Design](#security-features-and-defensive-design)
+  - [Features](#features)
+  - [Some reusable components](#some-reusable-components)
+  - [Hooks](#hooks)
+- [Languages Used](#languages-used)
+- [Testing](#testing)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Credits](#credits)
+- [Acknowledgments](#acknowledgments)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # User Experience (UX)
 
 ### User Stories
@@ -539,7 +561,7 @@ The useRedirect hook is a custom React hook that uses the React Router and Axios
 
 # Testing
 
-Testing and results can be found [here](/TESTING.md)
+Testing details can be found separately in the [TESTING.md](/TESTING.md) file.
 
 # Development
 
@@ -631,3 +653,5 @@ I have used a considerable amount of content throughout the site, inspired by th
 - The logo was created by https://Logo.com
 
 # Acknowledgments
+
+I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor _Sandeep Aggarwal_ and the Code Institute training programme.

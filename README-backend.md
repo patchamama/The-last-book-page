@@ -12,6 +12,26 @@ You can view the front-end _README.md_ [**here**](README.md)
 
 The reason for this API is to provide all the information required for querying and updating data from the front-end "The last book page". To do this using the (MVC) pattern, this application manages the model and controller that serve the data required by the front-end (the View managed with React). To meet its objectives, exhaustive tests are carried out to validate the correct manipulation of data and limited and secure access to the data, depending on the pre-established permissions in the application, taking care of security.
 
+# Table of contents
+
+- [**_The last book page - Django REST Framework API_**](#---the-last-book-page---django-rest-framework-api---)
+- [Objective](#objective)
+- [User Experience (UX)](#user-experience--ux-)
+  - [Backend Django REST API](#backend-django-rest-api)
+  - [Frontend React](#frontend-react)
+- [Agile Methodology](#agile-methodology)
+- [Entity Relationship Diagram](#entity-relationship-diagram)
+- [Database](#database)
+- [Models](#models)
+- [Testing](#testing)
+- [Technologies Used](#technologies-used)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Credits](#credits)
+- [Acknowledgments](#acknowledgments)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # User Experience (UX)
 
 ### User Stories
@@ -858,3 +878,5 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 - Code Institute - _drf_api_ walkthrough project: https://github.com/Code-Institute-Solutions/drf-api
 
 # Acknowledgments
+
+I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor _Sandeep Aggarwal_ and the Code Institute training programme.
