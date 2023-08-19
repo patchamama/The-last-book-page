@@ -1,4 +1,5 @@
-.Link span {
+.Link {
   color: #ff9254;
   font-style: italic;
+  cursor: pointer;
 }

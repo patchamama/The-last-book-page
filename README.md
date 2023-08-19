@@ -163,6 +163,21 @@ Wireframes have been generated to guide the design and development process to ac
 
 <details>
 
+ <summary>Homepage <i>sign in</i></summary>
+
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/desktop-homepage-sigin.jpeg)
+
+</details>
+<details>
+
+ <summary>Homepage <i>sign up</i></summary>
+
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/desktop-homepaage-signup.jpeg)
+
+</details>
+
+<details>
+
  <summary>Homepage <i>logged out</i></summary>
 
 ![Desktop - Homepage logged-out](frontend/src/docs/wireframes/homepage-logged-out.jpeg)
@@ -193,13 +208,23 @@ Wireframes have been generated to guide the design and development process to ac
 
 </details>
 
+### Tablet
+
+<details>
+
+ <summary>Homepage</summary>
+
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/tablet-homepage.jpeg)
+
+</details>
+
 ### Mobile
 
 <details>
 
  <summary>Homepage <i>sign in</i></summary>
 
-![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_sign-in.jpeg)
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_sign-in1.jpeg)
 
 </details>
 
@@ -207,7 +232,7 @@ Wireframes have been generated to guide the design and development process to ac
 
  <summary>Homepage <i>sign up</i></summary>
 
-![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_sign-up.jpeg)
+![Mobile - Homepage logged-in](frontend/src/docs/wireframes/m_sign-up1.jpeg)
 
 </details>
 
@@ -223,7 +248,15 @@ Wireframes have been generated to guide the design and development process to ac
 
  <summary>Book / Bookmarks structure</summary>
 
-![Desktop - Homepage logged-in](frontend/src/docs/wireframes/m_book.jpeg)
+![Desktop - Homepage logged-in](frontend/src/docs/wireframes/m_book1.jpeg)
+
+</details>
+
+<details>
+
+ <summary>Profile</summary>
+
+![Desktop - Homepage logged-in](frontend/src/docs/wireframes/m_profile.jpeg)
 
 </details>
 

@@ -16,6 +16,8 @@ class ProfileList(generics.ListAPIView):
         comments_count=Count("owner__comment", distinct=True),
         followers_count=Count("owner__followed", distinct=True),
         following_count=Count("owner__following", distinct=True),
+        bookmark_count=Count("owner__bookmark", distinct=True),
+        sticker_count=Count("owner__sticker", distinct=True),
     ).order_by("-created_on")
     serializer_class = ProfileSerializer
     filter_backends = [
@@ -25,10 +27,12 @@ class ProfileList(generics.ListAPIView):
     filterset_fields = [
         "owner__following__followed__profile",
     ]
-    ordering_fileds = [
+    ordering_fields = [
         "comments_count",
         "followers_count",
         "following_count",
+        "bookmark_count",
+        "sticker_count",
         "owner__following_created_on",
         "owner_followed_created_on",
     ]
@@ -44,5 +48,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
         comments_count=Count("owner__comment", distinct=True),
         followers_count=Count("owner__followed", distinct=True),
         following_count=Count("owner__following", distinct=True),
+        bookmark_count=Count("owner__bookmark", distinct=True),
+        sticker_count=Count("owner__sticker", distinct=True),
     ).order_by("-created_on")
     serializer_class = ProfileSerializer

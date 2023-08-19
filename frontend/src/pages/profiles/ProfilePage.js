@@ -80,7 +80,7 @@ const ProfilePage = () => {
             src={profile?.image}
           />
         </Col>
-        <Col lg={6}>
+        <Col lg={7}>
           <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
@@ -95,10 +95,18 @@ const ProfilePage = () => {
               <div>{profile?.following_count}</div>
               <div>following</div>
             </Col>
+            <Col xs={3} className="my-2">
+              <div>{profile?.bookmark_count}</div>
+              <div>bookmarks</div>
+            </Col>
+            <Col xs={3} className="my-2">
+              <div>{profile?.sticker_count}</div>
+              <div>stickers</div>
+            </Col>
           </Row>
         </Col>
         {/* Follow/unfollow buttons */}
-        <Col lg={3} className="text-lg-right">
+        <Col lg={2} className="text-lg-right">
           {currentUser &&
             !is_owner &&
             (profile?.following_id ? (

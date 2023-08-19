@@ -42,13 +42,22 @@ const Bookmark = ({
         if (event.target.value && event.target.value !== "-") {
           // Submit updated formdata to the API
           await axiosReq.put(`/bookmarks/${bookmark_id}`, formData);
+          NotificationManager.success(
+            "Bookmark status changed to " + event.target.value,
+            "Success!"
+          );
         } else {
           // Submit to delete the bookmark_id
           await axiosReq.delete(`/bookmarks/${bookmark_id}`);
+          NotificationManager.success("Bookmark status removed", "Success!");
         }
       } else {
         // Submit to add a bookmark with formdata to the API
         await axiosReq.post("/bookmarks/", formData);
+        NotificationManager.success(
+          "Bookmark status added: " + +event.target.value,
+          "Success!"
+        );
       }
     } catch (err) {
       console.log(err);
@@ -56,7 +65,7 @@ const Bookmark = ({
         setErrors(err.response?.data);
         // Show error notification
         NotificationManager.error(
-          "There was an issue changing the bookmark",
+          "There was an issue changing the bookmark status",
           "Error"
         );
       }

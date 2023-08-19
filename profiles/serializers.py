@@ -10,6 +10,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     comments_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
+    bookmark_count = serializers.ReadOnlyField()
+    sticker_count = serializers.ReadOnlyField()
 
     def get_following_id(self, obj):
         user = self.context["request"].user
@@ -53,4 +55,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             "comments_count",
             "followers_count",
             "following_count",
+            "sticker_count",
+            "bookmark_count",
         ]

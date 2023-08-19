@@ -108,7 +108,12 @@ const BookEditForm = () => {
         // setDateOfPub(new Date(pub_date));
         console.log(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
+        // Display error notification
+        NotificationManager.error(
+          "There was an issue with the request of the data",
+          "Error"
+        );
         history.push("/books");
       }
     };
@@ -155,16 +160,23 @@ const BookEditForm = () => {
     }
     // Append the data and request the book request from the API
     try {
-      const { data } = await axiosReq.put("/books/", formData);
-      history.push(`/books/${data.id}`);
-      // Display success notification
-      NotificationManager.success("Book updated", "Success!");
+      if (id) {
+        const { data } = await axiosReq.put(`/books/${id}`, formData);
+        history.push(`/books/${data.id}`);
+        // Display success notification
+        NotificationManager.success("Book updated", "Success!");
+      } else {
+        const { data } = await axiosReq.post(`/books/`, formData);
+        history.push(`/books/${data.id}`);
+        // Display success notification
+        NotificationManager.success("Book added", "Success!");
+      }
     } catch (err) {
       console.log(err);
+      // Display error notification
+      NotificationManager.error("There was an issue adding your book", "Error");
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        // Display error notification
-        NotificationManager.error("There was an issue adding your post", err);
       }
     }
   };
