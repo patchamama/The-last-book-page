@@ -524,6 +524,13 @@ _If you use a online dev IDE integrated in github as gitpod or codeanywhere, you
 pip install -r requirements.txt
 ```
 
+### Configure the application to use cloudinary and configure/create the necessary keys for access as listed in the following topics:
+
+    + [Add Installed Apps in settings `drf_api_lastpage/settings.py`](#add-installed-apps-in-settings--drf-api-lastpage-settingspy-)
+    + [Add the following lines in `drf_api_lastpage/settings.py`](#add-the-following-lines-in--drf-api-lastpage-settingspy-)
+    + [Create an `env.py` file within the top level directory with the follow content:](#create-an--envpy--file-within-the-top-level-directory-with-the-follow-content-)
+    + [Save changes and then **Migrate changes** in the terminal](#save-changes-and-then---migrate-changes---in-the-terminal)
+
 ### Update database (models) in Django
 
 ```
