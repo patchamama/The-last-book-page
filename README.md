@@ -179,6 +179,8 @@ For the management of the development of the application, an agile approach was 
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
+A GitHub Issue was created for each User Story, which was then allocated to a milestone (Epic).
+
 ## Design
 
 For the design of the site I have opted for simplicity and few colours to achieve good visibility of the content with good contrast.
@@ -303,14 +305,6 @@ The images used on the site relate to the context in which they are shown or to 
 ### Tipografy
 
 As font, was selected Roboto, intending to create an elegant and calming visual theme, while ensuring easy readability and consistency across multiple devices. In case there are any issues with the primary font choices, a reliable backup font, Sans-serif, has been selected to ensure consistent styling throughout the app.
-
-# Agile Methodology
-
-For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
-
-![GitHub kanban board](docs/agile/kanban.png)
-
-A GitHub Issue was created for each User Story, which was then allocated to a milestone (Epic).
 
 ## Security Features and Defensive Design
 
