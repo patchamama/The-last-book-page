@@ -62,8 +62,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/comments/create"
       >
-        <i className="fas fa-plus-circle"></i>
-        <span className="d-none d-md-inline">Comment</span>
+        <i className="fas fa-plus-circle"></i>Comment
       </NavLink>
       <NavLink
         className={`sm-screen ${styles.NavLink}`}
@@ -146,7 +145,12 @@ const NavBar = () => {
         <Container>
           <NavLink to="/">
             <Navbar.Brand>
-              <img src={logo} alt="logo" height="45" />
+              <img
+                className="d-none d-md-inline"
+                src={logo}
+                alt="logo"
+                height="45"
+              />
             </Navbar.Brand>
           </NavLink>
           <Navbar.Toggle

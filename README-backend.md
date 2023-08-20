@@ -486,11 +486,58 @@ book_cover = serializers.ImageField(source='book.cover', read_only=True)
 
 # Development
 
-This site was made using [GitHub](#github) & [Gitpod](https://www.gitpod.io/). The site was further developed using Django and Django REST framework.
+This site was made using [GitHub](#github) & [Gitpod](https://www.gitpod.io/). The site was further developed using [Django](https://pypi.org/project/Django/) and [Django REST Framework](https://pypi.org/project/djangorestframework/).
 
 ## GitHub
 
-### Create the repository. Basics to get up and running
+### Fork a repository
+
+A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. The steps are as follows:
+
+1. On GitHub.com navigate to the repository page.
+2. In the top-right corner of the page, click **Fork**.
+
+![GitHub Fork](frontend/src/docs/deploy/deploy-github-fork.png)
+
+You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
+
+### Clone a repository
+
+In GitHub, you have the option to create a local copy (clone) of your repository on your device's hard drive. The steps are as follows:
+
+1. On GitHub.com navigate to the repository page.
+2. Locate the _Code_ tab and click on it.
+3. In the expanded window, click the two squares icon to copy the HTTPS link of the repository.
+
+![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
+
+_If you use a online dev IDE integrated in github as gitpod or codeanywhere, you can click on it and open the IDE to do changes_
+
+4. On your computer, open **Terminal**.
+5. Navigate to the directory of choice (`cd <path-of-dev>`).
+6. Type `git clone https://github.com/patchamama/PP5-drf-api-The-last-book-page.git`
+7. Press **Enter** and the local clone of the repository will be created in the selected directory.
+
+### Install dependencies
+
+```
+pip install -r requirements.txt
+```
+
+### Update database (models) in Django
+
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+### Execute and test the app
+
+```
+python3 manage.py runserver
+```
+
+## Create the repository. Basics to get up and running
 
 1. Sign in to GitHub and navigate to [Code Institute's Gitpod template](https://github.com/Code-Institute-Org/gitpod-full-template).
 
@@ -998,32 +1045,6 @@ If you have not deployed this application to Heroku before, you can find most of
 
 6. Deploy your application from the Deploy tab in your Heroku dashboard
 
-## Fork a repository
-
-A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. The steps are as follows:
-
-1. On GitHub.com navigate to the repository page.
-2. In the top-right corner of the page, click **Fork**.
-
-![GitHub Fork](frontend/src/docs/deploy/deploy-github-fork.png)
-
-You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
-
-## Clone a repository
-
-In GitHub, you have the option to create a local copy (clone) of your repository on your device's hard drive. The steps are as follows:
-
-1. On GitHub.com navigate to the repository page.
-2. Locate the _Code_ tab and click on it.
-3. In the expanded window, click the two squares icon to copy the HTTPS link of the repository.
-
-![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
-
-4. On your computer, open **Terminal**.
-5. Navigate to the directory of choice.
-6. Type **git clone** and paste the copied link of the repository.
-7. Press **Enter** and the local clone of the repository will be created in the selected directory.
-
 # Credits
 
 - Deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
@@ -1036,5 +1057,6 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 # Acknowledgments
 
-I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother for his support and trust.
- 
+Acknowledgments
+
+I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they have given me for the project, as well as my partner (Maria) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.

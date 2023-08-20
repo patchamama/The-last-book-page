@@ -173,7 +173,13 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#54](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/54) As **logged-in User**, I can **read messages from any user,** so that **, I can be informed about any communication received**
 
-### Design
+# Agile Methodology
+
+For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
+
+![GitHub kanban board](docs/agile/kanban.png)
+
+## Design
 
 For the design of the site I have opted for simplicity and few colours to achieve good visibility of the content with good contrast.
 
@@ -563,6 +569,69 @@ Testing details can be found separately in the [TESTING.md](/TESTING.md) file.
 
 This site was made using [GitHub](#github) & [Gitpod](https://www.gitpod.io/). The site was further developed using [React](#react), a JavaScript front-end framework.
 
+## Fork a repository
+
+A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. The steps are as follows:
+
+1. On GitHub.com navigate to the repository page.
+2. In the top-right corner of the page, click **Fork**.
+
+![GitHub Fork](frontend/src/docs/deploy/deploy-github-fork.png)
+
+You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
+
+## Clone a repository
+
+In GitHub, you have the option to create a local copy (clone) of your repository on your device's hard drive. The steps are as follows:
+
+1. On GitHub.com navigate to the repository page.
+2. Locate the _Code_ tab and click on it.
+3. In the expanded window, click the two squares icon to copy the HTTPS link of the repository.
+
+![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
+
+_If you use a online dev IDE integrated in github as gitpod or codeanywhere, you can click on it and open the IDE to do changes_
+
+4. On your computer, open **Terminal**.
+5. Navigate to the directory of choice (`cd <path-of-dev>`).
+6. Type `git clone https://github.com/patchamama/PP5-drf-api-The-last-book-page.git`
+7. Press **Enter** and the local clone of the repository will be created in the selected directory.
+
+## Install dependencies
+
+8. Enter this command in the terminal:
+
+```
+npm install
+```
+
+Make sure your package.json dependencies look like this:
+
+```
+"dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.4",
+    "bootstrap": "^4.6.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.7",
+    "react-datepicker": "^4.16.0",
+    "react-dom": "^17.0.2",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "^4.0.3",
+    "web-vitals": "^1.1.2"
+  },
+```
+
+9. To test the app, run the command:
+
+```
+npm start
+```
+
 # Deployment
 
 ## Using Heroku to deploy the API and React projects
@@ -766,42 +835,15 @@ If you have not deployed this application to Heroku before, you can find most of
 
 6. Deploy your application from the Deploy tab in your Heroku dashboard
 
-## Fork a repository
-
-A fork is a copy of a repository. Forking a repository allows you to freely experiment with changes without affecting the original project. The steps are as follows:
-
-1. On GitHub.com navigate to the repository page.
-2. In the top-right corner of the page, click **Fork**.
-
-![GitHub Fork](frontend/src/docs/deploy/deploy-github-fork.png)
-
-You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
-
-## Clone a repository
-
-In GitHub, you have the option to create a local copy (clone) of your repository on your device's hard drive. The steps are as follows:
-
-1. On GitHub.com navigate to the repository page.
-2. Locate the _Code_ tab and click on it.
-3. In the expanded window, click the two squares icon to copy the HTTPS link of the repository.
-
-![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
-
-4. On your computer, open **Terminal**.
-5. Navigate to the directory of choice.
-6. Type `git clone` and paste the copied link of the repository.
-7. Press **Enter** and the local clone of the repository will be created in the selected directory.
-
 # Credits
 
 - [React Bootstrap 4.6 docs](https://react-bootstrap-v4.netlify.app/)
 - [React datepicker docs](https://www.npmjs.com/package/react-datepicker)
 - [Code Institute - _'Moments'_ walkthrough project](https://github.com/Code-Institute-Solutions/moments)
 - Deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
-- Images of sing in and sing up: https://www.pexels.com/
+- Images of sing-in and sing-up: https://www.pexels.com/
 - The logo was created by https://Logo.com
 - Error `ERR_OSSL_EVP_UNSUPPORTED` when `npm start` was executed was solved: https://stackoverflow.com/questions/69665222/node-js-17-0-1-gatsby-error-digital-envelope-routinesunsupported-err-os
-
 
 ### Content
 
@@ -809,4 +851,4 @@ I have used a considerable amount of content throughout the site, inspired by th
 
 # Acknowledgments
 
-I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother for his support and trust.
+I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they have given me for the project, as well as my partner (Maria) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
