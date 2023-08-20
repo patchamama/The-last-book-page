@@ -800,6 +800,8 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 - Deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
 - Images of sing in and sing up: https://www.pexels.com/
 - The logo was created by https://Logo.com
+- Error `ERR_OSSL_EVP_UNSUPPORTED` when `npm start` was executed was solved: https://stackoverflow.com/questions/69665222/node-js-17-0-1-gatsby-error-digital-envelope-routinesunsupported-err-os
+
 
 ### Content
 
