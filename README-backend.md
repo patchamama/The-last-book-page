@@ -215,7 +215,7 @@ The Sticker template allows the user to create personal notes or stickers of a c
 
 ### Book
 
-The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, isbn, original language of publication and current language of the book in the record, genre, synopsis and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only it can delete it: `created_by` and `updated_by`). Other models such as Comment and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, isbn, original language of publication and current language of the book in the record, genre, synopsis and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only it can delete it: `created_by`). Other models such as Comment and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
 
 | **Field name** | **Field Type** | **Field Argument**                                                                      |
 | -------------- | -------------- | --------------------------------------------------------------------------------------- |
@@ -1034,21 +1034,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 - CI Python Linter from code institute: https://pep8ci.herokuapp.com/
 - Code Institute - _drf_api_ walkthrough project: https://github.com/Code-Institute-Solutions/drf-api
 
-
-### Content
-
-I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customise it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my own unique touch to the project. Overall, I really enjoyed putting this project together.
-
-
-
 # Acknowledgments
 
 I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother for his support and trust.
-
-# Credits
-
-
-
-# Acknowledgments
-
-I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother for his support and trust.
+ 

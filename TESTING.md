@@ -46,7 +46,7 @@ The process and outcomes of manual testing are described in depth in the followi
 |                | _Feed link_           |  _click_  |             _Display Feed page of comments from followed users_             | **pass**  |
 |                | _Liked link_          |  _click_  |          _Display a page of liked comments from the current user_           | **pass**  |
 |                | _Sign Out link_       |  _click_  |                     _Sign out and go to the home page_                      | **pass**  |
-|                | _All nav headings_    |  _hover_  |                 _Display black text & lighter icon colour_                  | **pass**  |
+|                | _All nav headings_    |  _hover_  |                _Display black text & light blue icon colour_                | **pass**  |
 
 ### _Comment Component_
 
@@ -113,35 +113,35 @@ The process and outcomes of manual testing are described in depth in the followi
 
 <br>
 
-| Page/Status            | Element               |     Action     |                                                       Expected Result                                                        | Pass/Fail |
-| ---------------------- | --------------------- | :------------: | :--------------------------------------------------------------------------------------------------------------------------: | :-------: |
-| **Homepage**           | _Search bar_          | _type keyword_ |                                          _Loading spinner displayed until results_                                           | **pass**  |
-|                        |                       |  _no-results_  |                                             _Display no results image with text_                                             | **pass**  |
-|                        |                       |  _no-results_  |                                                 _Display option to add book_                                                 | **pass**  |
-| **logged-out**         | **Book Component**    |   _display_    |                                            _Book option in Navbar is not showed_                                             |           |
-| **Book Detail page**   | **from home section** |   _display_    |                    _When a cover of a book in the home page is selected, the book detail page is showed_                     |           |
-|                        |                       |   _display_    |                                                           _Cover_                                                            | **pass**  |
-|                        |                       |   _display_    |                                                           _Title_                                                            | **pass**  |
-|                        |                       |   _display_    |                                                          _Synopsis_                                                          | **pass**  |
-|                        | _Comment Icon_        |    _hover_     |                                                _Display 'View Comments' text_                                                | **pass**  |
-|                        |                       |    _click_     |                                              _Redirect to comment detail page_                                               | **pass**  |
-|                        | _Bookmark Icon_       |    _hover_     |                                               _Display 'View Bookmarks' text_                                                | **pass**  |
-|                        |                       |    _click_     |                                                 _Redirect to bookmarks page_                                                 | **pass**  |
-| **logged-in**          | **Book Component**    |                |                                                                                                                              |           |
-|                        | _Comment Icon_        |    _hover_     |                                                _Display 'View Comments' text_                                                | **pass**  |
-|                        |                       |    _click_     |                                              _Redirect to comment detail page_                                               | **pass**  |
-|                        | _Bookmark Icon_       |    _hover_     |                                               _Display 'View Bookmarks' text_                                                | **pass**  |
-|                        |                       |    _click_     |                                                 _Redirect to bookmarks page_                                                 | **pass**  |
-|                        | _Bookmark options_    |   _display_    |                                   _Show the options to select or change a bookmark status_                                   | **pass**  |
-|                        |                       |    _select_    |                   _Change the option selected and save in the database the change (update, add or delete)_                   | **pass**  |
-|                        |                       |    _select_    |                                               _Notify the change as registed_                                                | **pass**  |
-| **any user logged-in** | _Edit/Delete menu_    |   _display_    |                                             _display edit/delete dropdown menu_                                              | **pass**  |
-|                        |                       |    _hover_     |                                                   _Pointer cursor change_                                                    | **pass**  |
-|                        | _Edit icon_           |    _hover_     |                                                   _Add background colour_                                                    | **pass**  |
-|                        |                       |    _click_     |                                                 _Redirect to book edit page_                                                 | **pass**  |
-|                        | _Delete icon_         |    _hover_     |                                                   _Add background colour_                                                    | **pass**  |
-|                        |                       |    _click_     | _If is the book created, the book will be removed from database in othercase a message will be showed with this information_ | **pass**  |
-|                        |                       |                |                               _Notification - 'Book removed' if the user is the book creator_                                | **pass**  |
+| Page/Status            | Element               |     Action     |                                                                           Expected Result                                                                           | Pass/Fail |
+| ---------------------- | --------------------- | :------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------: |
+| **Homepage**           | _Search bar_          | _type keyword_ |                                                              _Loading spinner displayed until results_                                                              | **pass**  |
+|                        |                       |  _no-results_  |                                                                _Display no results image with text_                                                                 | **pass**  |
+|                        |                       |  _no-results_  |                                                                    _Display option to add book_                                                                     | **pass**  |
+| **logged-out**         | **Book Component**    |   _display_    |                                                                _Book option in Navbar is not showed_                                                                |           |
+| **Book Detail page**   | **from home section** |   _display_    |                                        _When a cover of a book in the home page is selected, the book detail page is showed_                                        |           |
+|                        |                       |   _display_    |                                                                               _Cover_                                                                               | **pass**  |
+|                        |                       |   _display_    |                                                                               _Title_                                                                               | **pass**  |
+|                        |                       |   _display_    |                                                                             _Synopsis_                                                                              | **pass**  |
+|                        | _Comment Icon_        |    _hover_     |                                                                   _Display 'View Comments' text_                                                                    | **pass**  |
+|                        |                       |    _click_     |                                                                  _Redirect to comment detail page_                                                                  | **pass**  |
+|                        | _Bookmark Icon_       |    _hover_     |                                                                   _Display 'View Bookmarks' text_                                                                   | **pass**  |
+|                        |                       |    _click_     |                                                                    _Redirect to bookmarks page_                                                                     | **pass**  |
+| **logged-in**          | **Book Component**    |                |                                                                                                                                                                     |           |
+|                        | _Comment Icon_        |    _hover_     |                                                                   _Display 'View Comments' text_                                                                    | **pass**  |
+|                        |                       |    _click_     |                                                                  _Redirect to comment detail page_                                                                  | **pass**  |
+|                        | _Bookmark Icon_       |    _hover_     |                                                                   _Display 'View Bookmarks' text_                                                                   | **pass**  |
+|                        |                       |    _click_     |                                                                    _Redirect to bookmarks page_                                                                     | **pass**  |
+|                        | _Bookmark options_    |   _display_    |                                                      _Show the options to select or change a bookmark status_                                                       | **pass**  |
+|                        |                       |    _select_    |                                      _Change the option selected and save in the database the change (update, add or delete)_                                       | **pass**  |
+|                        |                       |    _select_    |                                                                   _Notify the change as registed_                                                                   | **pass**  |
+| **any user logged-in** | _Edit/Delete menu_    |   _display_    |                                                                 _display edit/delete dropdown menu_                                                                 | **pass**  |
+|                        |                       |    _hover_     |                                                                       _Pointer cursor change_                                                                       | **pass**  |
+|                        | _Edit icon_           |    _hover_     |                                                                       _Add background colour_                                                                       | **pass**  |
+|                        |                       |    _click_     |                                                                    _Redirect to book edit page_                                                                     | **pass**  |
+|                        | _Delete icon_         |    _hover_     |                                                                       _Add background colour_                                                                       | **pass**  |
+|                        |                       |    _click_     | _If is the book creator, the book will be removed from database in othercase a message will be showed with a information that only the creator can delete the book_ | **pass**  |
+|                        |                       |                |                                                   _Notification - 'Book removed' if the user is the book creator_                                                   | **pass**  |
 
 ### _Add/Edit Book_
 
@@ -201,8 +201,6 @@ The process and outcomes of manual testing are described in depth in the followi
 |                        | _Sign-up link_               |              _hover_               |                                      _Change colour_                                       | **pass**  |
 |                        |                              |              _click_               |                                 _Redirect to sign-up page_                                 | **pass**  |
 | **Sign out tab/modal** |                              |              _click_               |                             _Open sign out confirmation modal_                             | **pass**  |
-|                        | _Modal_                      |        _click outside box_         |                                       _Close modal_                                        | **pass**  |
-|                        |                              |     _click modal close button_     |                                       _Close modal_                                        | **pass**  |
 |                        | _Cancel button_              |              _hover_               |                                      _Change colour_                                       | **pass**  |
 |                        |                              |              _click_               |                                    _Return to homepage_                                    | **pass**  |
 |                        | _Sign out button_            |              _hover_               |                                      _Change colour_                                       | **pass**  |
@@ -214,70 +212,66 @@ The process and outcomes of manual testing are described in depth in the followi
 
 <br>
 
-| Page/Status        | Element                            |  Action   |                                           Expected Result                                           | Pass/Fail |
-| ------------------ | ---------------------------------- | :-------: | :-------------------------------------------------------------------------------------------------: | :-------: |
-| **ProfilePage.js** | _User Avatar_                      | _display_ |                                       _A users profile image_                                       | **pass**  |
-|                    | _Profile settings in MoreDropDown_ | _display_ |                           _Only if the user is the owner of the profile_                            | **pass**  |
-| **logged-out**     | _Comments Count_                   | _display_ |                               _Display a users total comments count_                                | **pass**  |
-|                    | _Followers Count_                  | _display_ |                               _Display a users total followers count_                               | **pass**  |
-|                    | _Following Count_                  | _display_ |                               _Display a users total following count_                               | **pass**  |
-|                    | _Bookmarks Count_                  | _display_ |                               _Display a users total bookmarks count_                               | **pass**  |
-|                    | _Stickers Count_                   | _display_ |                               _Display a users total stickers count_                                | **pass**  |
-|                    | _Users comments_                   | _display_ |                            _Users comments using the comment component_                             | **pass**  |
-|                    |                                    | _display_ |           _If a user has not uploaded any images display: No results found text & image_            | **pass**  |
-| **logged-in**      | _Comments Count_                   | _display_ |                               _Display a users total comments count_                                | **pass**  |
-|                    |                                    |           |            _When a user adds a new comment, the users comments count increments by one_             | **pass**  |
-|                    | _Followers Count_                  | _display_ |                               _Display a users total followers count_                               | **pass**  |
-|                    | _Following Count_                  | _display_ |                               _Display a users total following count_                               | **pass**  |
-|                    |                                    |           | _When a user follows a user from the most followed component the following count increments by one_ | **pass**  |
-|                    | _Follow Button_                    | _display_ |               _If the user is not the owner of the profile, display a follow button_                | **pass**  |
-|                    |                                    |  _hover_  |                                             _Dark text_                                             | **pass**  |
-|                    |                                    |  _click_  |                   _User is followed & the users followers count increments by 1_                    | **pass**  |
-|                    |                                    |           |                                        _Database is updated_                                        | **pass**  |
-|                    |                                    |           |                                       _Success notification_                                        | **pass**  |
-|                    |                                    |           |                                    _Button changes to unfollow_                                     | **pass**  |
-|                    | _Unfollow Button_                  | _display_ |               _If the user is not the owner of the profile, display a follow button_                | **pass**  |
-|                    |                                    |  _hover_  |                                             _Dark text_                                             | **pass**  |
-|                    |                                    |  _click_  |                  _User is unfollowed & the users followers count decrements by 1_                   | **pass**  |
-|                    |                                    |           |                                        _Database is updated_                                        | **pass**  |
-|                    |                                    |           |                                           _Notification_                                            | **pass**  |
-|                    |                                    |           |                                     _Button changes to follow_                                      | **pass**  |
-|                    | _Personal Information_             | _display_ |              _Display Name, Date of birth, Location, Favourite Location & Bio fields_               | **pass**  |
-|                    |                                    | _display_ |                                 _If nothing selected, display icon_                                 | **pass**  |
-|                    | _Users comments_                   | _display_ |                            _Users comments using the comment component_                             | **pass**  |
-|                    |                                    | _display_ |           _If a user has not uploaded any images display: No results found text & image_            | **pass**  |
-|                    | _Profile settings tab_             |  _click_  |                                    _Profile dropdown menu opens_                                    | **pass**  |
-|                    | _Edit profile tab_                 |  _hover_  |                                          _Dark background_                                          | **pass**  |
-|                    |                                    |  _click_  |                                      _Open edit profile page_                                       | **pass**  |
-|                    | _Change password tab_              |  _hover_  |                                          _Dark background_                                          | **pass**  |
-|                    |                                    |  _click_  |                                     _Open change password page_                                     | **pass**  |
-|                    | _Change username tab_              |  _hover_  |                                          _Dark background_                                          | **pass**  |
-|                    |                                    |  _click_  |                                     _Open change username tab_                                      | **pass**  |
-
-| Page/Status              | Element                 |  Action   | Expected Result                                                                           | Pass/Fail |
-| ------------------------ | ----------------------- | :-------: | ----------------------------------------------------------------------------------------- | --------- |
-| **EditProfilePage.js**   | _Bio input field_       |  _click_  | _Clicking the input box allows the user to input alphanumeric characters_                 | **pass**  |
-|                          | _Image input field_     | _display_ | _If the user has already selected an image, prepopulate with the previous image selected_ | **pass**  |
-|                          |                         | _display_ | _Button to select an image from your computer_                                            | **pass**  |
-|                          | _Image select button_   |  _click_  | _Open computer to select image_                                                           | **pass**  |
-|                          |                         | _display_ | _When a user selects an image, it is displayed_                                           | **pass**  |
-|                          | _Cancel button_         |  _hover_  | _Dark text_                                                                               | **pass**  |
-|                          |                         |  _click_  | _Redirect to profile page_                                                                | **pass**  |
-|                          | _Save button_           |  _hover_  | _Dark text_                                                                               | **pass**  |
-|                          |                         |  _click_  | _With valid data, the profile is updated_                                                 | **pass**  |
-|                          |                         |           | _Success notification_                                                                    | **pass**  |
-| **Change Username page** | _Change username field_ |  _click_  | _Clicking the input box allows the user to input alphanumeric characters_                 | **pass**  |
-|                          | _Cancel button_         |  _hover_  | _Dark text_                                                                               | **pass**  |
-|                          |                         |  _click_  | _Redirect to profile page_                                                                | **pass**  |
-|                          | _Save button_           |  _hover_  | _Dark text_                                                                               | **pass**  |
-|                          |                         |  _click_  | _If correct inputted data, update username and return to profile page_                    | **pass**  |
-|                          |                         |           | _Success notification_                                                                    | **pass**  |
+| Page/Status              | Element                            |  Action   |                                           Expected Result                                           | Pass/Fail |
+| ------------------------ | ---------------------------------- | :-------: | :-------------------------------------------------------------------------------------------------: | :-------: |
+| **ProfilePage.js**       | _User Avatar_                      | _display_ |                                       _A users profile image_                                       | **pass**  |
+|                          | _Profile settings in MoreDropDown_ | _display_ |                           _Only if the user is the owner of the profile_                            | **pass**  |
+| **logged-out**           | _Comments Count_                   | _display_ |                               _Display a users total comments count_                                | **pass**  |
+|                          | _Followers Count_                  | _display_ |                               _Display a users total followers count_                               | **pass**  |
+|                          | _Following Count_                  | _display_ |                               _Display a users total following count_                               | **pass**  |
+|                          | _Bookmarks Count_                  | _display_ |                               _Display a users total bookmarks count_                               | **pass**  |
+|                          | _Stickers Count_                   | _display_ |                               _Display a users total stickers count_                                | **pass**  |
+|                          | _Users comments_                   | _display_ |                            _Users comments using the comment component_                             | **pass**  |
+|                          |                                    | _display_ |           _If a user has not uploaded any images display: No results found text & image_            | **pass**  |
+| **logged-in**            | _Comments Count_                   | _display_ |                               _Display a users total comments count_                                | **pass**  |
+|                          |                                    |           |            _When a user adds a new comment, the users comments count increments by one_             | **pass**  |
+|                          | _Followers Count_                  | _display_ |                               _Display a users total followers count_                               | **pass**  |
+|                          | _Following Count_                  | _display_ |                               _Display a users total following count_                               | **pass**  |
+|                          |                                    |           | _When a user follows a user from the most followed component the following count increments by one_ | **pass**  |
+|                          | _Follow Button_                    | _display_ |               _If the user is not the owner of the profile, display a follow button_                | **pass**  |
+|                          |                                    |  _hover_  |                                             _Dark text_                                             | **pass**  |
+|                          |                                    |  _click_  |                   _User is followed & the users followers count increments by 1_                    | **pass**  |
+|                          |                                    |           |                                        _Database is updated_                                        | **pass**  |
+|                          |                                    |           |                                       _Success notification_                                        | **pass**  |
+|                          |                                    |           |                                    _Button changes to unfollow_                                     | **pass**  |
+|                          | _Unfollow Button_                  | _display_ |               _If the user is not the owner of the profile, display a follow button_                | **pass**  |
+|                          |                                    |  _hover_  |                                             _Dark text_                                             | **pass**  |
+|                          |                                    |  _click_  |                  _User is unfollowed & the users followers count decrements by 1_                   | **pass**  |
+|                          |                                    |           |                                        _Database is updated_                                        | **pass**  |
+|                          |                                    |           |                                           _Notification_                                            | **pass**  |
+|                          |                                    |           |                                     _Button changes to follow_                                      | **pass**  |
+|                          |                                    | _display_ |                                 _If nothing selected, display icon_                                 | **pass**  |
+|                          | _Users comments_                   | _display_ |                            _Users comments using the comment component_                             | **pass**  |
+|                          |                                    | _display_ |           _If a user has not uploaded any images display: No results found text & image_            | **pass**  |
+|                          | _Profile settings tab_             |  _click_  |                                    _Profile dropdown menu opens_                                    | **pass**  |
+|                          | _Edit profile tab_                 |  _hover_  |                                          _Dark background_                                          | **pass**  |
+|                          |                                    |  _click_  |                                      _Open edit profile page_                                       | **pass**  |
+|                          | _Change password tab_              |  _hover_  |                                          _Dark background_                                          | **pass**  |
+|                          |                                    |  _click_  |                                     _Open change password page_                                     | **pass**  |
+|                          | _Change username tab_              |  _hover_  |                                          _Dark background_                                          | **pass**  |
+|                          |                                    |  _click_  |                                     _Open change username tab_                                      | **pass**  |
+| **EditProfilePage.js**   | _Bio input field_                  |  _click_  |              _Clicking the input box allows the user to input alphanumeric characters_              | **pass**  |
+|                          | _Image input field_                | _display_ |      _If the user has already selected an image, prepopulate with the previous image selected_      | **pass**  |
+|                          |                                    | _display_ |                           _Button to select an image from your computer_                            | **pass**  |
+|                          | _Image select button_              |  _click_  |                                   _Open computer to select image_                                   | **pass**  |
+|                          |                                    | _display_ |                           _When a user selects an image, it is displayed_                           | **pass**  |
+|                          | _Cancel button_                    |  _hover_  |                                             _Dark text_                                             | **pass**  |
+|                          |                                    |  _click_  |                                     _Redirect to profile page_                                      | **pass**  |
+|                          | _Save button_                      |  _hover_  |                                             _Dark text_                                             | **pass**  |
+|                          |                                    |  _click_  |                              _With valid data, the profile is updated_                              | **pass**  |
+|                          |                                    |           |                                       _Success notification_                                        | **pass**  |
+| **Change Username page** | _Change username field_            |  _click_  |              _Clicking the input box allows the user to input alphanumeric characters_              | **pass**  |
+|                          | _Cancel button_                    |  _hover_  |                                             _Dark text_                                             | **pass**  |
+|                          |                                    |  _click_  |                                     _Redirect to profile page_                                      | **pass**  |
+|                          | _Save button_                      |  _hover_  |                                             _Dark text_                                             | **pass**  |
+|                          |                                    |  _click_  |               _If correct inputted data, update username and return to profile page_                | **pass**  |
+|                          |                                    |           |                                       _Success notification_                                        | **pass**  |
 
 ---
 
 ## Automated Testing
 
-Unfortunately, due to time constraints, automated testing could not be implemented for this project. However, it will be addressed and added as a future update.
+Unfortunately, due to time constraints, automated testing in the front-end could not be implemented for this project. However, it will be addressed and added as a future update.
 
 ## Validator Testing
 
@@ -295,7 +289,7 @@ The _[W3C HTML validator](https://validator.w3.org/)_ was used to test the one H
 
 ### CSS
 
-The _[W3C CSS Validator](https://jigsaw.w3.org/css-validator/)_ was used to validate the project, the results are shown below with **no errors reported.**
+The _[W3C CSS Validator](https://jigsaw.w3.org/css-validator/)_ was used to validate the project, the results are shown below.
 
 ![CSS w3c validator](frontend/src/docs/testing/css-w3c-validation.png)
 
@@ -375,7 +369,7 @@ Mobile testing has been performed too and reported similar results to the deskto
 | `BookmarkPage.js`    |  ![lighthouse result desktop create group](frontend/src/docs/testing/lighthouse/desktop-bookmark-page.jpg)  |
 | `ProfilePage.js`     |  ![lighthouse result desktop profile page](frontend/src/docs/testing/lighthouse/desktop-profile-page.jpg)   |
 
-_Due to the delivery time of the project I will not make any additional changes to improve performance and accessibility, such as decreasing the size of images, changing the contrast of some text and revising some code to improve tagging._
+_Due to the delivery time of the project I will not make any additional changes to improve performance and accessibility, such as decreasing the size of images, changing the contrast of some text and revising some code to improve tagging. This is a pending task for future updates._
 
 ---
 

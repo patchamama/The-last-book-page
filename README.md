@@ -49,7 +49,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#2](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/2) As a **Developer**, I can **serialize the profiles app** so that **the data can be used as python native datatype and can be render to JSON**
 
-[#15](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/15) As a **Developer**, I can **, I can install Django with its dependencies** so that ** can be created the project and apps to develop**
+[#15](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/15) As a **Developer**, I can, **I can install Django with its dependencies** so that **can be created the project and apps to develop**
 
 ### Epic#2
 
@@ -175,7 +175,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 ### Design
 
-For the design of the site we have opted for simplicity and few colours to achieve good visibility of the content with good contrast.
+For the design of the site I have opted for simplicity and few colours to achieve good visibility of the content with good contrast.
 
 #### Wireframes
 
@@ -304,7 +304,7 @@ For the management of the development of the application, an agile approach was 
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
-A GitHub Issue was created for each User Story, which was then allocated to a milestone (Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Story's execution. The issues were closed automatically when the pull request was linked to the issue, most of them were closed automatically but some were closed manually.
+A GitHub Issue was created for each User Story, which was then allocated to a milestone (Epic).
 
 ## Security Features and Defensive Design
 
@@ -331,8 +331,6 @@ A warning message will appear to the user when inaccurate or empty data is enter
 #### _User has not logged in Navbar_
 
 ![Navigation section logged out user](frontend/src/docs/images/navigation-logged-out.png)
-
-- The information icon is visible at all times, and when the user hovers over it, a tooltip displays the word 'Information', providing a clear and concise way for users to access additional information.
 
 #### _User logged-in Navbar_
 
@@ -480,7 +478,7 @@ It could also be interesting to add the option of rating books and to include se
 
 ### `Asset.js`
 
-_Asset.js_ is a versatile and reusable component that is used throughout my app to display a loading spinner in a visually appealing way. With customizable props such as spinner, src, and message, the component can be easily adapted to suit different use cases and design requirements. When the spinner prop is set to true, the component displays a rotating Earth animation to indicate that content is being loaded. When the src prop is present, the component displays an image with customizable alt text provided by the message prop. When the message prop is present, the component displays a paragraph of text below the image.
+_Asset.js_ is a versatile and reusable component that is used throughout my app to display a loading spinner in a visually appealing way. With customizable props such as spinner, src, and message, the component can be easily adapted to suit different use cases and design requirements. When the src prop is present, the component displays an image with customizable alt text provided by the message prop. When the message prop is present, the component displays a paragraph of text below the image.
 
 ### `Avatar.js`
 
@@ -547,7 +545,7 @@ The useRedirect hook is a custom React hook that uses the React Router and Axios
 
 [**jwt-decode**](https://jwt.io/) - Securely implement authentication with JSON Web Tokens.
 
-[**react-datepicker**](https://www.npmjs.com/package/react-datepicker) - A simple and reusable Datepicker component used for my date of birth field in a profile.
+[**react-datepicker**](https://www.npmjs.com/package/react-datepicker) - A simple and reusable Datepicker component used for my date of publication field in a book.
 
 [**react-dom**](https://legacy.reactjs.org/docs/react-dom.html) - React library for rendering components in the DOM.
 
@@ -556,8 +554,6 @@ The useRedirect hook is a custom React hook that uses the React Router and Axios
 [**react-notifications**](https://www.npmjs.com/package/react-notifications) - Library for displaying notifications.
 
 [**react-router-dom**](https://www.npmjs.com/package/react-router-dom) - React Router is a JavaScript framework that enables the creation of single-page web or mobile apps that allows navigating without refreshing the page.
-
-[**web-vitals**](https://www.npmjs.com/package/web-vitals) - Library for measuring web performance metrics.
 
 # Testing
 
@@ -793,7 +789,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 4. On your computer, open **Terminal**.
 5. Navigate to the directory of choice.
-6. Type **git clone** and paste the copied link of the repository.
+6. Type `git clone` and paste the copied link of the repository.
 7. Press **Enter** and the local clone of the repository will be created in the selected directory.
 
 # Credits
