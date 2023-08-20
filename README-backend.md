@@ -797,49 +797,206 @@ web: gunicorn drf_api.wsgi
 
 # Deployment
 
-## Using Heroku to deploy the project
+## Using Heroku to deploy the API and React projects
 
-- Setup of the local workspace:
-  - This project was developed with the use of [pipenv](https://pypi.org/project/pipenv/) to handle all dependencies
-  - Managing a `requirements.txt` file can be problematic, so Pipenv uses the upcoming `Pipfile` and `Pipfile.lock` instead, which is superior for basic use cases.
-  - Create a `Procfile` in the local workspace and type in `web: gunicorn <name app>.wsgi:application` inside the file.
-  - Commit and push to GitHub
+_The following guide will assist you in deploying both your React front-end project and your Django API back end._
 
-This project was deployed using [Heroku](https://dashboard.heroku.com/) using the following steps:
+### Setting up WhiteNoise for static files
 
-1. Click on _New_ in the top-right corner and then _Create New App_.
+Because the React part of the project contains static files, we need to store all the static files for deployment, using WhiteNoise. WhiteNoise will also store the static files for the Django Admin panel, so you’ll be able to easily access that from the deployed URL as well.
 
-![Heroku New App](docs/deployment/heroku-1.png)
+#### In the terminal:
 
-2. On the next page give the app the unique name.
-3. Choose a region (the USA or Europe).
-4. Click _Create app_.
+1. Ensure your terminal location is in the root directory, then install whitenoise with the following command
 
-![Heroku Unique Name](docs/deployment/heroku-2.png)
+```
+pip3 install whitenoise==6.4.0
+```
 
-5. Go to the _Resources_ tab and search for PostgreSQL. Select _Hobby dev - Free_ and click on the provision button to add it to the project
+2. Add this dependency to your requirements.txt file with the following command
 
-![Heroku Postgresql Resources](docs/deployment/heroku-3.png)
+```
+pip3 freeze > requirements.txt
+```
 
-6. On the next page click on the _Settings_ tab.
-7. In the Settings page open _Config Vars_ and add the following:
+3. Create a new empty folder called staticfiles in the root directly with the following command
 
-![Heroku Conifg Vars](docs/deployment/heroku-4.png)
+```
+mkdir staticfiles
+```
 
-7. Copy the value of _DATABASE_URL_ and paste it into your `.env` file in your workspace together with your secret key.
-8. Set `DEBUG = False` in `settings.py`.
-9. Commit and push your changes to GitHub.
-10. Click on the _Deploy_ tab.
-11. In the _Deploy_ page in the _Deployment Method_ select GitHub.
-12. After a successful connection to GitHub locate your repository and add it to Heroku.
+![mkdir-staticfiles](frontend/src/docs/deploy/mkdir-staticfiles.png)
 
-![Heroku GitHub](frontend/src/docs/deploy/deploy-heroku-5.png)
+#### In settings.py:
 
-13. In the _Manual Deploy_ section confirm that _main_ branch is selected and click _Deploy Branch_
-14. For Final Deployment confirm `DEBUG = False` in `settings.py` and delete `DISABLE_COLLECTSTATIC` from _Config Vars_ in **Heroku**.
-15. Commit and push changes to GitHub.
+1. In the INSTALLED_APPS list, ensure that the ‘cloudinary_storage’ app name is below ‘django.contrib.staticfiles’. This ensures that Cloudinary will not attempt to intervene with staticfiles, and allows whitenoise to become the primary package responsible for static files
 
-![Heroku Deploy](docs/deployment/heroku-6.png)
+![cloudinary-apps](frontend/src/docs/deploy/cloudinary-apps.png)
+
+2. In the MIDDLEWARE list, add WhiteNoise below the SecurityMiddleware and above the SessionMiddleware
+
+```
+'whitenoise.middleware.WhiteNoiseMiddleware',
+```
+
+![whitenoise-middleware](frontend/src/docs/deploy/whitenoise-middleware.png)
+
+3. In the TEMPLATES list at the DIRS key, add the following code to the DIRS list, to tell Django and WhiteNoise where to look for Reacts index.html file in deployment
+
+```
+os.path.join(BASE_DIR, 'staticfiles', 'build')
+```
+
+![staticfiles-build](frontend/src/docs/deploy/staticfiles-build.png)
+
+4. In the static files section, add the STATIC_ROOT and WHITENOISE_ROOT variables and values to tell Django and WhiteNoise where to look for the admin static files and Reacts static files during deployment
+
+```
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+ WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
+```
+
+### Adding the route to serve the index template
+
+_Configuring the route to allow the React front end to be viewed._
+
+The React front end will be served from the domain’s root URL, so we need to ensure that this is the React part of the project and not the DRF interface you worked with when the projects were separate. So we will add the code below to ensure that the home page will display the React application. Any 404 errors redirect the user back to the React application where the request will be handled by the react-router-dom. We will also adjust our URLs so that all URLs for the DRF API contain /api/ to ensure that the API’s routes do not clash with the React application’s routes.
+
+#### In the urls.py file of your Django Rest Framework application:
+
+1. Remove the root_route view from the .views imports
+
+![logout-route](frontend/src/docs/deploy/logout-route.png)
+
+2. Import the TemplateView from the generic Django views
+
+```
+from django.views.generic import TemplateView
+```
+
+![template-view](frontend/src/docs/deploy/template-view.png)
+
+3. In the url_patterns list, remove the root_route code and replace it with the TemplateView pointing to the index.html file
+
+```
+path('', TemplateView.as_view(template_name='index.html')),
+```
+
+Before:
+
+![root-path.png](frontend/src/docs/deploy/root-path.png)
+
+After:
+
+![template-path.png](frontend/src/docs/deploy/template-path.png)
+
+4. At the bottom of the file, add the 404 handler to allow React to handle 404 errors
+
+```
+handler404 = TemplateView.as_view(template_name='index.html')
+```
+
+![handler-404.png](frontend/src/docs/deploy/handler-404.png)
+
+5. Add _api/_ to the beginning of all the API URLs, excluding the path for the home page and admin panel
+
+![lines-23-34.png](frontend/src/docs/deploy/lines-23-34.png)
+
+#### In axiosDefault.js:
+
+1. Now that we have changed the base path for the API route, we need to prepend all API requests in our react application with _/api_. Open the axiosDefaults.js file, comment back in the axios.defaults.baseURL and set it to "_/api_"
+
+![base-url.png](frontend/src/docs/deploy/base-url.png)
+
+### Compiling the static files
+
+_Combining both Django and React static files and compiling them._
+
+Now that the code for collecting and accessing the static files has been created, we can compile all of the static files from both the Django admin panel and the React files into the staticfiles folder for deployment.
+
+1. Collect the admin and DRF staticfiles to the empty staticfiles directory you created earlier, with the following command in the terminal
+
+```
+python3 manage.py collectstatic
+```
+
+![collectstatic.png](frontend/src/docs/deploy/collectstatic.png)
+
+2. Next, we will compile the React application and move its files to the staticfiles folder. In another terminal, cd into the frontend directory
+
+```
+cd frontend
+```
+
+![cd-frontend.png](frontend/src/docs/deploy/cd-frontend.png)
+
+3. Then run the command to compile and move the React files
+
+```
+npm run build && mv build ../staticfiles/.
+```
+
+![npm-run-and-move.png](frontend/src/docs/deploy/npm-run-and-move.png)
+
+**_You will need to re-run this command any time you want to deploy changes to the static files in your project, including the React code. To do this, you need to delete the existing build folder and rebuild it.
+This command will delete the old folder and replace it with the new one:
+`npm run build && rm -rf ../staticfiles/build && mv build ../staticfiles/.`_**
+
+4. Now your staticfiles folder should be filled with all the static files needed for deployment
+
+![staticfiles-directory.png](frontend/src/docs/deploy/staticfiles-directory.png)
+
+**_Depending on your specific dependency versions, your file structure in the staticfiles folder may be slightly different from the above image. The folders we need to be sure are there are the admin and build folders._**
+
+### Adding a runtime.txt file
+
+_This will ensure Heroku uses the correct version of Python to deploy your project._
+
+1. In the root directory of your project, create a new file named runtime.txt
+
+2. Inside the runtime.txt, add the following line:
+
+`python-3.9.16`
+
+![runtime-txt.png](frontend/src/docs/deploy/runtime-txt.png)
+
+### Testing the Build
+
+Now that all the settings are in place, we can test that the builds for both parts of the project are running together on the same server port.
+
+1. Ensure all running servers are terminated. In any running terminals press Ctrl+C
+
+2. In your env.py file, ensure that both the DEBUG and DEV environment variables are commented out
+
+![dev-debug-comment.png](frontend/src/docs/deploy/dev-debug-comment.png)
+
+3. Run the Django server, in the terminal type
+
+`python3 manage.py runserver`
+
+4. Open the preview on port 8000 to check that your application is running
+
+**_The React server should not be running. This is a test to check that Django is serving the React static files._**
+
+### Preparing your existing Heroku app for deployment
+
+If you have not deployed this application to Heroku before, you can find most of the steps for this in the Deployment section of the Django REST Framework module. Please ensure that you have added those settings, plus the additional ones below.
+
+1. Log into your Heroku account and access the dashboard for your DRF application
+
+2. Go to Settings and open the Config Vars
+
+3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the https:// at the beginning and remove the trailing slash at the end
+
+4. Ensure your application has a CLIENT_ORGIN key and set it to the URL of your combined project. This time keep the https:// at the beginning but remove the trailing slash at the end
+
+![heroku-config-vars.png](frontend/src/docs/deploy/heroku-config-vars.png)
+
+**_If you had a value for CLIENT_ORIGIN before, this would have been for your separate React project deployment on Heroku, now this value needs to be updated to the URL for your combined application._**
+
+5. Ensure all your settings are in place, including the ones from the Deployment section of the Django REST Framework module. Including saving, committing and pushing any changes made to your code
+
+6. Deploy your application from the Deploy tab in your Heroku dashboard
 
 ## Fork a repository
 
@@ -848,7 +1005,7 @@ A fork is a copy of a repository. Forking a repository allows you to freely expe
 1. On GitHub.com navigate to the repository page.
 2. In the top-right corner of the page, click **Fork**.
 
-![GitHub Fork](docs/deployment/github-fork.png)
+![GitHub Fork](frontend/src/docs/deploy/deploy-github-fork.png)
 
 You can fork a repository to create a copy of the repository and make changes without affecting the upstream repository.
 
@@ -869,7 +1026,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 # Credits
 
-- Deployment section is based on the owner's previous project [OneTeam](https://github.com/miloszmisiek/ci-pp4-one_team).
+- Deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 - Django REST framework: https://www.django-rest-framework.org/
 - To generate secret-keys: https://djecrety.ir/
@@ -877,6 +1034,21 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 - CI Python Linter from code institute: https://pep8ci.herokuapp.com/
 - Code Institute - _drf_api_ walkthrough project: https://github.com/Code-Institute-Solutions/drf-api
 
+
+### Content
+
+I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customise it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my own unique touch to the project. Overall, I really enjoyed putting this project together.
+
+
+
 # Acknowledgments
 
-I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor _Sandeep Aggarwal_ and the Code Institute training programme.
+I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother for his support and trust.
+
+# Credits
+
+
+
+# Acknowledgments
+
+I would like to thank my daughters and their mother for their support and understanding during the hours they have given me for the project, as well as my partner for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother for his support and trust.
