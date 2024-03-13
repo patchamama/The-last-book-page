@@ -845,4 +845,4 @@ I have used a considerable amount of content throughout the site, inspired by th
 
 # Acknowledgments
 
-I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they have given me for the project, as well as my partner (Maria) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
+I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they have given me for the project, as well as my girlfriend (Maria Casiopea) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
