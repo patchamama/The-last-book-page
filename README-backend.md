@@ -37,7 +37,7 @@ The reason for this API is to provide all the information required for querying 
 ### User Stories
 
 In total 48 User Stories have been created and executed in 15 Epics (Milestones). In the backend 20 User Stories with 8 Epics, and in the Frontend 26 User Stories with 7 Epics (2 User Stories are pending).
-Epic 11 was added in the backend while the frontend was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added in the backend to meet the frontend's wishes for search and display information. In the commit history you can see how the tasks were executed as the development of the application progressed.
+Epic 11 was added in the backend while the front end was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added in the backend to meet the frontend's wishes for search and display information. In the commit history, you can see how the tasks were executed as the development of the application progressed.
 
 ## Backend Django REST API
 
@@ -45,7 +45,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#1](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/1) As a **Developer**, I can **create and develop the profiles app** so that **the users can create their own profiles**
 
-[#2](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/2) As a **Developer**, I can **serialize the profiles app** so that **the data can be used as python native datatype and can be render to JSON**
+[#2](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/2) As a **Developer**, I can **serialize the profiles app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 [#15](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/15) As a **Developer**, I can **, I can install Django with its dependencies** so that ** can be created the project and apps to develop**
 
@@ -53,35 +53,35 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#13](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/13) As a **Developer**, I can **Install and develop the books app** so that **users can create their own books**
 
-[#14](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/14) As a **Developer**, I can **serialize the books app** so that **the data can be used as python native datatype and can be render to JSON**
+[#14](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/14) As a **Developer**, I can **serialize the books app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#3
 
 [#3](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/3) As a **Developer**, I can **Install and develop the comments app** so that **users can create their own comments**
 
-[#4](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/4) As a **Developer**, I can **serialize the comments app** so that **the data can be used as python native datatype and can be render to JSON**
+[#4](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/4) As a **Developer**, I can **serialize the comments app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 [#5](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/5) As a **Developer**, I can **develop the comment detail view** so that **the user can develop Read, Update, Delete and retrieve data of comments**
 
-[#6](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/6) As a **Developer**, I can **serialize the comments detail app** so that **the data can be used as python native datatype and can be render to JSON**
+[#6](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/6) As a **Developer**, I can **serialize the comments detail app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#4
 
 [#7](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/7) As a **Developer**, I can **Install and develop the likes app** so that **users can create their own likes**
 
-[#8](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/8) As a **Developer**, I can **serialize the likes app** so that **the data can be used as python native datatype and can be render to JSON**
+[#8](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/8) As a **Developer**, I can **serialize the likes app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#5
 
 [#11](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/11) As a **Developer**, I can **Install and develop the followers app** so that **users can create their own followers**
 
-[#12](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/12) As a **Developer**, I can **serialize the followers app** so that **the data can be used as python native datatype and can be render to JSON**
+[#12](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/12) As a **Developer**, I can **serialize the follower's app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#6
 
 [#9](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/9) As a **Developer**, I can **Install and develop the bookmarks app** so that **users can create their own bookmarks**
 
-[#10](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/10) As a **Developer**, I can **serialize the bookmarks app** so that **the data can be used as python native datatype and can be render to JSON**
+[#10](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/10) As a **Developer**, I can **serialize the bookmarks app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#7
 
@@ -95,7 +95,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#36](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/36) - As a **Developer**, I can **Install and develop the stickers app** so that **users can add notes to comments of books**
 
-[#37](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/37) As a **Developer**, I can **serialize the stickers app** so that **the data can be used as python native datatype and can be render to JSON**
+[#37](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/37) As a **Developer**, I can **serialize the stickers app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ## Frontend React
 
@@ -143,7 +143,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#42](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/42) As a **User**, I can **view the profiles of other users** so that **, I can see their bio and learn more about them**
 
-[#43](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/43) As a **logged-in User**, I can **customise my profile with an avatar** so that **my profile can be easy to be identified within the site**
+[#43](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/43) As a **logged-in User**, I can **customize my profile with an avatar** so that **my profile can be easy to be identified within the site**
 
 [#44](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/44) As a **logged-in User**, I can **have the option to follow/unfollow users** so that **, I can keep track of their content**
 
@@ -167,19 +167,19 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 ## Pending
 
-[#53](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/53) As **logged-in User**, I can **send message to any other user,** so that **I can do any communication about books comments, readings...**
+[#53](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/53) As **logged-in User**, I can **send a message to any other user,** so that **I can do any communication about books comments, readings...**
 
 [#54](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/54) As **logged-in User**, I can **read messages from any user,** so that **, I can be informed about any communication received**
 
 # Agile Methodology
 
-For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
+For the management of the development of the application, an agile approach was used and for this purpose, a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
 # Entity Relationship Diagram
 
-To create the entity relationship diagram, I used a graph modelling tool [Miro](https://miro.com/). It shows the relationship between all models in the database.
+To create the entity relationship diagram, I used a graph modeling tool [Miro](https://miro.com/). It shows the relationship between all models in the database.
 
 ![Entity Relationship Diagram](docs/model_database.png)
 
@@ -191,7 +191,7 @@ A PostgreSQL database hosted by ElephantSQL was used throughout most of the proc
 
 ### Comment
 
-The Comment model will allow users to create their own comments about any existed book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The comment field is a TextField that can allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the Book model with Comment allowing to create different comments for the same book from one or several users (`owner` field that relates to the User model in the same one-to-many way: one user can have several comments). The owner and the book fields are ForeignKeys, that creates a relationship between the model and the User and Book model, indicating that each Commment instance belongs to one user and one book. The on_delete=models.CASCADE argument specifies that if the associated user or book is deleted, all related Comment instances will also be deleted.
+The Comment model will allow users to create their own comments about any existed book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The comment field is a TextField that can allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the Book model with Comment allowing to create of different comments for the same book from one or several users (`owner` field that relates to the User model in the same one-to-many way: one user can have several comments). The owner and the book fields are ForeignKeys, which creates a relationship between the model and the User and Book model, indicating that each comment instance belongs to one user and one book. The on_delete=models.CASCADE argument specifies that if the associated user or book is deleted, all related Comment instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**               |
 | -------------- | -------------- | -------------------------------- |
@@ -203,7 +203,7 @@ The Comment model will allow users to create their own comments about any existe
 
 ### Sticker
 
-The Sticker template allows the user to create personal notes or stickers of a comment on an entry. If a comment is deleted, the sticker is removed from both the user model and the entry model. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively. The owner and the comment fields are ForeignKeys, that creates a relationship between the model and the User and Comment model, indicating that each Sticker instance belongs to one user and one comment. The on_delete=models.CASCADE argument specifies that if the associated user or comment is deleted, all related Sticker instances will also be deleted.
+The Sticker template allows the user to create personal notes or stickers of a comment on an entry. If a comment is deleted, the sticker is removed from both the user model and the entry model. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively. The owner and the comment fields are ForeignKeys, which creates a relationship between the model and the User and Comment model, indicating that each Sticker instance belongs to one user and one comment. The on_delete=models.CASCADE argument specifies that if the associated user or comment is deleted, all related Sticker instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**                  |
 | -------------- | -------------- | ----------------------------------- |
@@ -215,7 +215,7 @@ The Sticker template allows the user to create personal notes or stickers of a c
 
 ### Book
 
-The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, isbn, original language of publication and current language of the book in the record, genre, synopsis and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only it can delete it: `created_by`). Other models such as Comment and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+The Book model contains the entire record with the fields relating to a book (title, author, date of publication, publisher, number of pages, ISBN, original language of publication, and current language of the book in the record, genre, synopsis, and book cover). This model has some autonomy but the User who creates and updates it is registered (to protect that only it can delete it: `created_by`). Other models such as Comments and Bookmarks reference this model for their purposes. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
 
 | **Field name** | **Field Type** | **Field Argument**                                                                      |
 | -------------- | -------------- | --------------------------------------------------------------------------------------- |
@@ -238,7 +238,7 @@ The Book model contains the entire record with the fields relating to a book (ti
 
 ### Bookmark
 
-The Bookmark model allows to register the status or interest of users in a book (e.g.: to read, to check, read, ...). To fulfil its objective, it is related through the `owner` field with the User model and `book` with the Book model in a one-to-many relationship, which allows that a book can have several bookmarks (statuses) from one or many users, as well as that a user can have several books with different options to be consulted. The `owner` field is a ForeignKey that creates a relationship between the Bookmark model and the User model, indicating that each Bookmark instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Bookmark instances will also be deleted. The book field is also a ForeignKey, creating a relationship between the Bookmark model and the Book model. The on_delete=models.CASCADE argument specifies that if the associated book is deleted, all related Bookmark instances will also be deleted. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
+The Bookmark model allows to register the status or interest of users in a book (e.g.: to read, to check, read, ...). To fulfill its objective, it is related through the `owner` field with the User model and `book` with the Book model in a one-to-many relationship, which allows a book can have several bookmarks (statuses) from one or many users, as well as that a user can have several books with different options to be consulted. The `owner` field is a ForeignKey that creates a relationship between the Bookmark model and the User model, indicating that each Bookmark instance belongs to one user. The on_delete=models.CASCADE argument specifies that if the associated user is deleted, all related Bookmark instances will also be deleted. The book field is also a ForeignKey, creating a relationship between the Bookmark model and the Book model. The on_delete=models.CASCADE argument specifies that if the associated book is deleted, all related Bookmark instances will also be deleted. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time the sticker was created and last modified, respectively.
 
 | **Field name** | **Field Type** | **Field Argument**                                           |
 | -------------- | -------------- | ------------------------------------------------------------ |
@@ -324,7 +324,7 @@ To test the Python Code, I used the Code Institutes [PEP8](https://pep8ci.heroku
 
 ## Automated Testing
 
-Some tests were programmed to check data integrity in models, views and forms.
+Some tests were programmed to check data integrity in models, views, and forms.
 
 ![Django test results](docs/testing/django-testing.png)
 
@@ -341,33 +341,33 @@ Using Django's development mode, the defined URLs were visited to check if they 
 | profiles  |                profiles/<int:pk>/                | If the user is not the owner of the profile, do not display edit options                                                      |   **pass**    |
 | profiles  |                profiles/<int:pk>/                | When a user updates their profile, the new data is displayed                                                                  |   **pass**    |
 | profiles  |        profiles/?ordering=comments_count         | Display a list of comments from a particular profile in ascending order                                                       |   **pass**    |
-| profiles  |        profiles/?ordering=-comments_count        | Display a list of comments from a particular profile in decending order                                                       |   **pass**    |
+| profiles  |        profiles/?ordering=-comments_count        | Display a list of comments from a particular profile in descending order                                                       |   **pass**    |
 | profiles  |        profiles/?ordering=followers_count        | Display a users `followers_count` in ascending order                                                                          |   **pass**    |
-| profiles  |       profiles/?ordering=-followers_count        | Display a users `followers_count` in decending order                                                                          |   **pass**    |
+| profiles  |       profiles/?ordering=-followers_count        | Display a users `followers_count` in descending order                                                                          |   **pass**    |
 | profiles  |        profiles/?ordering=following_count        | Display a users `following_count` in ascending order                                                                          |   **pass**    |
-| profiles  |       profiles/?ordering=-following_count        | Display a users `following_count` in decending order                                                                          |   **pass**    |
-| profiles  | profiles/?ordering=owner**following**created_on  | Display a list of profiles a user is following by `created_on` in acending order                                              |   **pass**    |
-| profiles  | profiles/?ordering=-owner**following**created_on | Display a list of profiles a user is following by `created_on` in decending order                                             |   **pass**    |
+| profiles  |       profiles/?ordering=-following_count        | Display a users `following_count` in descending order                                                                          |   **pass**    |
+| profiles  | profiles/?ordering=owner**following**created_on  | Display a list of profiles a user is following by `created_on` in ascending order                                              |   **pass**    |
+| profiles  | profiles/?ordering=-owner**following**created_on | Display a list of profiles a user is following by `created_on` in descending order                                             |   **pass**    |
 | comments  |                    comments/                     | Return a list of all the comments in the database ordered by `created_on`                                                     |   **pass**    |
-| comments  |                    comments/                     | If the user is logged in, display option to add a comment                                                                     |   **pass**    |
-| comments  |                    comments/                     | When a logged in user updates a comment, their updated data is reflected within the comments list & comment detail page       |   **pass**    |
+| comments  |                    comments/                     | If the user is logged in, display the option to add a comment                                                                     |   **pass**    |
+| comments  |                    comments/                     | When a logged-in user updates a comment, their updated data is reflected within the comments list & comment detail page       |   **pass**    |
 | comments  |                comments/<int:pk>/                | Return a single comment detail page                                                                                           |   **pass**    |
 | comments  |                comments/<int:pk>/                | Display edit option if the logged-in user is the owner of the comment                                                         |   **pass**    |
 | comments  |                comments/<int:pk>/                | Display delete option if the logged-in user is the owner of the comment                                                       |   **pass**    |
-| comments  |                comments/<int:pk>/                | When a logged in user deletes a comment, the comment is removed from the database                                             |   **pass**    |
-| comments  |                comments/<int:pk>/                | When a logged in user updates a comment, their updated data is reflected within the comments detail page                      |   **pass**    |
+| comments  |                comments/<int:pk>/                | When a logged-in user deletes a comment, the comment is removed from the database                                             |   **pass**    |
+| comments  |                comments/<int:pk>/                | When a logged-in user updates a comment, their updated data is reflected within the comments detail page                      |   **pass**    |
 | comments  |          comments/?ordering=likes_count          | Display a comments `likes_count` in ascending order                                                                           |   **pass**    |
-| comments  |         comments/?ordering=-likes_count          | Display a comments `likes_count` in decending order                                                                           |   **pass**    |
+| comments  |         comments/?ordering=-likes_count          | Display a comments `likes_count` in descending order                                                                           |   **pass**    |
 | comments  |      comments/?ordering=likes\_\_created_on      | Display comment likes by created date in ascending order                                                                      |   **pass**    |
-| comments  |     comments/?ordering=-likes\_\_created_on      | Display comment likes by created date in decending order                                                                      |   **pass**    |
+| comments  |     comments/?ordering=-likes\_\_created_on      | Display comment likes by created date in descending order                                                                      |   **pass**    |
 | comments  |        comments/?ordering=stickers_count         | Display a comments `stickers_count` in ascending order                                                                        |   **pass**    |
-| comments  |        comments/?ordering=-stickers_count        | Display a comments `stickers_count` in decending order                                                                        |   **pass**    |
+| comments  |        comments/?ordering=-stickers_count        | Display a comments `stickers_count` in descending order                                                                        |   **pass**    |
 | stickers  |                    stickers/                     | Display a list of stickers which has a corresponding comment ID                                                               |   **pass**    |
 | stickers  |                    stickers/                     | Display a list of stickers in descending order - newest stickers first                                                        |   **pass**    |
 | stickers  |                    stickers/                     | Filter a sticker by comment and display results                                                                               |   **pass**    |
-| stickers  |                    stickers/                     | If the user is logged in, display option to add a sticker from a list of comments                                             |   **pass**    |
+| stickers  |                    stickers/                     | If the user is logged in, display the option to add a sticker from a list of comments                                             |   **pass**    |
 | stickers  |                    stickers/                     | When a user adds a sticker to a comment, the `stickers_count` within the comment list page and comment detail page increases  |   **pass**    |
-| stickers  |                stickers/<int:pk>/                | Return a single sticker with a correct ID and a list of all it's values                                                       |   **pass**    |
+| stickers  |                stickers/<int:pk>/                | Return a single sticker with a correct ID and a list of all its values                                                       |   **pass**    |
 | stickers  |                stickers/<int:pk>/                | If the user is the owner of the sticker, display edit and delete options                                                      |   **pass**    |
 | stickers  |                stickers/<int:pk>/                | If the user updates a sticker, the data is reflected in the stickers list and sticker detail page                             |   **pass**    |
 | stickers  |                stickers/<int:pk>/                | If the user deletes a sticker, the sticker is removed from the database                                                       |   **pass**    |
@@ -379,46 +379,46 @@ Using Django's development mode, the defined URLs were visited to check if they 
 | books     |                 books/<int:pk>/                  | Display edit options if is an logged-in user                                                                                  |   **pass**    |
 | books     |                 books/<int:pk>/                  | If the user is not logged in, do not display edit options                                                                     |   **pass**    |
 | books     |                 books/<int:pk>/                  | When a user updates their book, the new data is displayed                                                                     |   **pass**    |
-| books     |          books/?ordering=comments_count          | Display a list of books order by count of comment in ascending order                                                          |   **pass**    |
-| books     |         books/?ordering=-comments_count          | Display a list of books order by count of comment in decending order                                                          |   **pass**    |
-| books     |         books/?ordering=bookmarks_count          | Display a list of books order by count of bookmarks in ascending order                                                        |   **pass**    |
-| books     |         books/?ordering=-bookmarks_count         | Display a list of books order by count of bookmarks in decending order                                                        |   **pass**    |
-| books     |              books/?ordering=title               | Display a list of books order by title in ascending order                                                                     |   **pass**    |
-| books     |              books/?ordering=-title              | Display a list of books order by title in decending order                                                                     |   **pass**    |
-| books     |               books/?ordering=auth               | Display a list of books order by auth in ascending order                                                                      |   **pass**    |
-| books     |              books/?ordering=-auth               | Display a list of books order by auth in decending order                                                                      |   **pass**    |
-| books     |               books/?search=<text>               | Display a list of books with auth, title or user like <text>                                                                  |   **pass**    |
+| books     |          books/?ordering=comments_count          | Display a list of books ordered by count of comments in ascending order                                                          |   **pass**    |
+| books     |         books/?ordering=-comments_count          | Display a list of books ordered by count of comments in descending order                                                          |   **pass**    |
+| books     |         books/?ordering=bookmarks_count          | Display a list of books ordered by count of bookmarks in ascending order                                                        |   **pass**    |
+| books     |         books/?ordering=-bookmarks_count         | Display a list of books ordered by count of bookmarks in descending order                                                        |   **pass**    |
+| books     |              books/?ordering=title               | Display a list of books ordered by title in ascending order                                                                     |   **pass**    |
+| books     |              books/?ordering=-title              | Display a list of books ordered by title in descending order                                                                     |   **pass**    |
+| books     |               books/?ordering=auth               | Display a list of books ordered by auth in ascending order                                                                      |   **pass**    |
+| books     |              books/?ordering=-auth               | Display a list of books ordered by auth in descending order                                                                      |   **pass**    |
+| books     |               books/?search=<text>               | Display a list of books with auth, title, or user like <text>                                                                  |   **pass**    |
 | books     |   books/?bookmark**owner**profile=<profile id>   | Display a list of books with bookmarks created by User equal to <profileid>                                                   |   **pass**    |
 | bookmarks |                    bookmarks/                    | Display a list of bookmarks with a corresponding book and user ID                                                             |   **pass**    |
-| bookmarks |                    bookmarks/                    | Display a users list of bookmarks in descending order, newest first                                                           |   **pass**    |
-| bookmarks |                    bookmarks/                    | If the user is logged in, display the option to bookmark a book from a list of books and with a status from a list of options |   **pass**    |
+| bookmarks |                    bookmarks/                    | Display a user list of bookmarks in descending order, newest first                                                           |   **pass**    |
+| bookmarks |                    bookmarks/                    | If the user is logged in, display the option to bookmark a book from a list of books and with status from a list of options |   **pass**    |
 | bookmarks |                    bookmarks/                    | If the user is not logged in, no option to bookmark a book                                                                    |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | Display a single bookmark with a correct ID and a list of all it's values                                                     |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | Display a single bookmark with a correct ID and a list of all its values                                                     |   **pass**    |
 | bookmarks |               bookmarks/<int:pk>/                | If the user is logged in, display the option to delete a bookmark                                                             |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | If a logged in user deletes a bookmark, the bookmark is removed from the database                                             |   **pass**    |
-| bookmarks |               bookmarks/<int:pk>/                | If a non logged in user tries to delete a bookmark, 403 Forbiddden displayed                                                  |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | If a logged-in user deletes a bookmark, the bookmark is removed from the database                                             |   **pass**    |
+| bookmarks |               bookmarks/<int:pk>/                | If a non-logged-in user tries to delete a bookmark, 403 Forbidden displayed                                                  |   **pass**    |
 | likes     |                      likes/                      | Display a list of likes with a corresponding comment ID                                                                       |   **pass**    |
-| likes     |                      likes/                      | Display a users list of likes in descending order, newest first                                                               |   **pass**    |
+| likes     |                      likes/                      | Display a user list of likes in descending order, newest first                                                               |   **pass**    |
 | likes     |                      likes/                      | If the user is logged in, display the option to like a comment from a list of comments                                        |   **pass**    |
-| likes     |                      likes/                      | When a logged in user adds a like, the `likes_count` within the comment list page and comment detail page increases           |   **pass**    |
+| likes     |                      likes/                      | When a logged-in user adds a like, the `likes_count` within the comment list page and comment detail page increases           |   **pass**    |
 | likes     |                      likes/                      | If the user is not logged in, no option to like a comment                                                                     |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | Display a single like with a correct ID and a list of all it's values                                                         |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | Display a single like with a correct ID and a list of all its values                                                         |   **pass**    |
 | likes     |                 likes/<int:pk>/                  | If the user is logged in display the option to delete a like                                                                  |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | If a logged in user deletes a like, the like is removed from the database and all corresponding pages                         |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | If a non logged in user tries to delete a like, 403 Forbiddden displayed                                                      |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | If a logged-in user deletes a like, the like is removed from the database and all corresponding pages                         |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | If a non-logged-in user tries to delete a like, 403 Forbidden displayed                                                      |   **pass**    |
 | followers |                    followers/                    | Display a list of followers with a corresponding comment ID                                                                   |   **pass**    |
-| followers |                    followers/                    | Display a users list of followers in descending order, newest first                                                           |   **pass**    |
+| followers |                    followers/                    | Display a user list of followers in descending order, newest first                                                           |   **pass**    |
 | followers |                    followers/                    | If the user is logged in, display the option to follow a profile from a list of profiles                                      |   **pass**    |
-| followers |                    followers/                    | When a logged in user adds a follower, the `followers_count` within the comment list page and comment detail page increases   |   **pass**    |
+| followers |                    followers/                    | When a logged-in user adds a follower, the `followers_count` within the comment list page and comment detail page increases   |   **pass**    |
 | followers |                    followers/                    | If the user is not logged in, no option to follow a profile                                                                   |   **pass**    |
-| followers |               followers/<int:pk>/                | Display a single follower with a correct ID and a list of all it's values                                                     |   **pass**    |
+| followers |               followers/<int:pk>/                | Display a single follower with a correct ID and a list of all its values                                                     |   **pass**    |
 | followers |               followers/<int:pk>/                | If the user is logged in, display the option to delete a follower                                                             |   **pass**    |
-| followers |               followers/<int:pk>/                | If a logged in user deletes a follower, the follower is removed from the database and all corresponding pages                 |   **pass**    |
-| followers |               followers/<int:pk>/                | If a non logged in user tries to delete a follower, 403 Forbiddden displayed                                                  |   **pass**    |
+| followers |               followers/<int:pk>/                | If a logged-in user deletes a follower, the follower is removed from the database, and all corresponding pages                 |   **pass**    |
+| followers |               followers/<int:pk>/                | If a non-logged-in user tries to delete a follower, 403 Forbidden displayed                                                  |   **pass**    |
 
 ## Security Fixed
 
-During the updates in git I did not check the updates to be discarded in the .gitignore file, which resulted in the env.py file being published with the cloudinary, postgres (ElephantSQL) and secret-key keys. This determined to regenerate the keys again and update them in env.py and the configuration variables in heroku.
+During the updates in git, I did not check the updates to be discarded in the .gitignore file, which resulted in the env.py file being published with the Cloudinary, postgres (ElephantSQL), and secret-key keys. This determined to regenerate the keys again and update them in env.py and the configuration variables in Heroku.
 
 ## Bugs Fixed
 
@@ -428,7 +428,7 @@ During the updates in git I did not check the updates to be discarded in the .gi
 book_cover = serializers.ReadOnlyField(source='book.cover.image.url')
 ```
 
-after a lot of tests/debugs and the checking of the documentation was resolve with the line:
+after a lot of tests/debugs and the checking of the documentation was resolved with the line:
 
 ```
 book_cover = serializers.ImageField(source='book.cover', read_only=True)
@@ -468,11 +468,11 @@ book_cover = serializers.ImageField(source='book.cover', read_only=True)
 - [pydot](https://pypi.org/project/pydot/) - Library to generate .dot files which can be used to show ERD's
 - [PyJWT](https://pypi.org/project/PyJWT/) - Library for encoding and decoding JSON Web Tokens (JWT)
 - [pyparsing](https://pypi.org/project/pyparsing/) - Python parsing module
-- [pytz](https://pypi.org/project/pytz/) - Allows accurate and cross platform timezone calculations
+- [pytz](https://pypi.org/project/pytz/) - Allows accurate and cross-platform timezone calculations
 - [requests](https://pypi.org/project/requests/) - Allows you to send HTTP/1.1 requests
 - [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) - OAuthlib authentication support for Requests
 
-- [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python. It provides support for parsing, splitting and formatting SQL statements.
+- [sqlparse](https://pypi.org/project/sqlparse/) - A non-validating SQL parser for Python. It provides support for parsing, splitting, and formatting SQL statements.
 - [urllib3](https://pypi.org/project/urllib3/) - A powerful, user-friendly HTTP client for Python
 
 ## Other Tools
@@ -480,8 +480,8 @@ book_cover = serializers.ImageField(source='book.cover', read_only=True)
 - [GitHub](https://github.com/) - Used to host and deploy the website as well as manage the project.
 - [Heroku](https://dashboard.heroku.com) - Used to deploy the website
 - [SQLite](https://www.sqlite.org/index.html) - An open-source, zero-configuration, self-contained, stand-alone, transaction relational database engine designed to be embedded into an application.
-- [ElephantSQL](https://www.elephantsql.com/) - Provides a browser tool for SQL queries where you can create, read, update and delete data directly from your web browser.
-- [Cloudinary](https://cloudinary.com/) - Used to host all static files .
+- [ElephantSQL](https://www.elephantsql.com/) - Provides a browser tool for SQL queries where you can create, read, update, and delete data directly from your web browser.
+- [Cloudinary](https://cloudinary.com/) - Used to host all static files.
 - [CI PEP8 Linter](https://pep8ci.herokuapp.com/#)
 
 # Development
@@ -511,7 +511,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 ![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
 
-_If you use a online dev IDE integrated in github as gitpod or codeanywhere, you can click on it and open the IDE to do changes_
+_If you use an online dev IDE integrated into GitHub as gitpod or codeanywhere, you can click on it and open the IDE to make changes_
 
 4. On your computer, open **Terminal**.
 5. Navigate to the directory of choice (`cd <path-of-dev>`).
@@ -524,7 +524,7 @@ _If you use a online dev IDE integrated in github as gitpod or codeanywhere, you
 pip install -r requirements.txt
 ```
 
-### Configure the application to use cloudinary and configure/create the necessary keys for access as listed in the following topics:
+### Configure the application to use Cloudinary and configure/create the necessary keys for access as listed in the following topics:
 
 - [Add Installed Apps in settings `drf_api_lastpage/settings.py`](#add-installed-apps-in-settings--drf-api-lastpage-settingspy-)
 - [Add the following lines in `drf_api_lastpage/settings.py`](#add-the-following-lines-in--drf-api-lastpage-settingspy-)
@@ -553,7 +553,7 @@ python3 manage.py runserver
 - Navigate to the [GitHub repository](https://github.com/patchamama/PP5-drf-api-The-last-book-page) or use [Code Institute's template](https://github.com/Code-Institute-Org/ci-full-template) to create your own workspace
 - Click on Gitpod and create workspace
 
-## Installing Django and libraries tha you will use to deploy in Heroku
+## Installing Django and libraries that you will use to deploy in Heroku
 
 ### Install Django
 
@@ -585,7 +585,7 @@ pip install django-cloudinary-storage==0.3.0
 pip install Pillow==8.2.0
 ```
 
-### Install apps of the project
+### Install apps for the project
 
 ```
 python3 manage.py startapp profiles
@@ -628,14 +628,14 @@ from pathlib import Path
 import os
 ```
 
-- Add statement to import env.py if it exists - _below import os_
+- Add a statement to import env.py if it exists - _below import os_
 
 ```
 if os.path.exists('env.py'):
     import env
 ```
 
-- Set CLOUDINARY_STORAGE variable equals to the CLOUDINARY_URL variable and place directly below imports
+- Set CLOUDINARY_STORAGE variable equal to the CLOUDINARY_URL variable and place it directly below imports
 
 ```
 CLOUDINARY_STORAGE = {
@@ -643,19 +643,19 @@ CLOUDINARY_STORAGE = {
 }
 ```
 
-- Define Media Storage URL and place directly below
+- Define the Media Storage URL and place it directly below
 
 ```
 MEDIA_URL = '/media/'
 ```
 
-- Define Default File Storage to Cloudinary and place directly below
+- Define Default File Storage to Cloudinary and place it directly below
 
 ```
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 ```
 
-### Create an `env.py` file within the top level directory with the follow content:
+### Create an `env.py` file within the top-level directory with the following content:
 
 ```
 import os
@@ -671,7 +671,7 @@ _Note: URL value copied from [Cloudinary Account Desktop](https://console.cloudi
 python3 manage.py migrate
 ```
 
-### In order to use JSON web tokens we will be using the Django rest auth library, install by typing in the command:
+### To use JSON web tokens we will be using the Django rest auth library, install by typing in the command:
 
 ```
 pip3 install dj-rest-auth
@@ -730,7 +730,7 @@ urlpatterns = [
 ]
 ```
 
-### The Django rest framework doesn’t support JWT tokens for the browser interface out-of-the-box, we’ll need to use session authentication in development and for Production we’ll use Tokens. This will allow us to continue to be able to log into our API as we work on it. To start, install the JWT library
+### The Django rest framework doesn’t support JWT tokens for the browser interface out-of-the-box, we’ll need to use session authentication in development, and for Production we’ll use Tokens. This will allow us to continue to be able to log into our API as we work on it. To start, install the JWT library
 
 ```
 pip install djangorestframework-simplejwt
@@ -742,7 +742,7 @@ pip install djangorestframework-simplejwt
 DEBUG = 'DEV' in os.environ
 ```
 
-### To enable token authentication, cookie declaration and to also ensure that the tokens are sent over HTTPS only, add the following code to `settings.py`.
+### To enable token authentication, and cookie declaration and to also ensure that the tokens are sent over HTTPS only, add the following code to `settings.py`.
 
 ```
 REST_USE_JWT = True
@@ -752,7 +752,7 @@ JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 JWT_AUTH_SAMESITE = "None"
 ```
 
-### Add the `profile_id` and `profile_image` to fields returned when requesting logged in user details. Firstly create a `serializers.py` file in the main project folder.
+### Add the `profile_id` and `profile_image` to fields returned when requesting logged-in user details. Firstly create a `serializers.py` file in the main project folder.
 
 ### Import the appropriate files
 
@@ -788,9 +788,9 @@ if 'DEV' not in os.environ:
 
 ### If the **DEV** environment variable is **NOT** present, set the rest framework’s default renderer classes attribute to JSONRenderer inside a list.
 
-### Create a new root route which will act as a welcome screen to anyone who visits the homepage of our API.
+### Create a new root route that will act as a welcome screen for anyone who visits the homepage of our API.
 
-- First create a new `views.py` file in the main project folder (where_next_drf_api) and add the following code:
+- First, create a new `views.py` file in the main project folder (where_next_drf_api) and add the following code:
 
 ```
 from rest_framework.decorators import api_view
@@ -813,7 +813,7 @@ urlpatterns = [
 ]
 ```
 
-### Remove the value for `SECRET_KEY` in **settings.py** and replace with the following code to use an environment variable instead.
+### Remove the value for `SECRET_KEY` in **settings.py** and replace it with the following code to use an environment variable instead.
 
 - `SECRET_KEY = os.getenv('SECRET_KEY')`
 
@@ -895,7 +895,7 @@ mkdir staticfiles
 
 ![whitenoise-middleware](frontend/src/docs/deploy/whitenoise-middleware.png)
 
-3. In the TEMPLATES list at the DIRS key, add the following code to the DIRS list, to tell Django and WhiteNoise where to look for Reacts index.html file in deployment
+3. In the TEMPLATES list at the DIRS key, add the following code to the DIRS list, to tell Django and WhiteNoise where to look for Reacts index.html file in the deployment
 
 ```
 os.path.join(BASE_DIR, 'staticfiles', 'build')
@@ -1040,9 +1040,9 @@ If you have not deployed this application to Heroku before, you can find most of
 
 2. Go to Settings and open the Config Vars
 
-3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the https:// at the beginning and remove the trailing slash at the end
+3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the `https://` at the beginning and remove the trailing slash at the end
 
-4. Ensure your application has a CLIENT_ORGIN key and set it to the URL of your combined project. This time keep the https:// at the beginning but remove the trailing slash at the end
+4. Ensure your application has a CLIENT_ORGIN key and set it to the URL of your combined project. This time keep the `https://` at the beginning but remove the trailing slash at the end
 
 ![heroku-config-vars.png](frontend/src/docs/deploy/heroku-config-vars.png)
 
@@ -1054,7 +1054,7 @@ If you have not deployed this application to Heroku before, you can find most of
 
 # Credits
 
-- Deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
+- The deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
 - Django Documentation: https://docs.djangoproject.com/en/4.2/ref/models/fields/
 - Django REST framework: https://www.django-rest-framework.org/
 - To generate secret-keys: https://djecrety.ir/
@@ -1066,4 +1066,4 @@ If you have not deployed this application to Heroku before, you can find most of
 
 Acknowledgments
 
-I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they have given me for the project, as well as my girlfriend (Maria) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
+I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they gave me for the project, as well as my girlfriend (Maria) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training program. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
