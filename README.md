@@ -10,7 +10,7 @@ To view the README of the backend _API repository_, please click [**here**](READ
 
 # Objective
 
-The aim of this application is to provide the possibility of commenting on book readings, hence the name: _the last book page_, as a call to socialise reading every time the last page of a book is closed, and also to organise future readings (hence the bookmarks).
+This application aims to provide the possibility of commenting on book readings, hence the name: _the last book page_, as a call to socialize reading every time the last page of a book is closed, and also to organize future readings (hence the bookmarks).
 
 # Table of contents
 
@@ -39,7 +39,7 @@ The aim of this application is to provide the possibility of commenting on book 
 ### User Stories
 
 In total 48 User Stories have been created and executed in 15 Epics (Milestones). In the backend 20 User Stories with 8 Epics, and in the Frontend 26 User Stories with 7 Epics (2 User Stories are pending).
-Epic 11 was added in the backend while the frontend was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added in the backend to meet the frontend's wishes for search and display information. In the commit history you can see how the tasks were executed as the development of the application progressed.
+Epic 11 was added in the backend while the front end was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added in the backend to meet the frontend's wishes for search and display information. In the commit history, you can see how the tasks were executed as the development of the application progressed.
 
 ## Backend Django REST API
 
@@ -47,7 +47,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#1](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/1) As a **Developer**, I can **create and develop the profiles app** so that **the users can create their own profiles**
 
-[#2](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/2) As a **Developer**, I can **serialize the profiles app** so that **the data can be used as python native datatype and can be render to JSON**
+[#2](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/2) As a **Developer**, I can **serialize the profiles app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 [#15](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/15) As a **Developer**, I can, **I can install Django with its dependencies** so that **can be created the project and apps to develop**
 
@@ -55,35 +55,35 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#13](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/13) As a **Developer**, I can **Install and develop the books app** so that **users can create their own books**
 
-[#14](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/14) As a **Developer**, I can **serialize the books app** so that **the data can be used as python native datatype and can be render to JSON**
+[#14](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/14) As a **Developer**, I can **serialize the books app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#3
 
 [#3](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/3) As a **Developer**, I can **Install and develop the comments app** so that **users can create their own comments**
 
-[#4](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/4) As a **Developer**, I can **serialize the comments app** so that **the data can be used as python native datatype and can be render to JSON**
+[#4](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/4) As a **Developer**, I can **serialize the comments app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 [#5](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/5) As a **Developer**, I can **develop the comment detail view** so that **the user can develop Read, Update, Delete and retrieve data of comments**
 
-[#6](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/6) As a **Developer**, I can **serialize the comments detail app** so that **the data can be used as python native datatype and can be render to JSON**
+[#6](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/6) As a **Developer**, I can **serialize the comments detail app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#4
 
 [#7](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/7) As a **Developer**, I can **Install and develop the likes app** so that **users can create their own likes**
 
-[#8](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/8) As a **Developer**, I can **serialize the likes app** so that **the data can be used as python native datatype and can be render to JSON**
+[#8](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/8) As a **Developer**, I can **serialize the likes app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#5
 
 [#11](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/11) As a **Developer**, I can **Install and develop the followers app** so that **users can create their own followers**
 
-[#12](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/12) As a **Developer**, I can **serialize the followers app** so that **the data can be used as python native datatype and can be render to JSON**
+[#12](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/12) As a **Developer**, I can **serialize the follower's app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#6
 
 [#9](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/9) As a **Developer**, I can **Install and develop the bookmarks app** so that **users can create their own bookmarks**
 
-[#10](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/10) As a **Developer**, I can **serialize the bookmarks app** so that **the data can be used as python native datatype and can be render to JSON**
+[#10](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/10) As a **Developer**, I can **serialize the bookmarks app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ### Epic#7
 
@@ -97,7 +97,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#36](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/36) - As a **Developer**, I can **Install and develop the stickers app** so that **users can add notes to comments of books**
 
-[#37](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/37) As a **Developer**, I can **serialize the stickers app** so that **the data can be used as python native datatype and can be render to JSON**
+[#37](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/37) As a **Developer**, I can **serialize the stickers app** so that **the data can be used as Python native datatype and can be rendered to JSON**
 
 ## Frontend React
 
@@ -145,7 +145,7 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 [#42](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/42) As a **User**, I can **view the profiles of other users** so that **, I can see their bio and learn more about them**
 
-[#43](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/43) As a **logged-in User**, I can **customise my profile with an avatar** so that **my profile can be easy to be identified within the site**
+[#43](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/43) As a **logged-in User**, I can **customize my profile with an avatar** so that **my profile can be easy to be identified within the site**
 
 [#44](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/44) As a **logged-in User**, I can **have the option to follow/unfollow users** so that **, I can keep track of their content**
 
@@ -169,13 +169,13 @@ Epic 11 was added in the backend while the frontend was being developed to add t
 
 ## Pending
 
-[#53](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/53) As **logged-in User**, I can **send message to any other user,** so that **I can do any communication about books comments, readings...**
+[#53](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/53) As **logged-in User**, I can **send a message to any other user,** so that **I can do any communication about books comments, readings...**
 
 [#54](https://github.com/patchamama/PP5-drf-api-The-last-book-page/issues/54) As **logged-in User**, I can **read messages from any user,** so that **, I can be informed about any communication received**
 
 # Agile Methodology
 
-For the management of the development of the application, an agile approach was used and for this purpose a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
+For the management of the development of the application, an agile approach was used and for this purpose, a kanban board was used as you can see in the [link](https://github.com/users/patchamama/projects/8/views/1).
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
@@ -183,7 +183,7 @@ A GitHub Issue was created for each User Story, which was then allocated to a mi
 
 ## Design
 
-For the design of the site I have opted for simplicity and few colours to achieve good visibility of the content with good contrast.
+For the design of the site I have opted for simplicity and few colors to achieve good visibility of the content with good contrast.
 
 #### Wireframes
 
@@ -292,7 +292,7 @@ Wireframes have been generated to guide the design and development process to ac
 
 #### Colour Scheme
 
-Colours have been chosen to provide good contrast to allow good access to and viewing of the content. The aim is to create a positive user experience for all visitors to the site.
+Colors have been chosen to provide good contrast to allow good access to and viewing of the content. The aim is to create a positive user experience for all visitors to the site.
 
 ![Colour Palette](frontend/src/docs/palete.png)
 
@@ -304,7 +304,7 @@ The images used on the site relate to the context in which they are shown or to 
 
 ### Tipografy
 
-As font, was selected Roboto, intending to create an elegant and calming visual theme, while ensuring easy readability and consistency across multiple devices. In case there are any issues with the primary font choices, a reliable backup font, Sans-serif, has been selected to ensure consistent styling throughout the app.
+As font was selected by Roboto, intended to create an elegant and calming visual theme, while ensuring easy readability and consistency across multiple devices. In case there are any issues with the primary font choices, a reliable backup font, Sans-serif, has been selected to ensure consistent styling throughout the app.
 
 ## Security Features and Defensive Design
 
@@ -318,7 +318,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 **Logo**
 
-- A customised logo was created using [Logo.com](https://logo.com/) which is a free logo generator.
+- A customized logo was created using [Logo.com](https://logo.com/) which is a free logo generator.
 
 ![The last page logo](docs/logo-sd.png)
 
@@ -328,7 +328,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 - The navigation bar is present on all pages of the website and allows for easy navigation. The Navbar includes a logo and links to various pages. The links on the Navbar will change depending on whether the user is logged into their account or not.
 
-#### _User has not logged in Navbar_
+#### _User has not logged in to Navbar_
 
 ![Navigation section logged out user](frontend/src/docs/images/navigation-logged-out.png)
 
@@ -338,7 +338,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 ![Navigation section logged in user](frontend/src/docs/images/side-navigation-logged-in.png)
 
-- If a user is logged in, their profile avatar will be displayed in the navigation bar and also a side navigation menu will appear. This menu provides a logged-in user with the ability to manage and save comments, books and sign out of their account.
+- If a user is logged in, their profile avatar will be displayed in the navigation bar and also a side navigation menu will appear. This menu provides a logged-in user with the ability to manage and save comments, and books and sign out of their account.
 
 ### Home Page
 
@@ -374,7 +374,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 ![Comment action buttons](frontend/src/docs/images/comment-edit-menu.png)
 
-- On the comment detail page, if the logged-in user is the owner of the comment, they will have the option to edit or delete the comment by the presence of a menu which consists of an edit and delete icon.
+- On the comment detail page, if the logged-in user is the owner of the comment, they will have the option to edit or delete the comment by the presence of a menu that consists of an edit and delete icon.
 
 ### Edit Comment
 
@@ -414,7 +414,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 ### My Feed Page
 
-- A user's feed will compose of comments which the user is following. The feed page has the same styling as Home and Liked as it uses the Comment component. The Infinite scroll component is used to continuously display comments, allowing the user to not have to change pages to view more comments.
+- A user's feed will be composed of comments which the user is following. The feed page has the same styling as Home and Liked as it uses the Comment component. The Infinite scroll component is used to continuously display comments, allowing the user to not have to change pages to view more comments.
 
 ![Feed tab](frontend/src/docs/images/feed-tab.png)
 
@@ -460,7 +460,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 ### Notifications
 
-- React notifications have been used in the app to enhance the user experience by providing real-time feedback and alerts to the user. This has contributed to a better user experience as users are immediately notified of any changes or actions taken within the app, such as successful logins, errors or notifications for removing content. By providing these notifications, users can stay informed and engaged with the app, leading to a smoother and more seamless experience. Additionally, the use of notifications also adds an element of interactivity and visual appeal to the app, making it more engaging and dynamic for users.
+- React notifications have been used in the app to enhance the user experience by providing real-time feedback and alerts to the user. This has contributed to a better user experience as users are immediately notified of any changes or actions taken within the app, such as successful logins, errors, or notifications for removing content. By providing these notifications, users can stay informed and engaged with the app, leading to a smoother and more seamless experience. Additionally, the use of notifications also adds an element of interactivity and visual appeal to the app, making it more engaging and dynamic for users.
 
 ---
 
@@ -488,7 +488,7 @@ The _Avatar.js_ component is designed to display user avatars with a high degree
 
 ### `MoreDropdown.js`
 
-_MoreDropdown.js_ is a reusable component that renders a dropdown bar with edit and delete options. It is built using React and React Bootstrap components and styled using CSS. The component consists of a custom DropdownMenu component that renders a menu icon _(fas fa-ellipsis-v)_, and a Bootstrap Dropdown component that contains the dropdown menu items. The menu items include an Edit option and a Delete option, each with an associated icon. The component is designed to be flexible and customizable, allowing it to easily integrate elsewhere and modify its behaviour and appearance as needed. This component is being used within `Comment.js`, `Book.js` and `Sticker.js` to allow users to edit and delete elements.
+_MoreDropdown.js_ is a reusable component that renders a dropdown bar with edit and delete options. It is built using React and React Bootstrap components and styled using CSS. The component consists of a custom DropdownMenu component that renders a menu icon _(fas fa-ellipsis-v)_, and a Bootstrap Dropdown component that contains the dropdown menu items. The menu items include an Edit option and a Delete option, each with an associated icon. The component is designed to be flexible and customizable, allowing it to easily integrate elsewhere and modify its behavior and appearance as needed. This component is being used within `Comment.js`, `Book.js`, and `Sticker.js` to allow users to edit and delete elements.
 
 ![Dropdown menu](frontend/src/docs/images/dropdown.png)
 
@@ -500,7 +500,7 @@ React Infinite Scroll is used to load content continuously as the user scrolls d
 
 ### `useClickOutsideToggle.js`
 
-This custom hook allows you to toggle a component's state based on clicks outside of it. It is useful for things like menus or popovers that need to be dismissed when the user clicks outside of them. I am using this hook in my `NavBar.js` component to automatically close the Navbar.Toggle Bootstrap component for small screen sizes. When the user clicks on the menu, it toggles the expanded state using the setExpanded function. The expanded value is then used to conditionally render the menu items. When the user clicks outside of the menu, the `useClickOutsideToggle` hook automatically updates the expanded state to false, hiding the menu.
+This custom hook allows you to toggle a component's state based on clicks outside of it. It is useful for things like menus or popovers that need to be dismissed when the user clicks outside of them. I am using this hook in my `NavBar.js` component to automatically close the Navbar.Toggle the Bootstrap component for small screen sizes. When the user clicks on the menu, it toggles the expanded state using the expanded function. The expanded value is then used to conditionally render the menu items. When the user clicks outside of the menu, the `useClickOutsideToggle` hook automatically updates the expanded state to false, hiding the menu.
 
 ### `useRedirect.js`
 
@@ -584,7 +584,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 ![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
 
-_If you use a online dev IDE integrated in github as gitpod or codeanywhere, you can click on it and open the IDE to do changes_
+_If you use an online dev IDE integrated in GitHub as gitpod or codeanywhere, you can click on it and open the IDE to make changes_
 
 4. On your computer, open **Terminal**.
 5. Navigate to the directory of choice (`cd <path-of-dev>`).
@@ -630,7 +630,7 @@ npm start
 
 ## Using Heroku to deploy the API and React projects
 
-_The following guide will assist you in deploying both your React front-end project and your Django API back end._
+_The following guide will assist you in deploying both your React front-end project and your Django API back-end._
 
 ### Setting up WhiteNoise for static files
 
@@ -672,7 +672,7 @@ mkdir staticfiles
 
 ![whitenoise-middleware](frontend/src/docs/deploy/whitenoise-middleware.png)
 
-3. In the TEMPLATES list at the DIRS key, add the following code to the DIRS list, to tell Django and WhiteNoise where to look for Reacts index.html file in deployment
+3. In the TEMPLATES list at the DIRS key, add the following code to the DIRS list, to tell Django and WhiteNoise where to look for Reacts index.html file in the deployment
 
 ```
 os.path.join(BASE_DIR, 'staticfiles', 'build')
@@ -735,7 +735,7 @@ handler404 = TemplateView.as_view(template_name='index.html')
 
 #### In axiosDefault.js:
 
-1. Now that we have changed the base path for the API route, we need to prepend all API requests in our react application with _/api_. Open the axiosDefaults.js file, comment back in the axios.defaults.baseURL and set it to "_/api_"
+1. Now that we have changed the base path for the API route, we need to prepend all API requests in our react application with _/api_. Open the axiosDefaults.js file, comment back in the axios.defaults.baseURL, and set it to "_/api_"
 
 ![base-url.png](frontend/src/docs/deploy/base-url.png)
 
@@ -834,15 +834,15 @@ If you have not deployed this application to Heroku before, you can find most of
 - [React Bootstrap 4.6 docs](https://react-bootstrap-v4.netlify.app/)
 - [React datepicker docs](https://www.npmjs.com/package/react-datepicker)
 - [Code Institute - _'Moments'_ walkthrough project](https://github.com/Code-Institute-Solutions/moments)
-- Deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
-- Images of sing-in and sing-up: https://www.pexels.com/
+- The deployment section is based on the instructions provided by the code institute student support, allowing the unified deployment of the backend and frontend in a single app on Heroku.
+- Images of sing-in and sign-up: https://www.pexels.com/
 - The logo was created by https://Logo.com
 - Error `ERR_OSSL_EVP_UNSUPPORTED` when `npm start` was executed was solved: https://stackoverflow.com/questions/69665222/node-js-17-0-1-gatsby-error-digital-envelope-routinesunsupported-err-os
 
 ### Content
 
-I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customise it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my own unique touch to the project. Overall, I really enjoyed putting this project together.
+I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customize it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my own unique touch to the project. Overall, I enjoyed putting this project together.
 
 # Acknowledgments
 
-I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they have given me for the project, as well as my girlfriend (Maria Casiopea) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training programme. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
+I would like to thank my daughters (Alina and Amelie Urquiola Meschkat) and their mother (Judith Meschkat) for their support and understanding during the hours they gave me for the project, as well as my girlfriend (Maria Casiopea) for his presence. I am especially grateful to my former mentor [_Sandeep Aggarwal_](https://github.com/asandeep) and the [Code Institute](https://codeinstitute.net) training program. Finally, I would like to give special thanks to my brother (Alberto Cabrera) for his support and trust.
