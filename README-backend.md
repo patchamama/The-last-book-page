@@ -37,7 +37,7 @@ The reason for this API is to provide all the information required for querying 
 ### User Stories
 
 In total 48 User Stories have been created and executed in 15 Epics (Milestones). In the backend 20 User Stories with 8 Epics, and in the Frontend 26 User Stories with 7 Epics (2 User Stories are pending).
-Epic 11 was added in the backend while the front end was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added in the backend to meet the frontend's wishes for search and display information. In the commit history, you can see how the tasks were executed as the development of the application progressed.
+Epic 11 was added in the backend while the front end was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added to the backend to meet the frontend's wishes for searching and displaying information. In the commit history, you can see how the tasks were executed as the application development progressed.
 
 ## Backend Django REST API
 
@@ -191,7 +191,7 @@ A PostgreSQL database hosted by ElephantSQL was used throughout most of the proc
 
 ### Comment
 
-The Comment model will allow users to create their own comments about any existed book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The comment field is a TextField that can allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the Book model with Comment allowing to create of different comments for the same book from one or several users (`owner` field that relates to the User model in the same one-to-many way: one user can have several comments). The owner and the book fields are ForeignKeys, which creates a relationship between the model and the User and Book model, indicating that each comment instance belongs to one user and one book. The on_delete=models.CASCADE argument specifies that if the associated user or book is deleted, all related Comment instances will also be deleted.
+The Comment model will allow users to create their comments about any existing book and this is defined by several fields. The owner field is a OneToOneField that establishes a relationship with the User model, specifying that each comment can only have one owner. The `created_on` and `updated_on` fields are DateTimeFields that are automatically set to the time of creation and last modification of the comment, respectively. The `comment` field is a `TextField` that allows for a longer description of the comment's content. The book field establishes a one-to-many relationship of the `Book` model with `Comment` allowing to creation of different comments for the same book from one or several users (`owner` field that relates to the `User` model in the same one-to-many way: one user can have several comments). The owner and the book fields are `ForeignKeys`, which creates a relationship between the model and the `User` and `Book` model, indicating that each comment instance belongs to one user and one book. The on_delete=models.CASCADE argument specifies that if the associated user or book is deleted, all related Comment instances will also be deleted.
 
 | **Field name** | **Field Type** | **Field Argument**               |
 | -------------- | -------------- | -------------------------------- |
@@ -404,7 +404,7 @@ Using Django's development mode, the defined URLs were visited to check if they 
 | likes     |                      likes/                      | If the user is not logged in, no option to like a comment                                                                     |   **pass**    |
 | likes     |                 likes/<int:pk>/                  | Display a single like with a correct ID and a list of all its values                                                         |   **pass**    |
 | likes     |                 likes/<int:pk>/                  | If the user is logged in display the option to delete a like                                                                  |   **pass**    |
-| likes     |                 likes/<int:pk>/                  | If a logged-in user deletes a like, the like is removed from the database and all corresponding pages                         |   **pass**    |
+| likes     |                 likes/<int:pk>/                  | If a logged-in user deletes a like, the like is removed from the database, and all corresponding pages                         |   **pass**    |
 | likes     |                 likes/<int:pk>/                  | If a non-logged-in user tries to delete a like, 403 Forbidden displayed                                                      |   **pass**    |
 | followers |                    followers/                    | Display a list of followers with a corresponding comment ID                                                                   |   **pass**    |
 | followers |                    followers/                    | Display a user list of followers in descending order, newest first                                                           |   **pass**    |
@@ -752,7 +752,7 @@ JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 JWT_AUTH_SAMESITE = "None"
 ```
 
-### Add the `profile_id` and `profile_image` to fields returned when requesting logged-in user details. Firstly create a `serializers.py` file in the main project folder.
+### Add the `profile_id` and `profile_image` to the fields returned when requesting logged-in user details. Firstly create a `serializers.py` file in the main project folder.
 
 ### Import the appropriate files
 
@@ -914,7 +914,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 _Configuring the route to allow the React front end to be viewed._
 
-The React front end will be served from the domain’s root URL, so we need to ensure that this is the React part of the project and not the DRF interface you worked with when the projects were separate. So we will add the code below to ensure that the home page will display the React application. Any 404 errors redirect the user back to the React application where the request will be handled by the react-router-dom. We will also adjust our URLs so that all URLs for the DRF API contain /api/ to ensure that the API’s routes do not clash with the React application’s routes.
+The React front end will be served from the domain’s root URL, so we need to ensure that this is the React part of the project and not the DRF interface you worked with when the projects were separate. So we will add the code below to ensure that the home page will display the React application. Any 404 errors redirect the user back to the React application where the request will be handled by the react-router-dom. We will also adjust our URLs so that all URLs for the DRF API contain `/api/` to ensure that the API’s routes do not clash with the React application’s routes.
 
 #### In the urls.py file of your Django Rest Framework application:
 
@@ -958,7 +958,7 @@ handler404 = TemplateView.as_view(template_name='index.html')
 
 #### In axiosDefault.js:
 
-1. Now that we have changed the base path for the API route, we need to prepend all API requests in our react application with _/api_. Open the axiosDefaults.js file, comment back in the axios.defaults.baseURL and set it to "_/api_"
+1. Now that we have changed the base path for the API route, we need to prepend all API requests in our react application with _/api_. Open the axiosDefaults.js file, comment back in the axios.defaults.baseURL, and set it to "_/api_"
 
 ![base-url.png](frontend/src/docs/deploy/base-url.png)
 
@@ -1040,7 +1040,7 @@ If you have not deployed this application to Heroku before, you can find most of
 
 2. Go to Settings and open the Config Vars
 
-3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the `https://` at the beginning and remove the trailing slash at the end
+3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the `https://` at the beginning, and remove the trailing slash at the end
 
 4. Ensure your application has a CLIENT_ORGIN key and set it to the URL of your combined project. This time keep the `https://` at the beginning but remove the trailing slash at the end
 
