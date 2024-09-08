@@ -39,7 +39,7 @@ This application aims to provide the possibility of commenting on book readings,
 ### User Stories
 
 In total 48 User Stories have been created and executed in 15 Epics (Milestones). In the backend 20 User Stories with 8 Epics, and in the Frontend 26 User Stories with 7 Epics (2 User Stories are pending).
-Epic 11 was added in the backend while the front end was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added in the backend to meet the frontend's wishes for search and display information. In the commit history, you can see how the tasks were executed as the development of the application progressed.
+Epic 11 was added in the backend while the front end was being developed to add the option to insert stickers in comments and have the API provide that information. Search fields were sometimes added to the backend to meet the frontend's wishes for searching and displaying information. In the commit history, you can see how the tasks were executed as the application development progressed.
 
 ## Backend Django REST API
 
@@ -179,11 +179,11 @@ For the management of the development of the application, an agile approach was 
 
 ![GitHub kanban board](docs/agile/kanban.png)
 
-A GitHub Issue was created for each User Story, which was then allocated to a milestone (Epic).
+A GitHub Issue was created for each User Story and then allocated to a milestone (Epic).
 
 ## Design
 
-For the design of the site I have opted for simplicity and few colors to achieve good visibility of the content with good contrast.
+For the design of the site, I have opted for simplicity and a few colors to achieve good visibility of the content with good contrast.
 
 #### Wireframes
 
@@ -304,7 +304,7 @@ The images used on the site relate to the context in which they are shown or to 
 
 ### Tipografy
 
-As font was selected by Roboto, intended to create an elegant and calming visual theme, while ensuring easy readability and consistency across multiple devices. In case there are any issues with the primary font choices, a reliable backup font, Sans-serif, has been selected to ensure consistent styling throughout the app.
+A font was selected by Roboto, intended to create an elegant and calming visual theme while ensuring easy readability and consistency across multiple devices. In case there are any issues with the primary font choices, a reliable backup font, Sans-serif, has been selected to ensure consistent styling throughout the app.
 
 ## Security Features and Defensive Design
 
@@ -384,7 +384,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 ### Add Comment
 
-- Users can easily add new comment by accessing the 'Add comment' tab located in the side navigation bar, providing a simple and streamlined way to create content.
+- Users can easily add new comments by accessing the 'Add comment' tab located in the side navigation bar, providing a simple and streamlined way to create content.
 
 ![Add comment tab](frontend/src/docs/images/add-comment-tab.png)
 
@@ -414,7 +414,7 @@ A warning message will appear to the user when inaccurate or empty data is enter
 
 ### My Feed Page
 
-- A user's feed will be composed of comments which the user is following. The feed page has the same styling as Home and Liked as it uses the Comment component. The Infinite scroll component is used to continuously display comments, allowing the user to not have to change pages to view more comments.
+- A user's feed will be composed of comments that the user is following. The feed page has the same styling as Home and Liked as it uses the Comment component. The Infinite scroll component is used to continuously display comments, allowing the user to not have to change pages to view more comments.
 
 ![Feed tab](frontend/src/docs/images/feed-tab.png)
 
@@ -500,11 +500,11 @@ React Infinite Scroll is used to load content continuously as the user scrolls d
 
 ### `useClickOutsideToggle.js`
 
-This custom hook allows you to toggle a component's state based on clicks outside of it. It is useful for things like menus or popovers that need to be dismissed when the user clicks outside of them. I am using this hook in my `NavBar.js` component to automatically close the Navbar.Toggle the Bootstrap component for small screen sizes. When the user clicks on the menu, it toggles the expanded state using the expanded function. The expanded value is then used to conditionally render the menu items. When the user clicks outside of the menu, the `useClickOutsideToggle` hook automatically updates the expanded state to false, hiding the menu.
+This custom hook allows you to toggle a component's state based on clicks outside of it. It is useful for things like menus or popovers that need to be dismissed when the user clicks outside of them. I am using this hook in my `NavBar.js` component to automatically close the Navbar. Toggle the Bootstrap component for small screen sizes. When the user clicks on the menu, it toggles the expanded state using the expanded function. The expanded value is then used to conditionally render the menu items. When the user clicks outside of the menu, the `useClickOutsideToggle` hook automatically updates the expanded state to false, hiding the menu.
 
 ### `useRedirect.js`
 
-The useRedirect hook is a custom React hook that uses the React Router and Axios libraries to handle navigation and API requests. Its primary function is to redirect the user based on their authentication status, ensuring that they are directed to the appropriate page based on whether they are logged in or out. When called, the hook sends a POST request to refresh the authentication token using the Axios library. If the user is logged in, they will be redirected to the home page using the useHistory hook from the React Router library. If there is an error refreshing the token or the user is logged out, they will also be redirected to the home page. This hook streamlines navigation in my React app and simplifies the logic for handling authentication.
+The `useRedirect` hook is a custom React hook that uses the React Router and Axios libraries to handle navigation and API requests. Its primary function is to redirect the user based on their authentication status, ensuring that they are directed to the appropriate page based on whether they are logged in or out. When called, the hook sends a POST request to refresh the authentication token using the Axios library. If the user is logged in, they will be redirected to the home page using the `useRedirect` hook from the React Router library. If there is an error refreshing the token or the user is logged out, they will also be redirected to the home page. This hook streamlines navigation in my React app and simplifies the logic for handling authentication.
 
 ## Languages Used
 
@@ -584,7 +584,7 @@ In GitHub, you have the option to create a local copy (clone) of your repository
 
 ![GitHub Clone](frontend/src/docs/deploy/deploy-github-clone.png)
 
-_If you use an online dev IDE integrated in GitHub as gitpod or codeanywhere, you can click on it and open the IDE to make changes_
+_If you use an online dev IDE integrated into GitHub as gitpod or codeanywhere, you can click on it and open the IDE to make changes_
 
 4. On your computer, open **Terminal**.
 5. Navigate to the directory of choice (`cd <path-of-dev>`).
@@ -650,7 +650,7 @@ pip3 install whitenoise==6.4.0
 pip3 freeze > requirements.txt
 ```
 
-3. Create a new empty folder called staticfiles in the root directly with the following command
+3. Create a new empty folder called `staticfiles` in the root directly with the following command
 
 ```
 mkdir staticfiles
@@ -691,7 +691,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 _Configuring the route to allow the React front end to be viewed._
 
-The React front end will be served from the domain’s root URL, so we need to ensure that this is the React part of the project and not the DRF interface you worked with when the projects were separate. So we will add the code below to ensure that the home page will display the React application. Any 404 errors redirect the user back to the React application where the request will be handled by the react-router-dom. We will also adjust our URLs so that all URLs for the DRF API contain /api/ to ensure that the API’s routes do not clash with the React application’s routes.
+The React front end will be served from the domain’s root URL, so we need to ensure that this is the React part of the project and not the DRF interface you worked with when the projects were separate. So we will add the code below to ensure that the home page will display the React application. Any 404 errors redirect the user back to the React application where the request will be handled by the react-router-dom. We will also adjust our URLs so that all URLs for the DRF API contain `/api/` to ensure that the API’s routes do not clash with the React application’s routes.
 
 #### In the urls.py file of your Django Rest Framework application:
 
@@ -817,15 +817,15 @@ If you have not deployed this application to Heroku before, you can find most of
 
 2. Go to Settings and open the Config Vars
 
-3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the https:// at the beginning and remove the trailing slash at the end
+3. Ensure your application has an ALLOWED_HOST key, set to the URL of your combined project, remove the `https://` at the beginning, and remove the trailing slash at the end
 
-4. Ensure your application has a CLIENT_ORGIN key and set it to the URL of your combined project. This time keep the https:// at the beginning but remove the trailing slash at the end
+4. Ensure your application has a CLIENT_ORGIN key and set it to the URL of your combined project. This time keep the `https://` at the beginning but remove the trailing slash at the end
 
 ![heroku-config-vars.png](frontend/src/docs/deploy/heroku-config-vars.png)
 
 **_If you had a value for CLIENT_ORIGIN before, this would have been for your separate React project deployment on Heroku, now this value needs to be updated to the URL for your combined application._**
 
-5. Ensure all your settings are in place, including the ones from the Deployment section of the Django REST Framework module. Including saving, committing and pushing any changes made to your code
+5. Ensure all your settings are in place, including the ones from the Deployment section of the Django REST Framework module. Including saving, committing, and pushing any changes made to your code
 
 6. Deploy your application from the Deploy tab in your Heroku dashboard
 
@@ -841,7 +841,7 @@ If you have not deployed this application to Heroku before, you can find most of
 
 ### Content
 
-I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customize it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my own unique touch to the project. Overall, I enjoyed putting this project together.
+I have used a considerable amount of content throughout the site, inspired by the Code Institute's moments tutorial. However, I made several modifications to the project to customize it and make sure it met the requirements. While I kept certain aspects that worked well, I made sure to add my unique touch to the project. Overall, I enjoyed putting this project together.
 
 # Acknowledgments
 
