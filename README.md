@@ -8,6 +8,8 @@ The live link can be found [**here**](https://drp-api-the-last-book-page-4bcf6d1
 
 To view the README of the backend _API repository_, please click [**here**](README-backend.md)
 
+Repo analysis: https://deepwiki.com/patchamama/The-last-book-page
+
 # Objective
 
 This application aims to provide the possibility of commenting on book readings, hence the name: _the last book page_, as a call to socialize reading every time the last page of a book is closed, and also to organize future readings (hence the bookmarks).
